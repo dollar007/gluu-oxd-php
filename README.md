@@ -1,2 +1,2 @@
 # oxd-php
-Python interface to oxd
+PHP interface to oxd
