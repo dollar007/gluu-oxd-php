@@ -37,8 +37,8 @@ class Server {
                 fclose($socket);
             } elseif (!empty($object) && $object->command == 'access_token_status') {
 
-                $response = array('status' => 'ok',
-                    'data' => array("active"=>true,"expires_at"=>1256928856,"issued_at"=>1256923456)
+                $response = array(  'status' => 'ok',
+                                    'data' => array("active"=>true,"expires_at"=>1256928856,"issued_at"=>1256923456)
                 );
                 $message = json_encode($response);
                 fwrite($socket, $message);
@@ -81,7 +81,8 @@ class Server {
             } elseif (!empty($object) && $object->command == 'obtain_rpt') {
 
                 $response = array('status' => 'ok',
-                                  'data' => array("rpt_token"=>"32c2fb17-409d-48a2-b793-a639c8ac6cb2")
+                                  'data' => array('rpt_token'=>"32c2fb17-409d-48a2-b793-a639c8ac6cb2"
+                                  )
                 );
                 $message = json_encode($response);
                 fwrite($socket, $message);
@@ -101,13 +102,13 @@ class Server {
                 fclose($socket);
             } elseif (!empty($object) && $object->command == 'obtain_aat') {
 
-                $response = array(  'status' => 'ok',
-                                    'data' => array("aat_token"=>"eyJ0eXAiOiJKV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1L",
-                                                    "expires_in_seconds"=>3599,
-                                                    "aat_refresh_token"=>"UzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV",
-                                                    "authorization_code"=>"1e436c1a-6e96-4d98-81d6-8f4019ab4636",
-                                                    "scope"=>"http://docs.kantarainitiative.org/uma/scopes/prot.json"
-                                    )
+                $response = array('status' => 'ok',
+                    'data' => array(  "aat_token"=>"eyJ0eXAiOiJKV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1L",
+                        "expires_in_seconds"=>3599,
+                        "aat_refresh_token"=>"UzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV",
+                        "authorization_code"=>"1e436c1a-6e96-4d98-81d6-8f4019ab4636",
+                        "scope"=>"http://docs.kantarainitiative.org/uma/scopes/prot.json"
+                    )
                 );
                 $message = json_encode($response);
                 fwrite($socket, $message);

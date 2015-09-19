@@ -2,60 +2,124 @@
 
 abstract class Client{
 
-    protected $socket = null;
+    protected static $socket = null;
     protected $data = array();
-    protected $response;
-    protected $protacol='tcp';
-    protected $ip = '127.0.0.1';
-    protected $port = 8099;
+    protected $protacol;
+    protected $ip;
+    protected $port;
     protected $command;
     protected $params = array();
+    protected $response_json;
+    protected $response_object;
+    private $response_status;
+    private $response_data = array();
+    private $command_types = array( 'register_client','client_read','client_read',
+                                    'obtain_pat','obtain_aat','obtain_rpt','authorize_rpt',
+                                    'register_resource','rpt_status','discovery',
+                                    'id_token_status','access_token_status',
+                                    'register_ticket'
+    );
+
     /**
      * abstract Client constructor.
      * @param $protacol='tcp', $ip='127.0.0.1', $port=8099
      */
-    public function __construct($protacol, $ip, $port)
+    public function __construct($protacol='tcp', $ip='127.0.0.1', $port=8099)
     {
-        $this->protacol =  $protacol;
-        $this->ip =  $ip;
-        $this->port =  $port;
+
+        $this->setProtacol($protacol);
+        $this->setIp($ip);
+        $this->setPort($port);
+        $this->setCommand();
+
     }
     /**
      * send function sends the command to the oxD server.
     Args:
     command (dict) - Dict representation of the JSON command string
      **/
-    protected function send()
+    public function request($sinbol=8048)
     {
-        if(!$this->socket = stream_socket_client($this->protacol.'://'.$this->ip.':'.$this->port,$errno,$errstr,STREAM_CLIENT_PERSISTENT)){
+        if(!self::$socket = stream_socket_client($this->getProtacol().'://'.$this->getIp().':'.$this->getPort(),$errno,$errstr,STREAM_CLIENT_PERSISTENT)){
             die($errno);
         }
-        $this->data = array('command'=>$this->command,'params'=>$this->params);
-        $this->data= json_encode($this->data,JSON_PRETTY_PRINT);
-        fwrite($this->socket,$this->data);
-        $this->getResult($this->socket,'command:'.$this->command);
-        $this->disconnect($this->socket);
+        $exist = false;
+        for($i=0; $i<count($this->command_types);$i++){
+
+            if($this->command_types[$i]== $this->getCommand()){
+                $exist =true;
+                break;
+            }
+        }
+        if(!$exist){
+            die('Command: '. $this->getCommand(). ' not exist!');
+        }
+
+        foreach($this->getParams() as $key => $val){
+
+            if(is_array($val)){
+                if(empty($val)){
+                    die('Params: '. $key. ' can not be empty!');
+                }
+            }
+            if($val== null || $val==''){
+                die('Params: '. $key. ' can not be null or empty!');
+            }
+        }
+
+        $this->setData(array('command'=>$this->getCommand(),'params'=>$this->getParams()));
+        fwrite(self::$socket,json_encode($this->getData(),JSON_PRETTY_PRINT));
+
+
+        $this->response_json = fread(self::$socket, $sinbol);
+        $this->response_object = json_decode($this->response_json);
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseStatus()
+    {
+        return $this->response_status;
+    }
+
+    /**
+     * @param mixed $response_status
+     */
+    public function setResponseStatus()
+    {
+        $this->response_status = $this->getResponseObject()->status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseData()
+    {
+        $this->response_data = $this->getResponseObject()->data;
+        return $this->response_data;
     }
     /**
      * @return null
      */
-    protected function getSocket()
+    public function getSocket()
     {
-        return $this->socket;
+        return self::$socket;
     }
 
     /**
      * @param null $socket
      */
-    protected function setSocket($socket)
+    public function setSocket($socket)
     {
-        $this->socket = $socket;
+        self::$socket = $socket;
     }
 
     /**
      * @return array
      */
-    protected function getData()
+    public function getData()
     {
         return $this->data;
     }
@@ -63,7 +127,7 @@ abstract class Client{
     /**
      * @param array $data
      */
-    protected function setData($data)
+    public function setData($data)
     {
         $this->data = $data;
     }
@@ -71,7 +135,7 @@ abstract class Client{
     /**
      * @return mixed
      */
-    protected function getProtacol()
+    public function getProtacol()
     {
         return $this->protacol;
     }
@@ -79,31 +143,14 @@ abstract class Client{
     /**
      * @param mixed $protacol
      */
-    protected function setProtacol($protacol)
+    public function setProtacol($protacol)
     {
         $this->protacol = $protacol;
     }
-
     /**
      * @return mixed
      */
-    protected function getResponse()
-    {
-        return $this->response;
-    }
-
-    /**
-     * @param mixed $response
-     */
-    protected function setResponse($response)
-    {
-        $this->response = $response;
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function getIp()
+    public function getIp()
     {
         return $this->ip;
     }
@@ -111,7 +158,7 @@ abstract class Client{
     /**
      * @param mixed $ip
      */
-    protected function setIp($ip)
+    public function setIp($ip)
     {
         $this->ip = $ip;
     }
@@ -119,7 +166,7 @@ abstract class Client{
     /**
      * @return mixed
      */
-    protected function getPort()
+    public function getPort()
     {
         return $this->port;
     }
@@ -127,7 +174,7 @@ abstract class Client{
     /**
      * @param mixed $port
      */
-    protected function setPort($port)
+    public function setPort($port)
     {
         $this->port = $port;
     }
@@ -135,7 +182,7 @@ abstract class Client{
     /**
      * @return mixed
      */
-    protected function getCommand()
+    public function getCommand()
     {
         return $this->command;
     }
@@ -146,23 +193,25 @@ abstract class Client{
     abstract function setCommand();
     /**
      * getResult function geting result from oxD server.
-    Print:
-    response - The JSON response from the oxD Server and print
+    Return: response_object - The JSON response parsing to object
      **/
-    protected function getResult($socket,$command, $sinbol=80048){
-        $this->response = fread($this->socket, $sinbol);
-        $object = json_decode($this->response);
-        echo '<div style="border: 1px solid black;">';
-        echo '<p>'.$command.'</p>';
-        echo '<pre>';
-        var_dump($object);
-        echo '</pre></div><br.>';
+    public function getResponseObject(){
+
+        return  $this->response_object;
     }
     /**
-     * disconnect function closing connection .
+     * getResult function geting result from oxD server.
+        return: response - The JSON response from the oxD Server
      **/
-    protected function disconnect($socket){
-        fclose($socket);
+    public function getResponseJSON(){
+        return $this->response_json;
+    }
+
+    /**
+     * disconnect function closing socket connection.
+     **/
+    public function disconnect(){
+        fclose(self::$socket);
     }
     /**
      * @param array $params
