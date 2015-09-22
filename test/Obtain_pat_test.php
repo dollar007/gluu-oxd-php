@@ -21,7 +21,7 @@ print_r($client->getResponseObject());
 echo '<br/>';
 print_r($client->getResponseJSON());
 
-echo '<br/>'.$client->getResponseAatToken();
+echo '<br/>'.$client->getResponsePatToken();
 echo '<br/>'.$client->getResponseExpiresInSeconds();
 echo '<br/>'.$client->getResponsePatRefreshToken();
 echo '<br/>'.$client->getResponseAuthorizationCode();
