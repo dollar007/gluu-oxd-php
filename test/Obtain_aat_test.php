@@ -12,6 +12,8 @@ $client->setRequestClientSecret("32c2fb17-409d-48a2-b793-a639c8ac6cb2");
 $client->setRequestUserId("yuriy");
 $client->setRequestUserSecret("secret");
 
+$client->request();
+
 echo '<br/>'.$client->getResponseStatus();
 print_r($client->getResponseData());
 echo '<br/>';
