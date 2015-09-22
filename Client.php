@@ -68,7 +68,7 @@ abstract class Client{
         }
 
         $this->setData(array('command'=>$this->getCommand(),'params'=>$this->getParams()));
-        fwrite(self::$socket,json_encode($this->getData(),JSON_PRETTY_PRINT));
+        fwrite(self::$socket,utf8_encode(json_encode($this->getData(),JSON_PRETTY_PRINT)));
 
 
         $this->response_json = fread(self::$socket, $sinbol);
