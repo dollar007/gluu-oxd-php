@@ -16,7 +16,6 @@ class Access_token_status extends Client
     private $response_issued_at;
     /**end response parameter**/
 
-
     public function __construct()
     {
         /**
@@ -107,9 +106,9 @@ class Access_token_status extends Client
 
     public function setParams()
     {
-          $this->params =  array( "discovery_url"=>$this->getRequestDiscoveryUrl(),
-                                  "id_token"=>$this->getRequestIdToken(),
-                                  "access_token"=>$this->getRequestAccessToken()
+          $this->params =  array( "request_discovery_url"=>$this->getRequestDiscoveryUrl(),
+                                  "request_id_token"=>$this->getRequestIdToken(),
+                                  "request_access_token"=>$this->getRequestAccessToken()
           );
     }
 
