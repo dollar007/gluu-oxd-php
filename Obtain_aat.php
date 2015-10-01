@@ -44,16 +44,4 @@ class Obtain_aat extends Client
     public function setCommand(){
         $this->command = 'obtain_aat';
     }
-    public function setParams()
-    {
-        $this->params =  array( "discovery_url"=>$this->getRequestDiscoveryUrl(),
-                                "uma_discovery_url"=>$this->getRequestUmaDiscoveryUrl(),
-                                "redirect_url"=>$this->getRequestRedirectUrl(),
-                                "client_id"=>$this->getRequestClientId(),
-                                "client_secret"=>$this->getRequestClientSecret(),
-                                "user_id"=>$this->getRequestUserId(),
-                                "user_secret"=>$this->getRequestUserSecret()
-        );
-    }
-
 }

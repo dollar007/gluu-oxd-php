@@ -2,18 +2,14 @@
 
 include 'Client.php';
 
-class Access_token_status extends Client
+class Get_authorization_url extends Client
 {
     /**start parameter for request!**/
-    private $request_discovery_url = null;
-    private $request_id_token = null;
-    private $request_access_token = null;
+    private $request_oxd_id = null;
     /**end request parameter**/
 
     /**start parameter for response!**/
-    private $response_active;
-    private $response_expires_at;
-    private $response_issued_at;
+    private $response_authorization_url;
     /**end response parameter**/
 
     public function __construct()
@@ -28,88 +24,35 @@ class Access_token_status extends Client
     /**
      * @return mixed
      */
-    public function getResponseActive()
+    public function getRequestOxdId()
     {
-        $this->response_active = $this->getResponseData()->active;
-        return $this->response_active;
+        return $this->request_oxd_id;
+    }
+
+    /**
+     * @param mixed $request_oxd_id
+     */
+    public function setRequestOxdId($request_oxd_id)
+    {
+        $this->request_oxd_id = $request_oxd_id;
     }
 
     /**
      * @return mixed
      */
-    public function getResponseExpiresAt()
+    public function getResponseAuthorizationUrl()
     {
-        $this->response_expires_at = $this->getResponseData()->expires_at;
-        return $this->response_expires_at;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getResponseIssuedAt()
-    {
-        $this->response_issued_at = $this->getResponseData()->issued_at;
-        return $this->response_issued_at;
-    }
-
-    /**
-     * @return null
-     */
-    public function getRequestDiscoveryUrl()
-    {
-        return $this->request_discovery_url;
-    }
-
-    /**
-     * @param null $request_discovery_url
-     */
-    public function setRequestDiscoveryUrl($request_discovery_url)
-    {
-        $this->request_discovery_url = $request_discovery_url;
-    }
-
-    /**
-     * @return null
-     */
-    public function getRequestIdToken()
-    {
-        return $this->request_id_token;
-    }
-
-    /**
-     * @param null $request_id_token
-     */
-    public function setRequestIdToken($request_id_token)
-    {
-        $this->request_id_token = $request_id_token;
-    }
-
-    /**
-     * @return null
-     */
-    public function getRequestAccessToken()
-    {
-        return $this->request_access_token;
-    }
-
-    /**
-     * @param null $request_access_token
-     */
-    public function setRequestAccessToken($request_access_token)
-    {
-        $this->request_access_token = $request_access_token;
+        $this->response_authorization_url = $this->getResponseData()->authorization_url;
+        return $this->response_authorization_url;
     }
 
     public function setCommand(){
-          $this->command = 'access_token_status';
+          $this->command = 'get_authorization_url';
     }
 
     public function setParams()
     {
-          $this->params =  array( "request_discovery_url"=>$this->getRequestDiscoveryUrl(),
-                                  "request_id_token"=>$this->getRequestIdToken(),
-                                  "request_access_token"=>$this->getRequestAccessToken()
-          );
+          $this->params =  array( "oxd_id"=>$this->getRequestOxdId());
     }
 
 }

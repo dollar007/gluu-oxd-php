@@ -1,11 +1,18 @@
 <?php
 
-include '../Access_token_status.php';
+include '../Authorization_code_flow.php';
 
-$client = new Access_token_status();
-$client->setRequestDiscoveryUrl('https://seed.gluu.org/.well-known/openid-configuration');
-$client->setRequestIdToken('NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1Lm9yZy9veGF1dGgvc2VhbS9yZXNvdXJjZS9yZ');
-$client->setRequestAccessToken('KV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1Lm9yZy9veGF1dGgvc2VhbS9yZXNvdXJjZS9yZXN0djEvb3hhd');
+$client = new Authorization_code_flow();
+$client->setRequestDiscoveryUrl("https://seed.gluu.org/.well-known/openid-configuration");
+$client->setRequestRedirectUrl("https://rs.gluu.org/resources");
+$client->setRequestClientId("@!1111!0008!0068.3E20");
+$client->setRequestClientSecret("32c2fb17-409d-48a2-b793-a639c8ac6cb2");
+$client->setRequestUserId("yuriy");
+$client->setRequestUserSecret("secret");
+$client->setRequestScope("openid email");
+$client->setRequestNonce("409d-48a2-b793");
+$client->setRequestAcr("basic");
+
 $client->request();
 
 echo '<br/>'.$client->getResponseStatus();
@@ -16,8 +23,11 @@ print_r($client->getResponseObject());
 echo '<br/>';
 print_r($client->getResponseJSON());
 
-echo '<br/>'.$client->getResponseActive();
-echo '<br/>'.$client->getResponseExpiresAt();
-echo '<br/>'.$client->getResponseIssuedAt();
+echo '<br/>'.$client->getResponseAccessToken();
+echo '<br/>'.$client->getResponseExpiresInSeconds();
+echo '<br/>'.$client->getResponseIdToken();
+echo '<br/>'.$client->getResponseRefreshToken();
+echo '<br/>'.$client->getResponseAuthorizationCode();
+echo '<br/>'.$client->getResponseScope();
 
 $client->disconnect();

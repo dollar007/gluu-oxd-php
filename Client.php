@@ -13,7 +13,8 @@ abstract class Client{
     protected $response_object;
     private $response_status;
     private $response_data = array();
-    private $command_types = array( 'register_client','client_read','client_read',
+    private $command_types = array( 'register_client','client_read','authorization_code_flow',
+                                    'get_authorization_url','get_tokens_by_code','get_user_info',
                                     'obtain_pat','obtain_aat','obtain_rpt','authorize_rpt',
                                     'register_resource','rpt_status','discovery',
                                     'id_token_status','access_token_status',

@@ -1,9 +1,10 @@
 <?php
 
-include '../Get_authorization_url.php';
+include '../Get_user_info.php';
 
-$client = new Get_authorization_url();
+$client = new Get_user_info();
 $client->setRequestOxdId("6F9619FF-8B86-D011-B42D-00CF4FC964FF");
+$client->setRequestAccessToken("SlAV32hkKG");
 
 $client->request();
 
@@ -15,6 +16,12 @@ print_r($client->getResponseObject());
 echo '<br/>';
 print_r($client->getResponseJSON());
 
-echo '<br/>'.$client->getResponseAuthorizationUrl();
+echo '<br/>'.$client->getResponseSub();
+echo '<br/>'.$client->getResponseName();
+echo '<br/>'.$client->getResponseGivenName();
+echo '<br/>'.$client->getResponseFamilyName();
+echo '<br/>'.$client->getResponsePreferredUsername();
+echo '<br/>'.$client->getResponseEmail();
+echo '<br/>'.$client->getResponsePicture();
 
 $client->disconnect();
