@@ -6,6 +6,7 @@ class Get_authorization_url extends Client
 {
     /**start parameter for request!**/
     private $request_oxd_id = null;
+    private $request_acr_values = null;
     /**end request parameter**/
 
     /**start parameter for response!**/
@@ -38,6 +39,22 @@ class Get_authorization_url extends Client
     }
 
     /**
+     * @return null
+     */
+    public function getRequestAcrValues()
+    {
+        return $this->request_acr_values;
+    }
+
+    /**
+     * @param null $request_acr_values
+     */
+    public function setRequestAcrValues($request_acr_values = 'basic')
+    {
+        $this->request_acr_values = $request_acr_values;
+    }
+
+    /**
      * @return mixed
      */
     public function getResponseAuthorizationUrl()
@@ -52,7 +69,10 @@ class Get_authorization_url extends Client
 
     public function setParams()
     {
-          $this->params =  array( "oxd_id"=>$this->getRequestOxdId());
+          $this->params =  array( "oxd_id"=>$this->getRequestOxdId(),
+                                  "acr_values"=>$this->getRequestAcrValues()
+
+          );
     }
 
 }
