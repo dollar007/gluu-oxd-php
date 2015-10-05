@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd33020a-47bd-4640-9d96-61a0ca049b2a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Access_token_status.php" afterPath="$PROJECT_DIR$/Access_token_status.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Authorization_code_flow.php" afterPath="$PROJECT_DIR$/Authorization_code_flow.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Authorize_rpt.php" afterPath="$PROJECT_DIR$/Authorize_rpt.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client_read.php" afterPath="$PROJECT_DIR$/Client_read.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discovery.php" afterPath="$PROJECT_DIR$/Discovery.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Get_authorization_url.php" afterPath="$PROJECT_DIR$/Get_authorization_url.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Get_tokens_by_code.php" afterPath="$PROJECT_DIR$/Get_tokens_by_code.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Id_token_status.php" afterPath="$PROJECT_DIR$/Id_token_status.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Obtain_pat.php" afterPath="$PROJECT_DIR$/Obtain_pat.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Obtain_rpt.php" afterPath="$PROJECT_DIR$/Obtain_rpt.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Register_client.php" afterPath="$PROJECT_DIR$/Register_client.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Register_resource.php" afterPath="$PROJECT_DIR$/Register_resource.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Register_site.php" afterPath="$PROJECT_DIR$/Register_site.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Register_ticket.php" afterPath="$PROJECT_DIR$/Register_ticket.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rpt_status.php" afterPath="$PROJECT_DIR$/Rpt_status.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oxd-php.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -132,7 +118,7 @@
         <entry file="file://$PROJECT_DIR$/Rpt_status.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.058419243">
-              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -308,8 +294,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20204978" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -724,7 +710,7 @@
     <entry file="file://$PROJECT_DIR$/Rpt_status.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.058419243">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="12" />
           <folding />
         </state>
       </provider>
