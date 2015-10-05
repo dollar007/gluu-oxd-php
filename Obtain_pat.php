@@ -1,7 +1,7 @@
 <?php
 
-include 'Client.php';
-include 'Obtain_trait.php';
+require_once 'Client.php';
+require_once 'Obtain_trait.php';
 class Obtain_pat extends Client
 {
 

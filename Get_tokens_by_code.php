@@ -1,6 +1,6 @@
 <?php
 
-include 'Client.php';
+require_once 'Client.php';
 
 class Get_tokens_by_code extends Client
 {

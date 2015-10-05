@@ -1,6 +1,6 @@
 <?php
 
-include 'Client.php';
+require_once 'Client.php';
 
 class Access_token_status extends Client
 {

@@ -1,5 +1,5 @@
 <?php
-include_once 'Client.php';
+require_once 'Client.php';
 class Register_client extends Client
 {
     /**start parameter for request!**/

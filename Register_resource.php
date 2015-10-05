@@ -1,6 +1,6 @@
 <?php
 
-include 'Client.php';
+require_once 'Client.php';
 
 class Register_resource extends Client
 {

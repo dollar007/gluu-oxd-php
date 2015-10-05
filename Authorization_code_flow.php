@@ -1,6 +1,6 @@
 <?php
 
-include 'Client.php';
+require_once 'Client.php';
 
 class Authorization_code_flow extends Client
 {
