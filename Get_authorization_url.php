@@ -64,7 +64,8 @@ class Get_authorization_url extends Client
     }
 
     public function setCommand(){
-          $this->command = 'get_authorization_url';
+        $this->setRequestAcrValues();
+        $this->command = 'get_authorization_url';
     }
 
     public function setParams()

@@ -18,7 +18,7 @@ abstract class Client{
                                     'obtain_pat','obtain_aat','obtain_rpt','authorize_rpt',
                                     'register_resource','rpt_status','discovery',
                                     'id_token_status','access_token_status',
-                                    'register_ticket'
+                                    'register_ticket','register_site',
     );
 
     /**
@@ -41,6 +41,7 @@ abstract class Client{
      **/
     public function request($sinbol=8048)
     {
+        $this->setParams();
         if(!self::$socket = stream_socket_client($this->getProtacol().'://'.$this->getIp().':'.$this->getPort(),$errno,$errstr,STREAM_CLIENT_PERSISTENT)){
             die($errno);
         }
@@ -69,11 +70,19 @@ abstract class Client{
         }
 
         $this->setData(array('command'=>$this->getCommand(),'params'=>$this->getParams()));
+
+
         fwrite(self::$socket,utf8_encode(json_encode($this->getData(),JSON_PRETTY_PRINT)));
 
 
-        $this->response_json = fread(self::$socket, $sinbol);
-        $this->response_object = json_decode($this->response_json);
+        if($this->response_json = fread(self::$socket, $sinbol)){
+            var_dump($this->response_json);
+            $this->response_object = json_decode($this->response_json);
+        }else{
+            die('Respons is empty...');
+        }
+
+
 
     }
 
@@ -98,7 +107,11 @@ abstract class Client{
      */
     public function getResponseData()
     {
-        $this->response_data = $this->getResponseObject()->data;
+        if(!$this->getResponseObject()){
+            $this->response_data ='Data is empty';
+        }else {
+            $this->response_data = $this->getResponseObject()->data;
+        }
         return $this->response_data;
     }
     /**
@@ -197,6 +210,7 @@ abstract class Client{
     Return: response_object - The JSON response parsing to object
      **/
     public function getResponseObject(){
+
 
         return  $this->response_object;
     }
