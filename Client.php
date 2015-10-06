@@ -76,7 +76,6 @@ abstract class Client{
 
 
         if($this->response_json = fread(self::$socket, $sinbol)){
-            var_dump($this->response_json);
             $this->response_object = json_decode($this->response_json);
         }else{
             die('Respons is empty...');

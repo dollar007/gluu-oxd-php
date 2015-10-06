@@ -13,7 +13,6 @@ trait Obtain_trait
     /**end request parameter**/
 
     /**start parameter for response!**/
-    private $response_aat_token;
     private $response_expires_in_seconds;
     private $response_authorization_code;
     private $response_scope;

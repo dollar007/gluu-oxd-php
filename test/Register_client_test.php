@@ -6,6 +6,7 @@ $client = new Register_client();
 
 $client->setRequestDiscoveryUrl("https://seed.gluu.org/.well-known/openid-configuration");
 $client->setRequestRedirectUrl("https://rs.gluu.org/resources");
+$client->setRequestLogoutRedirectUrl("https://rs.gluu.org/resources");
 $client->setRequestClientName("oxD Client");
 $client->setRequestResponseTypes("code id_token token");
 $client->setRequestAppType("web");
