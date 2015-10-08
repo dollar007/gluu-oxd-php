@@ -1,7 +1,6 @@
 <?php
 
 include '../Discovery.php';
-
 $client = new Discovery();
 $client->setRequestDiscoveryUrl('https://seed.gluu.org/.well-known/openid-configuration');
 $client->request();

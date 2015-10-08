@@ -39,7 +39,7 @@ abstract class Client{
     Args:
     command (dict) - Dict representation of the JSON command string
      **/
-    public function request($sinbol=8048)
+    public function request($sinbol=16096)
     {
         $this->setParams();
         if(!self::$socket = stream_socket_client($this->getProtacol().'://'.$this->getIp().':'.$this->getPort(),$errno,$errstr,STREAM_CLIENT_PERSISTENT)){
@@ -54,35 +54,41 @@ abstract class Client{
             }
         }
         if(!$exist){
-            die('Command: '. $this->getCommand(). ' not exist!');
+            $this->error_message('Command: '. $this->getCommand(). ' not exist!');
         }
 
         foreach($this->getParams() as $key => $val){
 
             if(is_array($val)){
                 if(empty($val)){
-                    die('Params: '. $key. ' can not be empty!');
+                    $this->error_message('Params: '. $key. ' can not be empty!');
                 }
             }
             if($val== null || $val==''){
-                die('Params: '. $key. ' can not be null or empty!');
+                $this->error_message('Params: '. $key. ' can not be null or empty!');
             }
         }
 
         $this->setData(array('command'=>$this->getCommand(),'params'=>$this->getParams()));
+        $jsondata = json_encode($this->getData());
+        $lenght = strlen($jsondata);
 
+        $lenght = $lenght<=999 ? "0".$lenght : $lenght;
+        fwrite(self::$socket,$lenght.$jsondata);
+        $this->response_json = fread(self::$socket, $sinbol);
 
-        fwrite(self::$socket,utf8_encode(json_encode($this->getData(),JSON_PRETTY_PRINT)));
+        $this->response_json = str_replace(substr( $this->response_json,0,4), "",  $this->response_json);
 
-
-        if($this->response_json = fread(self::$socket, $sinbol)){
-            $this->response_object = json_decode($this->response_json);
+        if($this->response_json){
+            $object = json_decode($this->response_json);
+            if($object->status == 'error'){
+                $this->error_message($object->data->error.' : '.$object->data->error_description);
+            }elseif($object->status == 'ok'){
+                $this->response_object = json_decode($this->response_json);
+            }
         }else{
-            die('Respons is empty...');
+            $this->error_message('Response is empty...');
         }
-
-
-
     }
 
     /**
@@ -108,6 +114,7 @@ abstract class Client{
     {
         if(!$this->getResponseObject()){
             $this->response_data ='Data is empty';
+            $this->error_message($this->response_data);
         }else {
             $this->response_data = $this->getResponseObject()->data;
         }
@@ -238,6 +245,10 @@ abstract class Client{
     public function getParams()
     {
         return $this->params;
+    }
+
+    public function error_message($error){
+        die($error);
     }
 
 }

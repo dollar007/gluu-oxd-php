@@ -302,7 +302,7 @@ class Discovery extends Client
     }
     public function setParams()
     {
-          $this->params =  array( "aat_token"=>$this->getRequestDiscoveryUrl() );
+          $this->params =  array( "discovery_url"=>$this->getRequestDiscoveryUrl() );
     }
 
 }
