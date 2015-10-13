@@ -16,6 +16,7 @@ trait Obtain_trait
     private $response_expires_in_seconds;
     private $response_authorization_code;
     private $response_scope;
+
     /**end response parameter**/
 
     public function getRequestDiscoveryUrl()
@@ -135,6 +136,7 @@ trait Obtain_trait
         $this->response_expires_in_seconds = $this->getResponseData()->expires_in_seconds;
         return $this->response_expires_in_seconds;
     }
+
     /**
      * @return mixed
      */
@@ -153,15 +155,17 @@ trait Obtain_trait
 
         return $this->response_scope;
     }
+
     public function setParams()
     {
-        $this->params =  array( "discovery_url"=>$this->getRequestDiscoveryUrl(),
-            "uma_discovery_url"=>$this->getRequestUmaDiscoveryUrl(),
-            "redirect_url"=>$this->getRequestRedirectUrl(),
-            "client_id"=>$this->getRequestClientId(),
-            "client_secret"=>$this->getRequestClientSecret(),
-            "user_id"=>$this->getRequestUserId(),
-            "user_secret"=>$this->getRequestUserSecret()
+        $this->params = array(
+            "discovery_url" => $this->getRequestDiscoveryUrl(),
+            "uma_discovery_url" => $this->getRequestUmaDiscoveryUrl(),
+            "redirect_url" => $this->getRequestRedirectUrl(),
+            "client_id" => $this->getRequestClientId(),
+            "client_secret" => $this->getRequestClientSecret(),
+            "user_id" => $this->getRequestUserId(),
+            "user_secret" => $this->getRequestUserSecret()
         );
     }
 }
