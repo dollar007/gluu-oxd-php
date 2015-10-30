@@ -137,5 +137,4 @@ class Client_read extends Client
             "registration_access_token" => $this->getRequestRegistrationAccessToken()
         );
     }
-
 }

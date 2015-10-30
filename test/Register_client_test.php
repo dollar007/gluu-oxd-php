@@ -11,7 +11,7 @@ $client->setRequestClientName("oxD Client");
 $client->setRequestResponseTypes("code id_token token");
 $client->setRequestAppType("web");
 $client->setRequestGrantTypes("authorization_code implicit");
-$client->setRequestContacts("mike@gluu.org yuriy@gluu.org");
+$client->setRequestContacts("mike@gluu.org, yuriy@gluu.org");
 $client->setRequestJwksUri("https://seed.gluu.org/jwks");
 
 $client->request();
