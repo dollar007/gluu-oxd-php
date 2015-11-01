@@ -275,5 +275,40 @@ abstract class Client
     public function is_JSON($string){
         return is_string($string) && is_object(json_decode($string)) ? true : false;
     }
+    /**
+     * sending and geting data via curl .
+     * @param type integer $dataArray default
+     * @return array
+     **/
+    public function curl_oxd_request($dataArray = array(),$requestType ='POST', $url = 'https://seed.gluu.org',$port = 443){
 
+        if(empty($dataArray)){
+            $this->error_message('Data can not be empty.');
+        }
+        if(!is_array($dataArray)){
+            $this->error_message('Data must be array.');
+        }
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+            $this->error_message("$url is not a valid url address");
+        }
+        if(is_int($port) && $port>=0 && $port<=65535){
+        }else{
+            $this->error_message("$port is not a valid port . Port must be integer and between from 0 to 65535.");
+        }
+
+        $data_json = str_replace("\\/", "/", json_encode($dataArray));
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_json);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_PORT, $port);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Accept: application/json',
+                'Content-Length: ' . strlen($data_json))
+        );
+        $result = curl_exec($ch);
+        return $result;
+    }
 }
