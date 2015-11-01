@@ -5,48 +5,41 @@ abstract class Client
 
     protected static $socket = null;
     protected $data = array();
-    protected $protocol;
     protected $ip;
     protected $port;
     protected $command;
     protected $params = array();
     protected $response_json;
     protected $response_object;
-    private $response_status;
-    private $response_data = array();
+    protected $response_status;
+    protected $response_data = array();
     private $command_types = array(
-        'register_client', 'client_read', 'obtain_pat', 'obtain_aat',
-        'obtain_rpt', 'authorize_rpt', 'register_resource', 'rpt_status',
-        'id_token_status', 'access_token_status', 'register_ticket', 'discovery',
-        'authorization_code_flow', 'get_authorization_url', 'get_tokens_by_code',
-        'get_user_info', 'register_site',
+                                'register_client', 'client_read', 'obtain_pat', 'obtain_aat',
+                                'obtain_rpt', 'authorize_rpt', 'register_resource', 'rpt_status',
+                                'id_token_status', 'access_token_status', 'register_ticket', 'discovery',
+                                'authorization_code_flow', 'get_authorization_url', 'get_tokens_by_code',
+                                'get_user_info', 'register_site',
     );
 
     /**
      * abstract Client constructor.
-     * @param $ip ='127.0.0.1', $protocol='tcp', $port=8099
+     * @param $ip ='127.0.0.1', $port=8099
      */
-    public function __construct($ip = '127.0.0.1', $protocol = 'tcp', $port = 8099)
+    public function __construct($ip = '127.0.0.1', $port = 8099)
     {
-
-        $this->setIp($ip);
-        $this->setProtocol($protocol);
-        $this->setPort($port);
-        $this->setCommand();
-
-    }
-
-    /**
-     * send function sends the command to the oxD server.
-     * Args:
-     * command (dict) - Dict representation of the JSON command string
-     **/
-    public function request($symbol = 16096)
-    {
-        $this->setParams();
-        if (!self::$socket = stream_socket_client($this->getProtocol() . '://' . $this->getIp() . ':' . $this->getPort(), $errno, $errstr, STREAM_CLIENT_PERSISTENT)) {
-            die($errno);
+        if (!filter_var($ip, FILTER_VALIDATE_IP) === false) {
+            $this->setIp($ip);
+        } else {
+            $this->error_message("$ip is not a valid IP address");
         }
+
+
+        if(is_int($port) && $port>=0 && $port<=65535){
+            $this->setPort($port);
+        }else{
+            $this->error_message("$port is not a valid port for socket. Port must be integer and between from 0 to 65535.");
+        }
+        $this->setCommand();
         $exist = false;
         for ($i = 0; $i < count($this->command_types); $i++) {
 
@@ -55,11 +48,27 @@ abstract class Client
                 break;
             }
         }
+
         if (!$exist) {
             $this->error_message('Command: ' . $this->getCommand() . ' not exist!');
         }
 
-        foreach ($this->getParams() as $key => $val) {
+
+    }
+
+    /**
+     * send function sends the command to the oxD server.
+     * Args:
+     * command (dict) - Dict representation of the JSON command string
+     **/
+    public function request()
+    {
+        $this->setParams();
+        if (!self::$socket = stream_socket_client( $this->getIp() . ':' . $this->getPort(), $errno, $errstr, STREAM_CLIENT_PERSISTENT)) {
+            die($errno);
+        }
+
+        /*foreach ($this->getParams() as $key => $val) {
 
             if (is_array($val)) {
                 if (empty($val)) {
@@ -69,18 +78,29 @@ abstract class Client
             if ($val == null || $val == '') {
                 $this->error_message('Params: ' . $key . ' can not be null or empty!');
             }
-        }
+        }*/
 
         $this->setData(array('command' => $this->getCommand(), 'params' => $this->getParams()));
         $jsondata = json_encode($this->getData());
-        $lenght = strlen($jsondata);
 
-        $lenght = $lenght <= 999 ? "0" . $lenght : $lenght;
-        fwrite(self::$socket, $lenght . $jsondata);
-        $this->response_json = fread(self::$socket, $symbol);
+        if(!$this->is_JSON($jsondata)){
+            $this->error_message('Sending parameters must be JSON.');
+        }
+        $lenght = strlen($jsondata);
+        if($lenght<=0){
+            $this->error_message("Length must be more than zero.");
+        }else{
+            $lenght = $lenght <= 999 ? "0" . $lenght : $lenght;
+        }
+
+        fwrite(self::$socket, utf8_encode($lenght . $jsondata));
+
+        $this->response_json = fread(self::$socket, 8192);
 
         $this->response_json = str_replace(substr($this->response_json, 0, 4), "", $this->response_json);
-
+        if(!$this->is_JSON($this->response_json)){
+            $this->error_message('Reading parameter is not JSON.');
+        }
         if ($this->response_json) {
             $object = json_decode($this->response_json);
             if ($object->status == 'error') {
@@ -153,22 +173,6 @@ abstract class Client
     public function setData($data)
     {
         $this->data = $data;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProtocol()
-    {
-        return $this->protocol;
-    }
-
-    /**
-     * @param mixed $protocol
-     */
-    public function setProtocol($protocol)
-    {
-        $this->protocol = $protocol;
     }
 
     /**
@@ -257,9 +261,19 @@ abstract class Client
         return $this->params;
     }
 
+    /**
+     * showing errors.
+     **/
     public function error_message($error)
     {
         die($error);
+    }
+
+    /**
+     * chacking format string.
+     **/
+    public function is_JSON($string){
+        return is_string($string) && is_object(json_decode($string)) ? true : false;
     }
 
 }
