@@ -275,11 +275,15 @@ abstract class Client
     public function is_JSON($string){
         return is_string($string) && is_object(json_decode($string)) ? true : false;
     }
-    /**
-     * sending and geting data via curl .
-     * @param type integer $dataArray default
-     * @return array
-     **/
+
+    /*
+     * sending and geting data via curl.
+     * @param  array   $dataArray
+     * @param  string  $requestType
+     * @param  string  $url
+     * @param  int     $port
+     * @return string
+    */
     public function curl_oxd_request($dataArray = array(),$requestType ='POST', $url = 'https://seed.gluu.org',$port = 443){
 
         if(empty($dataArray)){
