@@ -1,7 +1,7 @@
 <?php
-require_once 'Client.php';
+require_once 'Client_OXD.php';
 
-class Access_token_status extends Client
+class Access_token_status extends Client_oxd
 {
     /**start parameter for request!**/
     private $request_discovery_url = null;

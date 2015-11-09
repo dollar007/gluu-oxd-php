@@ -1,7 +1,7 @@
 <?php
-require_once 'Client.php';
+require_once 'Client_OXD.php';
 
-class Register_client extends Client
+class Register_client extends Client_oxd
 {
     /**start parameter for request!**/
     private $request_discoveryUrl = null;

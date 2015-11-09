@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Client.php';
+require_once 'Client_OXD.php';
 
-class Rpt_status extends Client
+class Rpt_status extends Client_oxd
 {
     /**start parameter for request!**/
     private $request_uma_discovery_url = null;

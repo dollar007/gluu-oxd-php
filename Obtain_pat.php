@@ -1,9 +1,9 @@
 <?php
 
-require_once 'Client.php';
+require_once 'Client_OXD.php';
 require_once 'Obtain_trait.php';
 
-class Obtain_pat extends Client
+class Obtain_pat extends Client_oxd
 {
 
     use Obtain_trait;

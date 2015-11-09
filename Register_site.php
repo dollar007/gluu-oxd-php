@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Client.php';
+require_once 'Client_OXD.php';
 
-class Register_site extends Client
+class Register_site extends Client_oxd
 {
     /**start parameter for request!**/
     private $request_authorization_redirect_uri = null;

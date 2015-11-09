@@ -1,8 +1,8 @@
 <?php
 
-include 'Client.php';
+include 'Client_OXD.php';
 
-class Get_user_info extends Client
+class Get_user_info extends Client_oxd
 {
     /**start parameter for request!**/
     private $request_oxd_id = null;

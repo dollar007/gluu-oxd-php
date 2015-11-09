@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Client.php';
+require_once 'Client_OXD.php';
 
-class Client_read extends Client
+class Client_read extends Client_oxd
 {
     /**start parameter for request!**/
     private $request_registration_client_uri = null;

@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Client.php';
+require_once 'Client_OXD.php';
 
-class Get_authorization_code extends Client
+class Get_authorization_code extends Client_oxd
 {
     /**start parameter for request!**/
         private $request_oxd_id = null;

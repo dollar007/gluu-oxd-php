@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Client.php';
+require_once 'Client_OXD.php';
 
-class Authorization_code_flow extends Client
+class Authorization_code_flow extends Client_oxd
 {
     /**start parameter for request!**/
     private $request_discovery_url = null;
@@ -37,7 +37,7 @@ class Authorization_code_flow extends Client
     }
 
     /**
-     * @return mixed
+     * @return mixed+++++++++++++++++++++++++++++
      */
     public function getRequestDiscoveryUrl()
     {
@@ -148,59 +148,59 @@ class Authorization_code_flow extends Client
         $this->request_scope = $request_scope;
     }
 
-    /**
+    /*
      * @return null
-     */
+    */
     public function getRequestNonce()
     {
         return $this->request_nonce;
     }
 
-    /**
+    /*
      * @param null $request_nonce
-     */
+    */
     public function setRequestNonce($request_nonce)
     {
         $this->request_nonce = $request_nonce;
     }
 
-    /**
+    /*
      * @return null
-     */
+    */
     public function getRequestAcr()
     {
         return $this->request_acr;
     }
 
-    /**
+    /*
      * @param null $request_acr
-     */
+    */
     public function setRequestAcr($request_acr)
     {
         $this->request_acr = $request_acr;
     }
 
-    /**
+    /*
      * @return mixed
-     */
+    */
     public function getResponseAccessToken()
     {
         $this->response_access_token = $this->getResponseData()->access_token;
         return $this->response_access_token;
     }
 
-    /**
+    /*
      * @return mixed
-     */
+    */
     public function getResponseExpiresInSeconds()
     {
         $this->response_expires_in_seconds = $this->getResponseData()->expires_in_seconds;
         return $this->response_expires_in_seconds;
     }
 
-    /**
+    /*
      * @return mixed
-     */
+    */
     public function getResponseIdToken()
     {
         $this->response_id_token = $this->getResponseData()->id_token;
@@ -225,9 +225,9 @@ class Authorization_code_flow extends Client
         return $this->response_authorization_code;
     }
 
-    /**
+    /*
      * @return mixed
-     */
+    */
     public function getResponseScope()
     {
         $this->response_scope = $this->getResponseData()->scope;

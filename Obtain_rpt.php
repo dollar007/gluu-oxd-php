@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Client.php';
+require_once 'Client_OXD.php';
 
-class Obtain_rpt extends Client
+class Obtain_rpt extends Client_oxd
 {
     /**start parameter for request!**/
     private $request_aat_token = null;
