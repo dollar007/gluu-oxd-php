@@ -4,7 +4,7 @@ include '../Id_token_status.php';
 
 $client = new Id_token_status();
 
-$client->setRequestDiscoveryUrl('https://seed.gluu.org/.well-known/openid-configuration');
+$client->setRequestDiscoveryUrl('https://ce.gluu.info/.well-known/openid-configuration');
 $client->setRequestIdToken('eyJ0eXAiOiJKV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0');
 
 $client->request();

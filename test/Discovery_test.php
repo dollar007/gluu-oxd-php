@@ -2,7 +2,7 @@
 
 include '../Discovery.php';
 $client = new Discovery();
-$client->setRequestDiscoveryUrl('https://seed.gluu.org/.well-known/openid-configuration');
+$client->setRequestDiscoveryUrl('https://ce.gluu.info/.well-known/openid-configuration');
 $client->request();
 
 echo '<br/>'.$client->getResponseStatus();

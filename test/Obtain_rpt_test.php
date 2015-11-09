@@ -5,7 +5,7 @@ include '../Obtain_rpt.php';
 $client = new Obtain_rpt();
 
 $client->setRequestAatToken("eyJ0eXAiOiJKV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1L");
-$client->setRequestAmHost("seed.gluu.org");
+$client->setRequestAmHost("ce.gluu.info");
 
 $client->request();
 echo '<br/>'.$client->getResponseStatus();

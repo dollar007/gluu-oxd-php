@@ -1,18 +1,18 @@
 <?php
 
-include_once '../Register_client.php';
+include_once '../Register_Client.php';
 
 $client = new Register_client();
 
-$client->setRequestDiscoveryUrl("https://seed.gluu.org/.well-known/openid-configuration");
-$client->setRequestRedirectUrl("https://rs.gluu.org/resources");
-$client->setRequestLogoutRedirectUrl("https://rs.gluu.org/resources");
-$client->setRequestClientName("oxD Client");
+$client->setRequestDiscoveryUrl("https://ce.gluu.info/.well-known/openid-configuration");
+$client->setRequestRedirectUrl("https://rs.gluu.info/resources");
+$client->setRequestLogoutRedirectUrl("https://rs.gluu.info/resources");
+$client->setRequestClientName("Vlad");
 $client->setRequestResponseTypes("code id_token token");
 $client->setRequestAppType("web");
 $client->setRequestGrantTypes("authorization_code implicit");
 $client->setRequestContacts("mike@gluu.org, yuriy@gluu.org");
-$client->setRequestJwksUri("https://seed.gluu.org/jwks");
+$client->setRequestJwksUri("https://ce.gluu.info/jwks");
 
 $client->request();
 

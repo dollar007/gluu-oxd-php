@@ -3,7 +3,7 @@
 include '../Client_read.php';
 
 $client = new Client_read();
-$client->setRequestRegistrationClientUri('https://seed.gluu.org/oxauth/seam/resource/restv1/oxauth/register?client_id=@!EDFB.879F.2DAE.D95A!0001!0442.B31E!0008!778C.9634');
+$client->setRequestRegistrationClientUri('https://ce.gluu.info/oxauth/seam/resource/restv1/oxauth/register?client_id=@!EDFB.879F.2DAE.D95A!0001!0442.B31E!0008!778C.9634');
 $client->setRequestRegistrationAccessToken('8117eacd-8095-45cc-b637-a5822ee82d80');
 
 $client->request();

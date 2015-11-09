@@ -3,7 +3,7 @@
 include '../Access_token_status.php';
 
 $client = new Access_token_status();
-$client->setRequestDiscoveryUrl('https://seed.gluu.org/.well-known/openid-configuration');
+$client->setRequestDiscoveryUrl('https://ce.gluu.info/.well-known/openid-configuration');
 $client->setRequestIdToken('NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1Lm9yZy9veGF1dGgvc2VhbS9yZXNvdXJjZS9yZ');
 $client->setRequestAccessToken('KV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1Lm9yZy9veGF1dGgvc2VhbS9yZXNvdXJjZS9yZXN0djEvb3hhd');
 $client->request();

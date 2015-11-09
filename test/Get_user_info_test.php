@@ -3,8 +3,8 @@
 include '../Get_user_info.php';
 
 $client = new Get_user_info();
-$client->setRequestOxdId("6F9619FF-8B86-D011-B42D-00CF4FC964FF");
-$client->setRequestAccessToken("SlAV32hkKG");
+$client->setRequestOxdId("@!DDB8.4688.02CB.F371!0001!F279.92D9");
+$client->setRequestAccessToken("s6BhdRkqt3");
 
 $client->request();
 
