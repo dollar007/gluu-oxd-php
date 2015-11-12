@@ -1,22 +1,27 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Vlad Karapetyan
+ * Date: 11/9/2015
+ * Time: 4:15 PM
+ */
 require_once 'Client_Socket_OXD.php';
+require_once 'Oxd_config.php';
 
-abstract class Client_oxd extends Client_Socket_OXD
-{
-    private $command_types = array(
-        'register_client', 'client_read', 'obtain_pat', 'obtain_aat',
-        'obtain_rpt', 'authorize_rpt', 'register_resource', 'rpt_status',
-        'id_token_status', 'access_token_status', 'register_ticket', 'discovery',
-        'authorization_code_flow', 'get_authorization_url', 'get_tokens_by_code',
-        'get_user_info', 'register_site',
+abstract class Client_oxd extends Client_Socket_OXD{
+
+    private $command_types = array( 'register_client', 'client_read', 'obtain_pat', 'obtain_aat',
+                                    'obtain_rpt', 'authorize_rpt', 'register_resource', 'rpt_status',
+                                    'id_token_status', 'access_token_status', 'register_ticket', 'discovery',
+                                    'authorization_code_flow', 'get_authorization_url', 'get_tokens_by_code',
+                                    'get_user_info', 'register_site',
     );
     protected $data = array();
     protected $command;
     protected $params = array();
     protected $response_json;
     protected $response_object;
-    private   $response_status;
+    protected $response_status;
     protected $response_data = array();
 
 
@@ -40,6 +45,7 @@ abstract class Client_oxd extends Client_Socket_OXD
         }
 
         if (!$exist) {
+            $this->log('Command: ' . $this->getCommand() . ' is not exist!','Exiting process.');
             $this->error_message('Command: ' . $this->getCommand() . ' is not exist!');
         }
 
@@ -55,37 +61,27 @@ abstract class Client_oxd extends Client_Socket_OXD
     {
         $this->setParams();
 
-        /*foreach ($this->getParams() as $key => $val) {
-
-            if (is_array($val)) {
-                if (empty($val)) {
-                    $this->error_message('Params: ' . $key . ' can not be empty!');
-                }
-            }
-            if ($val == null || $val == '') {
-                $this->error_message('Params: ' . $key . ' can not be null or empty!');
-            }
-        }*/
-
         $jsondata = json_encode($this->getData());
 
         if(!$this->is_JSON($jsondata)){
+            $this->log("Sending parameters must be JSON.",'Exiting process.');
             $this->error_message('Sending parameters must be JSON.');
         }
         $lenght = strlen($jsondata);
         if($lenght<=0){
+            $this->log("Length must be more than zero.",'Exiting process.');
             $this->error_message("Length must be more than zero.");
         }else{
             $lenght = $lenght <= 999 ? "0" . $lenght : $lenght;
         }
         $this->oxd_socket_request(utf8_encode($lenght . $jsondata));
-
         $this->response_json = $this->oxd_socket_response();
 
         $this->response_json = str_replace(substr($this->response_json, 0, 4), "", $this->response_json);
-        if(!$this->is_JSON($this->response_json)){
+
+        /*if(!$this->is_JSON($this->response_json)){
             $this->error_message('Reading parameter is not JSON.');
-        }
+        }*/
         if ($this->response_json) {
             $object = json_decode($this->response_json);
             if ($object->status == 'error') {
@@ -94,6 +90,7 @@ abstract class Client_oxd extends Client_Socket_OXD
                 $this->response_object = json_decode($this->response_json);
             }
         } else {
+            $this->log("Response is empty...",'Exiting process.');
             $this->error_message('Response is empty...');
         }
     }
@@ -182,7 +179,7 @@ abstract class Client_oxd extends Client_Socket_OXD
     }
 
     /**
-     * chacking format string.
+     * checking format string.
      * @param  string  $string
      * @return bool
      **/
@@ -190,43 +187,4 @@ abstract class Client_oxd extends Client_Socket_OXD
         return is_string($string) && is_object(json_decode($string)) ? true : false;
     }
 
-    /*
-     * sending and geting data via curl.
-     * @param  array   $dataArray
-     * @param  string  $requestType
-     * @param  string  $url
-     * @param  int     $port
-     * @return string
-    */
-    public function curl_oxd_request($requestType ='POST', $url = 'https://ce.gluu.info',$port = 443){
-
-        if(empty($this->getData())){
-            $this->error_message('Data can not be empty.');
-        }
-        if(!is_array($this->getData())){
-            $this->error_message('Data must be array.');
-        }
-        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-            $this->error_message("$url is not a valid url address");
-        }
-        if(is_int($port) && $port>=0 && $port<=65535){
-        }else{
-            $this->error_message("$port is not a valid port . Port must be integer and between from 0 to 65535.");
-        }
-
-        $data_json = str_replace("\\/", "/", $this->getData());
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_json);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_PORT, $port);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
-                'Accept: application/json',
-                'Content-Length: ' . strlen($data_json))
-        );
-        $result = curl_exec($ch);
-        return $result;
-    }
 }
