@@ -19,17 +19,13 @@ class Client_Socket_OXD{
         $configJSON = file_get_contents('../oxd-configuration.json');
         $configOBJECT = json_decode($configJSON);
         if(!$configOBJECT->gluuServerUrl){
-            $error = error_get_last();
-            $this->log("oxd-configuration: ", 'Error problem with json data.');
-            $this->error_message("HTTP request failed. Error was: " . $error['message']);
-        }else{
             if(!$configJSON = file_get_contents('../oxd-configuration-test.json')){
                 $error = error_get_last();
                 $this->log("oxd-configuration-test: ", 'Error problem with json data.');
                 $this->error_message("HTTP request failed. Error was: " . $error['message']);
             }
         }
-
+        $configOBJECT = json_decode($configJSON);
         $this->define_variables($configOBJECT);
         if (filter_var(Oxd_config::$localhostIp, FILTER_VALIDATE_IP) === false) {
             $this->error_message(Oxd_config::$localhostIp." is not a valid IP address");
@@ -117,7 +113,7 @@ class Client_Socket_OXD{
      **/
     public function log($process, $message){
         $OldFile  = '../logs/oxd-php-server-'.date("Y-m-d") .'.log';
-        $person = date('l jS \of F Y h:i:s A')."\n".$process.$message."\n";
+        $person = "\n".date('l jS \of F Y h:i:s A')."\n".$process.$message."\n";
         file_put_contents($OldFile, $person, FILE_APPEND | LOCK_EX);
 
     }
