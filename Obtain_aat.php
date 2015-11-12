@@ -1,7 +1,7 @@
 <?php
 
-include 'Client_OXD.php';
-include 'Obtain_trait.php';
+require_once 'Client_OXD.php';
+require_once 'Obtain_trait.php';
 
 class Obtain_aat extends Client_oxd
 {

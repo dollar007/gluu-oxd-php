@@ -1,6 +1,6 @@
 <?php
 
-include 'Client_OXD.php';
+require_once 'Client_OXD.php';
 
 class Get_user_info extends Client_oxd
 {
