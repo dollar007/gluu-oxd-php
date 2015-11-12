@@ -6,33 +6,60 @@
  * Time: 4:15 PM
  */
 
-class Client_Socket_OXD{
+require_once 'Oxd_config.php';
 
-    protected $ip = '127.0.0.1';
-    protected $port = 8099;
+class Client_Socket_OXD{
     protected static $socket = null;
 
     /**
      * Socket_oxd constructor.
-     * @param $ip ='127.0.0.1', $port=8099
      */
-    public function __construct($ip = '127.0.0.1', $port = 8099)
+    public function __construct()
     {
-        $this->setIp($ip);
-        $this->setPort($port);
-        if (!filter_var($ip, FILTER_VALIDATE_IP) === false) {
-            $this->setIp($ip);
-        } else {
-            $this->error_message("$ip is not a valid IP address");
+        $configJSON = file_get_contents('../oxd-configuration.json');
+        $configOBJECT = json_decode($configJSON);
+        if(!$configOBJECT->gluuServerUrl){
+            $error = error_get_last();
+            $this->log("oxd-configuration: ", 'Error problem with json data.');
+            $this->error_message("HTTP request failed. Error was: " . $error['message']);
+        }else{
+            if(!$configJSON = file_get_contents('../oxd-configuration-test.json')){
+                $error = error_get_last();
+                $this->log("oxd-configuration-test: ", 'Error problem with json data.');
+                $this->error_message("HTTP request failed. Error was: " . $error['message']);
+            }
         }
 
+        $this->define_variables($configOBJECT);
+        if (filter_var(Oxd_config::$localhostIp, FILTER_VALIDATE_IP) === false) {
+            $this->error_message(Oxd_config::$localhostIp." is not a valid IP address");
+        }
 
-        if(is_int($port) && $port>=0 && $port<=65535){
-            $this->setPort($port);
+        if(is_int(Oxd_config::$localhostPort) && Oxd_config::$localhostPort>=0 && Oxd_config::$localhostPort<=65535){
+
         }else{
-            $this->error_message("$port is not a valid port for socket. Port must be integer and between from 0 to 65535.");
+            $this->error_message(Oxd_config::$localhostPort."is not a valid port for socket. Port must be integer and between from 0 to 65535.");
         }
         $this->oxd_socket_connection();
+    }
+    /**
+     * request to oxd socket
+     * @return object
+     **/
+    public function define_variables($configOBJECT){
+        Oxd_config::$localhostIp = $configOBJECT->ip;
+        Oxd_config::$localhostPort = $configOBJECT->port;
+        Oxd_config::$gluuServerUrl = $configOBJECT->gluuServerUrl;
+        Oxd_config::$amHost = $configOBJECT->amHost;
+        Oxd_config::$userId = $configOBJECT->userId;
+        Oxd_config::$userSecret = $configOBJECT->userSecret;
+        Oxd_config::$clientId = $configOBJECT->clientId;
+        Oxd_config::$clientSecret = $configOBJECT->clientSecret;
+        Oxd_config::$clientRedirectURL = $configOBJECT->clientRedirectURL;
+        Oxd_config::$logoutRedirectUrl = $configOBJECT->logoutRedirectUrl;
+        Oxd_config::$appType = $configOBJECT->appType;
+        Oxd_config::$discoveryUrl = $configOBJECT->gluuServerUrl."/.well-known/openid-configuration";
+        Oxd_config::$umaDiscoveryUrl = $configOBJECT->gluuServerUrl."/.well-known/uma-configuration";
     }
     /**
      * request to oxd socket
@@ -46,71 +73,25 @@ class Client_Socket_OXD{
      * @return string
      **/
     public function oxd_socket_response($char_count = 8192){
-        if(fread(self::$socket, $char_count)){
-            $this->log("Client: oxd_socket_response", fread(self::$socket, $char_count));
+        $result = fread(self::$socket, $char_count);
+        if($result){
+            $this->log("Client: oxd_socket_response", $result);
         }else{
             $this->log("Client: oxd_socket_response", 'Error socket reading process.');
         }
-        return fread(self::$socket, $char_count);
+        return $result;
     }
 
     /*
      * connection
      * */
     public function oxd_socket_connection(){
-        if (!self::$socket = stream_socket_client( $this->getIp() . ':' . $this->getPort(), $errno, $errstr, STREAM_CLIENT_PERSISTENT)) {
-            $this->log("Client: socket::socket_connect()",$errno);
+        if (!self::$socket = stream_socket_client( Oxd_config::$localhostIp . ':' . Oxd_config::$localhostPort, $errno, $errstr, STREAM_CLIENT_PERSISTENT)) {
+            $this->log("Client: socket::socket_connect is not connected, error: ",$errstr);
             die($errno);
         }else{
-            $this->log("Client: socket::socket_connect()", "socket connected");
+            $this->log("Client: socket::socket_connect", "socket connected");
         }
-    }
-    /**
-     * @return mixed
-     */
-    public function getIp()
-    {
-        return $this->ip;
-    }
-
-    /**
-     * @param mixed $ip
-     */
-    public function setIp($ip)
-    {
-        $this->ip = $ip;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPort()
-    {
-        return $this->port;
-    }
-
-    /**
-     * @param mixed $port
-     */
-    public function setPort($port)
-    {
-        $this->port = $port;
-    }
-
-    /**
-     * @return null
-     */
-    public static function getSocket()
-    {
-        return self::$socket;
-    }
-
-    /**
-     * @param null $socket
-     */
-    public static function setSocket($socket)
-    {
-        self::$socket = $socket;
     }
 
     /**
@@ -122,28 +103,25 @@ class Client_Socket_OXD{
             $this->log("Client: oxd_socket_connection", "disconnected.");
         }
     }
+
+
     /**
      * showing errors and exit.
-     **/
-
+    **/
     public function error_message($error)
     {
         die($error);
     }
-    public function log($reason, $extra, $return = false){
-        $log = '
-	<div class="log">
-		<h1>'.$reason.'</h1>
-		<p><strong>Message:</strong>
-			<span>'.$extra.'</span>
-		</p>
-	</div>'.PHP_EOL;
+    /**
+     * saving process in log file.
+     **/
+    public function log($process, $message){
+        $OldFile  = '../logs/oxd-php-server-'.date("Y-m-d") .'.log';
+        $person = date('l jS \of F Y h:i:s A')."\n".$process.$message."\n";
+        file_put_contents($OldFile, $person, FILE_APPEND | LOCK_EX);
 
-        if($return == true){
-            return $log;
-        }else{
-            $this->log[] = $log;
-        }
     }
+
+
 
 }
