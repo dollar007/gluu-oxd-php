@@ -1,0 +1,19 @@
+{
+  "ip": "127.0.0.1",
+  "port":8099,
+  "gluuServerUrl":"https://ce-dev.gluu.org",
+  "amHost":"ce-dev.gluu.org",
+  "userId":"test_user",
+  "userSecret":"test_user_password",
+  "clientId":"@!0035.934F.1A51.77B0!0001!402D.66D0!0008!FF81!2D39",
+  "clientSecret":"oxauth_client_test_password",
+  "clientRedirectURL":"https://rs.gluu.info/cb1",
+  "logoutRedirectUrl":"https://rs.gluu.info/cb2",
+  "appType":"web",
+  "license_server_endpoint":"",
+  "license_id":"",
+  "license_check_period_in_hours": "",
+  "public_key":"",
+  "public_password":"",
+  "license_password":""
+}
