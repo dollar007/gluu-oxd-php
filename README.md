@@ -5,6 +5,8 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
+
+<br/><br/>
 <div id="dokuwiki__site">
 
     <div id="dokuwiki__top" class="dokuwiki site mode_show  ">
@@ -16,9 +18,97 @@
                     <h1>
                         <a id="user-content-oxd-php" class="anchor" href="#oxd-php" aria-hidden="true"><span class="octicon octicon-link"></span></a>oxd-php
                     </h1>
-
-                    <p>OXD Client Library for the <a target="_blank" href="http://ox.gluu.org/doku.php?id=oxd:rp">Gluu oxD Server</a>.</p>
+                    <p>Need to download and install gluu server in Your web server. For more information <a target="_blank" href="http://www.gluu.org/docs/">click me</a>.</p>
+                    <p>Need to download and install OXD server in Your web server. For more information <a target="_blank" href="http://ox.gluu.org/doku.php?id=oxd:rp">click me</a>.</p>
+                    <p>For OXD server configuration <a target="_blank" href="http://ox.gluu.org/doku.php?id=oxd:home&s[]=mvn">click me</a>. </p>
                     <p>PHP Client Library for the <a target="_blank" href="https://github.com/GluuFederation/oxd-php">Gluu oxD Server</a>.</p>
+                    <h2 class="sectionedit5" id="oxd_server_configuration">oxd-php configuration</h2>
+                    <div class="level2">
+
+                        <p>
+                            Configuration file is located in “oxd-php/oxd-configuration.json” file in distribution package.
+                        </p>
+
+                        <p>
+                            (Save this as a file called <code>oxd-configuration.json</code>)
+                        </p>
+                        <dl class="file">
+                            <dt>
+                                <a href="/doku.php?do=export_code&amp;id=oxd:home&amp;codeblock=2" title="Download Snippet" class="mediafile mf_json">oxd-configuration.json</a></dt>
+                            <dd><pre class="code file json">{
+  "ip": "127.0.0.1",
+  "port":8099,
+  "gluuServerUrl":"",
+  "amHost":"",
+  "userId":"",
+  "userSecret":"",
+  "clientId":"",
+  "clientSecret":"",
+  "clientRedirectURL":"",
+  "logoutRedirectUrl":"",
+  "appType":"",
+  "license_server_endpoint":"",
+  "license_id":"",
+  "license_check_period_in_hours": "",
+  "public_key":"",
+  "public_password":"",
+  "license_password":""
+}</pre>
+                            </dd></dl>
+                        <ul>
+                            <li class="level1"><div class="li"> port - port of oxd socket</div>
+                            </li>
+                            <li class="level1"><div class="li"> ip - flag to restrict communication to localhost only (if false then it's not restricted to localhost only)</div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="level1">
+                        <p>
+                            <strong>Goal</strong> :
+                        </p>
+                        <ul>
+                            <li class="level1">
+                                <div class="li"> It should be super simple to use library (
+                                    <a href="https://github.com/GluuFederation/oxd-python" target="_blank">python</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+                                    <a href="https://github.com/GluuFederation/oxd-php">php</a>) by web
+                                    <span class="search_hit">site</span>
+                                </div>
+                            </li>
+                            <li class="level1"><div class="li"> implementation of new library (on any language) should be simplified</div>
+                            </li>
+                        </ul>
+
+                        <p>
+                            <a href="http://ox.gluu.org/lib/exe/detail.php?id=oxd%3Arp&amp;media=oxd:oxd-rp.png" class="media" title="oxd:oxd-rp.png">
+                                <img src="http://ox.gluu.org/lib/exe/fetch.php?media=oxd:oxd-rp.png" class="media" alt=""></a>
+                        </p>
+
+                    </div>
+                    <h2 class="sectionedit2" id="web_site">Web <span class="search_hit">site</span></h2>
+                    <div class="level2">
+
+                        <p>
+                            Web <span class="search_hit">site</span> communicates with oxd via library (python/php). Library must provide all convenient methods to web <span class="search_hit">site</span> code which will in background call oxd. Concrete library depends on programming language used by <span class="search_hit">site</span>. Here for simplicity we will PHP as sample.
+                        </p>
+
+                        <p>
+                            First of all web <span class="search_hit">site</span> must <span class="search_hit">register</span> itself on oxd with registration command (via library (
+                            <a href="https://github.com/GluuFederation/oxd-python" target="_blank">python</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+                            <a href="https://github.com/GluuFederation/oxd-php">php</a>). With registration it gets oxd_id from oxd server. oxd_id must be passed to all commands.
+                        </p>
+
+                        <p>
+                            Web <span class="search_hit">site</span> configuration:
+                        </p>
+<pre class="code">   oxd_address : localhost:8090
+   oxd_id : 6F9619FF-8B86-D011-B42D-00CF4FC964FF</pre>
+
+                        <p>
+                            oxd_id (6F9619FF-8B86-D011-B42D-00CF4FC964FF) - GUID for web <span class="search_hit">site</span>. It can be any GUID that does not exist yet in oxd.
+                        </p>
+
+                    </div>
                     <p>
                         <strong>oxd-php</strong>
                         is a thin wrapper around the communication protocol of oxD server.
@@ -32,9 +122,87 @@
                             PHP classes for comunicating with oxd.
                         </p>
                         <p>
-                            Base class is abstract Client_OXD.php, for which extends all classes. <a href="#client_oxd" title="oxd:communication_protocol ?" class="wikilink1">Client_OXD</a>
+                            Connecting to oxd server is doing via class Client_Socket_OXD <a href="#Client_Socket_OXD" title="oxd:communication_protocol ?" class="wikilink1">Client_Socket_OXD.php</a>
                         </p>
-                        <ol>
+                        <h3 class="sectionedit100" id="Client_Socket_OXD">Client_Socket_OXD.php</h3>
+
+                        <div class="level100">
+                            <p>
+                                Client_Socket_OXD class is base class for connecting to oxd server. It is given all parameters from oxd-configuration.json for connection and parameters saving to static values in class Oxd_config
+                                <a href="#Oxd_config" title="oxd:communication_protocol ?" class="wikilink1">Oxd_config.php</a></div>.
+                            </p>
+                            <ul>
+                                <li class="level1">
+                                    <div class="li"> <h4>Parameter:</h4></div>
+                                    <ul>
+                                        <li>
+                                            <h4>Name: $socket;</h4>
+                                            <p>Type: static object;</p>
+                                            <p>Default value = null;</p>
+                                            <p>Description: oxd socket connection;</p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="level1">
+                                    <div class="li"><h4> Functions:</h4></div>
+                                    <ul>
+                                        <li>
+                                            <h4>Name: static_variables;</h4>
+                                            <p>Description: Setting configurations static parameters;</p>
+                                        </li>
+                                        <li>
+                                            <h4>Name: oxd_socket_connection;</h4>
+                                            <p>Description: Setting configurations to oxd socket;</p>
+                                        </li>
+                                        <li>
+                                            <h4>Name: oxd_socket_request;</h4>
+                                            <p>Description: Sending request to oxd server;</p>
+                                        </li>
+                                        <li>
+                                            <h4>Name: oxd_socket_request;</h4>
+                                            <p>Description: Getting response from oxd server;</p>
+                                        </li>
+                                        <li>
+                                            <h4>Name: disconnect;</h4>
+                                            <p>Description: Disconnecting open socket;</p>
+                                        </li>
+                                        <li>
+                                            <h4>Name: error_message;</h4>
+                                            <p>Description: Showing last error message;</p>
+                                        </li>
+                                        <li>
+                                            <h4>Name: log;</h4>
+                                            <p>Description: Saving process in log file every day(example logs/oxd-php-server-{date}.log);</p>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="sectionedit100" id="Oxd_config">Oxd_config.php</h3>
+                    <div class="level100">
+                    <pre class="code">
+class Oxd_config
+{
+    public static $localhostIp;
+    public static $localhostPort;
+    public static $gluuServerUrl;
+    public static $amHost;
+    public static $userId;
+    public static $userSecret;
+    public static $clientId;
+    public static $clientSecret;
+    public static $clientRedirectURL;
+    public static $logoutRedirectUrl;
+    public static $discoveryUrl;
+    public static $umaDiscoveryUrl;
+    public static $appType;
+}
+                        </pre>
+                        </div>
+                        <p>
+                            Base class for protocols is abstract Client_OXD.php, for which extends all protocols classes. <a href="#client_oxd" title="oxd:communication_protocol ?" class="wikilink1">Client_OXD</a>
+                        </p>
+                        <ul>
                             <li class="level1"><div class="li"> <a href="#register_client" title="oxd:communication_protocol ?" class="wikilink1">Register_client.php</a></div>
                             </li>
                             <li class="level1"><div class="li"> <a href="#client_read" title="oxd:communication_protocol ?" class="wikilink1">Client_read.php</a></div>
@@ -57,39 +225,18 @@
                             </li>
                             <li class="level1"><div class="li"> <a href="#authorization_code_flow" title="oxd:communication_protocol ?" class="wikilink1">Authorization_code_flow.php</a></div>
                             </li>
-                        </ol>
-
-                    </div>
+                        </ul>
 
                     <h3 class="sectionedit100" id="client_oxd">Clinet_OXD.php</h3>
 
                     <div class="level100">
-
                         <p>
-                            Client_oxd class is abstract class:_constructor given $ip = 127.0.0.1,$port = 8099.
+                            Client_oxd class is abstract class,which extends from Client_Socket_OXD class.
                         </p>
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
-                                    <li>
-                                        <h4>Name: $ip;</h4>
-                                        <p>Type:string;</p>
-                                        <p>Default value = 127.0.0.1;</p>
-                                        <p>Description: oxd socket ip, need for connection to socket;</p>
-                                    </li>
-                                    <li>
-                                        <h4>Name: $port;</h4>
-                                        <p>Type:int;</p>
-                                        <p>Default value = 8099;</p>
-                                        <p>Description: oxd socket port, need for connection to socket;</p>
-                                    </li>
-                                    <li>
-                                        <h4>Name: $socket;</h4>
-                                        <p>Type:static object;</p>
-                                        <p>Default value = null;</p>
-                                        <p>Description: oxd socket connection;</p>
-                                    </li>
+                                <ul>
                                     <li>
                                         <h4>Name: $command_types;</h4>
                                         <p>Type:array;</p>
@@ -131,46 +278,11 @@
                                         <p>Default value = null;</p>
                                         <p>Description: response data;</p>
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
-                                    <li>
-                                        <h4>Name: setIp;</h4>
-                                        <p>Param:string;</p>
-                                        <p>Description: Seting ip for connection oxd socket;</p>
-                                    </li>
-                                    <li>
-                                        <h4>Name: getIp;</h4>
-                                        <p>Return:string;</p>
-                                        <p>Description: Getting ip for connection oxd socket;</p>
-                                    </li>
-                                    <li>
-                                        <h4>Name: setPort;</h4>
-                                        <p>Param:int;</p>
-                                        <p>Description: Setting port for connection oxd socket;</p>
-                                    </li>
-                                    <li>
-                                        <h4>Name: getPort;</h4>
-                                        <p>Return:int;</p>
-                                        <p>Description: Getting port for connection oxd socket;</p>
-                                    </li>
-                                    <li>
-                                        <h4>Name: setSocket;</h4>
-                                        <p>Param:object;</p>
-                                        <p>Description: Setting socket object;</p>
-                                    </li>
-                                    <li>
-                                        <h4>Name: getSocket;</h4>
-                                        <p>Return:object;</p>
-                                        <p>Description: Getting socket object;</p>
-                                    </li>
-                                    <li>
-                                        <h4>Name: disconnect;</h4>
-                                        <p>Param:socket object;</p>
-                                        <p>Description: Closing open static socket;</p>
-                                    </li>
+                                <ul>
                                     <li>
                                         <h4>Name: setCommand;</h4>
                                         <p>Type:abstract;</p>
@@ -204,11 +316,6 @@
                                         <p>Description: Chaking is string is json;</p>
                                     </li>
                                     <li>
-                                        <h4>Name: error_message;</h4>
-                                        <p>Param:string;</p>
-                                        <p>Description: Showing error message and exiting process if have error;</p>
-                                    </li>
-                                    <li>
                                         <h4>Name: request;</h4>
                                         <p>Description: Sanding request to oxd;</p>
                                     </li>
@@ -222,18 +329,9 @@
                                         <p>Return:array;</p>
                                         <p>Description: Getting response from oxD server, returning array object;</p>
                                     </li>
-                                    <li>
-                                        <h4>Name: curl_oxd_request;</h4>
-                                        <p>Params:$requestType ='POST', $url = 'https://ce.gluu.info',$port = 443;</p>
-                                        <p>Return:string;</p>
-                                        <p>Description: Sending curl request to gluu server;</p>
-                                    </li>
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
-
-
-
                     </div>
 
                     <h3 class="sectionedit100" id="register_client">Register_client.php</h3>
@@ -246,7 +344,7 @@
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request register_client protocol;</h4>
                                         <p>$request_discoveryUrl, $request_redirectUrl, $request_logout_redirect_url, $request_client_name, $request_response_types, $request_app_type, $request_grant_types, $request_contacts, $request_jwks_uri;</p>
@@ -260,16 +358,16 @@
                                         <p>Type:string;</p>
 
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -278,7 +376,7 @@
                         </p>
                         <pre class="code">
 Register_client_test:
-include_once '../Register_Client.php';
+require_once_once '../Register_Client.php';
 
 $register_client = new Register_client();
 
@@ -320,7 +418,7 @@ $register_client->disconnect();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request client_read protocol;</h4>
                                         <p>$request_registration_client_uri, $request_registration_access_token</p>
@@ -334,16 +432,16 @@ $register_client->disconnect();
                                         <p>Type:string;</p>
 
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -352,7 +450,7 @@ $register_client->disconnect();
                         </p>
                         <pre class="code">
 Client_read_test:
-include '../Client_read.php';
+require_once '../Client_read.php';
 
 $client_read = new Client_read();
 $client_read->setRequestRegistrationClientUri('https://ce.gluu.info/oxauth/seam/resource/restv1/oxauth/register?client_id=@!EDFB.879F.2DAE.D95A!0001!0442.B31E!0008!778C.9634');
@@ -387,7 +485,7 @@ $client_read->disconnect();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request obtain_pat, obtain_aat protocol;</h4>
                                         <p>$request_discovery_url, $request_uma_discovery_url, $request_redirect_url, $request_client_id, $request_client_secret, $request_user_id, $request_user_secret</p>
@@ -400,16 +498,16 @@ $client_read->disconnect();
                                         <p>$response_expires_in_seconds, $response_authorization_code, $response_scope</p>
                                         <p>Type:string;</p>
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -427,7 +525,7 @@ $client_read->disconnect();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request obtain_pat protocol;</h4>
                                         <p>Obtain_trait request parameters;</p>
@@ -441,16 +539,16 @@ $client_read->disconnect();
                                         <p>Type:string;</p>
 
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -459,7 +557,7 @@ $client_read->disconnect();
                         </p>
                         <pre class="code">
 Obtain_pat_test:
-include '../Obtain_pat.php';
+require_once '../Obtain_pat.php';
 
 $obtain_pat = new Obtain_pat();
 
@@ -499,7 +597,7 @@ echo $obtain_pat->getResponseScope();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request obtain_aat protocol;</h4>
                                         <p>Obtain_trait request parameters;</p>
@@ -513,16 +611,16 @@ echo $obtain_pat->getResponseScope();
                                         <p>Type:string;</p>
 
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -531,7 +629,7 @@ echo $obtain_pat->getResponseScope();
                         </p>
                         <pre class="code">
 Obtain_pat_test:
-include '../Obtain_aat.php';
+require_once '../Obtain_aat.php';
 
 $obtain_aat = new Obtain_aat();
 
@@ -568,7 +666,7 @@ echo $obtain_aat->getResponseScope();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request client_read protocol;</h4>
                                         <p>Type:string: $request_uma_discovery_url, $request_pat, $request_name</p>
@@ -581,16 +679,16 @@ echo $obtain_aat->getResponseScope();
                                         <p>Type:string;</p>
 
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -599,7 +697,7 @@ echo $obtain_aat->getResponseScope();
                         </p>
                         <pre class="code">
 Register_resource_test:
-include '../Register_resource.php';
+require_once '../Register_resource.php';
 
 $register_resource = new Register_resource();
 
@@ -637,7 +735,7 @@ $register_resource->disconnect();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request rpt_status protocol;</h4>
                                         <p>Type:string: $request_uma_discovery_url, $request_pat, $request_rpt</p>
@@ -649,16 +747,16 @@ $register_resource->disconnect();
                                         <p>Type:array: $response_permissions;</p>
 
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -667,7 +765,7 @@ $register_resource->disconnect();
                         </p>
                         <pre class="code">
 Rpt_status_test:
-include '../Rpt_status.php';
+require_once '../Rpt_status.php';
 
 $rpt_status = new Rpt_status();
 
@@ -701,7 +799,7 @@ $rpt_status->disconnect();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request id_token_status protocol;</h4>
                                         <p>Type:string: $request_discovery_url, $request_id_token</p>
@@ -712,16 +810,16 @@ $rpt_status->disconnect();
                                         <p>Type:string: $response_active, $response_expires_at, $response_issued_at,$response_claims(JSON);</p>
 
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -730,7 +828,7 @@ $rpt_status->disconnect();
                         </p>
                         <pre class="code">
 Id_token_status_test:
-include '../Id_token_status.php';
+require_once '../Id_token_status.php';
 
 $id_token_status = new Id_token_status();
 
@@ -764,7 +862,7 @@ $id_token_status->disconnect();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request access_token_status protocol;</h4>
                                         <p>Type:string: $request_discovery_url, $request_id_token, $request_access_token</p>
@@ -775,16 +873,16 @@ $id_token_status->disconnect();
                                         <p>Type:string: $response_active, $response_expires_at, $response_issued_at;</p>
 
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -793,7 +891,7 @@ $id_token_status->disconnect();
                         </p>
                         <pre class="code">
 Access_token_status_test:
-include '../Access_token_status.php';
+require_once '../Access_token_status.php';
 
 $access_token_status = new Access_token_status();
 $access_token_status->setRequestDiscoveryUrl('https://ce.gluu.info/.well-known/openid-configuration');
@@ -825,7 +923,7 @@ $access_token_status->disconnect();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request register_ticket protocol;</h4>
                                         <p>Type:string: $request_uma_discovery_url, $request_pat, $request_am_host, $request_rs_host, $request_resource_set_id, $request_http_method, $request_url</p>
@@ -835,16 +933,16 @@ $access_token_status->disconnect();
                                         <h4>Description: Response parameters from oxd;</h4>
                                         <p>Type:string: $response_ticket;</p>
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -853,7 +951,7 @@ $access_token_status->disconnect();
                         </p>
                         <pre class="code">
 Register_ticket_test:
-include '../Register_ticket.php';
+require_once '../Register_ticket.php';
 
 $register_ticket = new Register_ticket();
 
@@ -892,7 +990,7 @@ $register_ticket->disconnect();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request discovery protocol;</h4>
                                         <p>Type:string: $request_discovery_url</p>
@@ -907,16 +1005,16 @@ $register_ticket->disconnect();
                                             $response_op_policy_uri, $response_op_tos_uri;</p>
                                         <p>Type:array: $response_scopes_supported, $response_types_supported, $response_grant_types_supported, $response_subject_types_supported;</p>
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -925,7 +1023,7 @@ $register_ticket->disconnect();
                         </p>
                         <pre class="code">
 Discovery_test:
-include '../Discovery.php';
+require_once '../Discovery.php';
 $discovery = new Discovery();
 $discovery->setRequestDiscoveryUrl('https://ce.gluu.info/.well-known/openid-configuration');
 $discovery->request();
@@ -976,7 +1074,7 @@ $discovery->disconnect();
                         <ul>
                             <li class="level1">
                                 <div class="li"> <h4>Parameters:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request authorization_code_flow protocol;</h4>
                                         <p>Type:string: $request_discovery_url, $request_redirect_url, $request_client_id, $request_client_secret, $request_user_id, $request_user_secret, $request_scope, $request_nonce, $request_acr</p>
@@ -985,16 +1083,16 @@ $discovery->disconnect();
                                         <h4>Description: Response parameters from oxd;</h4>
                                         <p>Type:string: $response_access_token, $response_expires_in_seconds, $response_id_token, $response_refresh_token, $response_authorization_code, $response_scope;</p>
                                     </li>
-                                </ol>
+                                </ul>
                             </li>
                             <li class="level1">
                                 <div class="li"><h4> Functions:</h4></div>
-                                <ol>
+                                <ul>
                                     <li>
                                         <h4>Extended functions from parent class, parameters setters and getters;</h4>
                                     </li>
 
-                                </ol>
+                                </ul>
                             </li>
                         </ul>
 
@@ -1003,7 +1101,7 @@ $discovery->disconnect();
                         </p>
                         <pre class="code">
 Authorization_code_flow_test:
-include '../Authorization_code_flow.php';
+require_once '../Authorization_code_flow.php';
 
 $authorization_code_flow = new Authorization_code_flow();
 $authorization_code_flow->setRequestDiscoveryUrl("https://ce.gluu.info/.well-known/openid-configuration");
@@ -1034,7 +1132,7 @@ echo $authorization_code_flow->getResponseScope();
 $authorization_code_flow->disconnect();
                         </pre>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
