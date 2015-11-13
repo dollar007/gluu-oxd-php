@@ -5,8 +5,6 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-
-<br/><br/>
 <div id="dokuwiki__site">
 
     <div id="dokuwiki__top" class="dokuwiki site mode_show  ">
