@@ -1,30 +1,24 @@
 <?php
 
-include '../Register_ticket.php';
+require_once '../Register_ticket.php';
+require_once '../Obtain_pat.php';
 
-$client = new Register_ticket();
+$register_ticket = new Register_ticket();
 
-$client->setRequestUmaDiscoveryUrl("https://ce.gluu.info/.well-known/uma-configuration");
-$client->setRequestPat("eyJ0eXAiOiJKV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0");
-$client->setRequestAmHost("ce.gluu.info");
-$client->setRequestRsHost("rs.gluu.org");
-$client->setRequestResourceSetId("1366810445313");
-$client->setRequestScopes([
+$register_ticket->setReqUmaDiscoveryUrl(Oxd_config::$umaDiscoveryUrl);
+$register_ticket->setReqPat(Obtain_pat::$resp_pat_token);
+$register_ticket->setReqAmHost(Oxd_config::$amHost);
+$register_ticket->setReqRsHost("rs.gluu.org");
+$register_ticket->setReqResourceSetId("1366810445313");
+$register_ticket->setReqScopes([
     "http://photoz.example.com/dev/scopes/view",
     "http://photoz.example.com/dev/scopes/add"
 ]);
-$client->setRequestHttpMethod("DELETE");
-$client->setRequestUrl("http://example.com/object/1234");
+$register_ticket->setReqHttpMethod(Oxd_config::$httpMethod);
+$register_ticket->setReqUrl("http://example.com/object/1234");
 
-$client->request();
+$register_ticket->request();
 
-echo '<br/>'.$client->getResponseStatus();
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
+echo '<br/>Ticket: '.Register_ticket::$resp_ticket;
 
-echo '<br/>'.$client->getResponseTicket();
-
-$client->disconnect();
+$register_ticket->disconnect();

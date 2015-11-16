@@ -1,33 +1,27 @@
 <?php
 
-include_once '../Register_Client.php';
+require_once '../Register_Client.php';
 
-$client = new Register_client();
+$register_client = new Register_client();
 
-$client->setRequestDiscoveryUrl("https://ce.gluu.info/.well-known/openid-configuration");
-$client->setRequestRedirectUrl("https://rs.gluu.info/resources");
-$client->setRequestLogoutRedirectUrl("https://rs.gluu.info/resources");
-$client->setRequestClientName("Vlad");
-$client->setRequestResponseTypes("code id_token token");
-$client->setRequestAppType("web");
-$client->setRequestGrantTypes("authorization_code implicit");
-$client->setRequestContacts("mike@gluu.org, yuriy@gluu.org");
-$client->setRequestJwksUri("https://ce.gluu.info/jwks");
+$register_client->setReqDiscoveryUrl(Oxd_config::$discoveryUrl);
+$register_client->setReqRedirectUrl(Oxd_config::$clientRedirectURL);
+$register_client->setReqLogoutRedirectUrl(Oxd_config::$logoutRedirectUrl);
+$register_client->setReqClientName("Your_name");
+$register_client->setReqResponseTypes(Oxd_config::$responseTypes);
+$register_client->setReqAppType(Oxd_config::$appType);
+$register_client->setReqGrantTypes(Oxd_config::$grantTypes);
+$register_client->setReqContacts("Your_email@test.com");
+$register_client->setReqJwksUri(Oxd_config::$gluuServerUrl."/jwks");
 
-$client->request();
+$register_client->request();
 
-echo '<br/>'.$client->getResponseStatus();
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
+echo '<br/>ClientId:'.Register_client::$resp_client_id;
+echo '<br/>ClientSecret:'.Register_client::$resp_client_secret;
+echo '<br/>RegistrationAccessToken:'.Register_client::$resp_registration_access_token;
 
-echo '<br/>'.$client->getResponseClientId();
-echo '<br/>'.$client->getResponseClientSecret();
-echo '<br/>'.$client->getResponseRegistrationAccessToken();
-echo '<br/>'.$client->getResponseClientSecretExpiresAt();
-echo '<br/>'.$client->getResponseRegistrationClientUri();
-echo '<br/>'.$client->getResponseClientIdIssuedAt();
+echo '<br/>ClientSecretExpiresAt:'.Register_client::$resp_client_secret_expires_at;
+echo '<br/>RegistrationClientUri:'.Register_client::$resp_registration_client_uri;
+echo '<br/>ClientIdIssuedAt:'.Register_client::$resp_client_id_issued_at;
 
-$client->disconnect();
+$register_client->disconnect();

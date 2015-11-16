@@ -2,9 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: Vlad
- * Date: 11/12/2015
- * Time: 6:27 PM
+ * User: Vlad Karapetyan
  */
 class Oxd_config
 {
@@ -18,7 +16,12 @@ class Oxd_config
     public static $clientSecret;
     public static $clientRedirectURL;
     public static $logoutRedirectUrl;
+    public static $authorizationRedirectUri;
     public static $discoveryUrl;
     public static $umaDiscoveryUrl;
     public static $appType;
+    public static $httpMethod;
+    public static $responseTypes;
+    public static $grantTypes;
+    public static $oxd_id;
 }

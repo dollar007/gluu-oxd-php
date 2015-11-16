@@ -1,33 +1,23 @@
 <?php
 
-include '../Authorization_code_flow.php';
+require_once '../Authorization_code_flow.php';
+require_once '../Get_authorization_url.php';
 
-$client = new Authorization_code_flow();
-$client->setRequestDiscoveryUrl("https://ce.gluu.info/.well-known/openid-configuration");
-$client->setRequestRedirectUrl("https://rs.gluu.info/resources");
-$client->setRequestClientId("@!DDB8.4688.02CB.F371!0001!F279.92D9");
-$client->setRequestClientSecret("32c2fb17-409d-48a2-b793-a639c8ac6cb2");
-$client->setRequestUserId("admin");
-$client->setRequestUserSecret("secret");
-$client->setRequestScope("openid email");
-$client->setRequestNonce("409d-48a2-b793");
-$client->setRequestAcr('basic');
+$authorization_code_flow = new Authorization_code_flow();
+$authorization_code_flow->setReqDiscoveryUrl(Oxd_config::$discoveryUrl);
+$authorization_code_flow->setReqRedirectUrl(Oxd_config::$authorizationRedirectUri);
+$authorization_code_flow->setReqClientId(Oxd_config::$clientId);
+$authorization_code_flow->setReqClientSecret(Oxd_config::$clientSecret);
+$authorization_code_flow->setReqUserId(Oxd_config::$userId);
+$authorization_code_flow->setReqUserSecret(Oxd_config::$userSecret);
+$authorization_code_flow->setReqScope(Get_authorization_url::$resp_scope);
+$authorization_code_flow->setReqNonce(Get_authorization_url::$resp_nonce);
 
-$client->request();
+echo '<br/>AccessToken: '.Authorization_code_flow::$resp_access_token;
+echo '<br/>ExpiresInSeconds: '.Authorization_code_flow::$resp_expires_in_seconds;
+echo '<br/>IdToken: '.Authorization_code_flow::$resp_id_token;
+echo '<br/>RefreshToken: '.Authorization_code_flow::$resp_refresh_token;
+echo '<br/>AuthorizationCode: '.Authorization_code_flow::$resp_authorization_code;
+echo '<br/>Scope: '.Authorization_code_flow::$resp_scope;
 
-echo '<br/>'.$client->getResponseStatus();
-
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
-
-echo '<br/>'.$client->getResponseAccessToken();
-echo '<br/>'.$client->getResponseExpiresInSeconds();
-echo '<br/>'.$client->getResponseIdToken();
-echo '<br/>'.$client->getResponseRefreshToken();
-echo '<br/>'.$client->getResponseAuthorizationCode();
-echo '<br/>'.$client->getResponseScope();
-
-$client->disconnect();
+$authorization_code_flow->disconnect();

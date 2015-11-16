@@ -1,20 +1,11 @@
 <?php
+require_once '../Get_authorization_url.php';
 
-include '../Get_authorization_url.php';
+$get_authorization_url = new Get_authorization_url();
+$get_authorization_url->setReqOxdId(Oxd_config::$oxd_id);
 
-$client = new Get_authorization_url();
-$client->setRequestOxdId("6F9619FF-8B86-D011-B42D-00CF4FC964FF");
+$get_authorization_url->request();
 
-$client->request();
+echo '<br/>AuthorizationUrl: '.Get_authorization_url::$resp_authorization_url;
 
-echo '<br/>'.$client->getResponseStatus();
-
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
-
-echo '<br/>'.$client->getResponseAuthorizationUrl();
-
-$client->disconnect();
+$get_authorization_url->disconnect();

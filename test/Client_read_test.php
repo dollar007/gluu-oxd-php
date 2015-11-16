@@ -1,26 +1,19 @@
 <?php
 
-include '../Client_read.php';
+require_once '../Client_read.php';
+require_once '../Register_client.php';
 
-$client = new Client_read();
-$client->setRequestRegistrationClientUri('https://ce.gluu.info/oxauth/seam/resource/restv1/oxauth/register?client_id=@!EDFB.879F.2DAE.D95A!0001!0442.B31E!0008!778C.9634');
-$client->setRequestRegistrationAccessToken('8117eacd-8095-45cc-b637-a5822ee82d80');
+$client_read = new Client_read();
+$client_read->setReqRegistrationClientUri(Register_client::$resp_registration_client_uri);
+$client_read->setReqRegistrationAccessToken(Register_client::$resp_registration_access_token);
 
-$client->request();
+$client_read->request();
 
-echo '<br/>'.$client->getResponseStatus();
+echo '<br/>ClientId: '.Client_read::$resp_client_id;
+echo '<br/>ClientIdIssuedAt: '.Client_read::$resp_client_id_issued_at;
+echo '<br/>ClientSecret: '.Client_read::$resp_client_secret;
+echo '<br/>ClientSecretExpiresAt: '.Client_read::$resp_client_secret_expires_at;
+echo '<br/>AccessToken:'.Client_read::$resp_registration_access_token;
+echo '<br/>ClientUri: '.Client_read::$resp_registration_client_uri;
 
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
-
-echo '<br/>'.$client->getResponseClientId();
-echo '<br/>'.$client->getResponseClientIdIssuedAt();
-echo '<br/>'.$client->getResponseClientSecret();
-echo '<br/>'.$client->getResponseClientSecretExpiresAt();
-echo '<br/>'.$client->getResponseRegistrationAccessToken();
-echo '<br/>'.$client->getResponseRegistrationClientUri();
-
-$client->disconnect();
+$client_read->disconnect();

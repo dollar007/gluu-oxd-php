@@ -6,14 +6,19 @@
   "userId":"",
   "userSecret":"",
   "clientId":"",
-  "clientSecret":"",
+  "clientSecret":"oxauth_client_test_password",
   "clientRedirectURL":"",
   "logoutRedirectUrl":"",
-  "appType":"",
+  "authorizationRedirectUri":"",
+  "appType":"web",
+  "grantTypes":"authorization_code implicit",
+  "responseTypes":"code id_token token",
+  "oxd_id":"",
   "license_server_endpoint":"",
   "license_id":"",
   "license_check_period_in_hours": "",
   "public_key":"",
   "public_password":"",
-  "license_password":""
+  "license_password":"",
+  "httpMethod":"DELETE"
 }

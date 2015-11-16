@@ -1,21 +1,14 @@
 <?php
 
-include '../Obtain_rpt.php';
+require_once '../Obtain_rpt.php';
+require_once '../Obtain_aat.php';
+$obtain_rpt = new Obtain_rpt();
 
-$client = new Obtain_rpt();
+$obtain_rpt->setReqAatToken(Obtain_aat::$resp_aat_token);
+$obtain_rpt->setReqAmHost(Oxd_config::$amHost);
 
-$client->setRequestAatToken("eyJ0eXAiOiJKV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1L");
-$client->setRequestAmHost("ce.gluu.info");
+$obtain_rpt->request();
 
-$client->request();
-echo '<br/>'.$client->getResponseStatus();
+echo '<br/>RptToken: '. Obtain_rpt::$resp_rpt_token;
 
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
-
-echo '<br/>'. $client->getResponseRptToken();
-
-$client->disconnect();
+$obtain_rpt->disconnect();

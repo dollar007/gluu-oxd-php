@@ -1,27 +1,20 @@
 <?php
 
-include '../Get_user_info.php';
+require_once '../Get_user_info.php';
+require_once '../Get_tokens_by_code.php';
 
-$client = new Get_user_info();
-$client->setRequestOxdId("@!DDB8.4688.02CB.F371!0001!F279.92D9");
-$client->setRequestAccessToken("s6BhdRkqt3");
+$get_user_info = new Get_user_info();
+$get_user_info->setReqOxdId(Oxd_config::$oxd_id);
+$get_user_info->setReqAccessToken(Get_tokens_by_code::$resp_access_token);
 
-$client->request();
+$get_user_info->request();
 
-echo '<br/>'.$client->getResponseStatus();
+echo '<br/>Sub: '.Get_user_info::$resp_sub;
+echo '<br/>Name: '.Get_user_info::$resp_name;
+echo '<br/>GivenName: '.Get_user_info::$resp_given_name;
+echo '<br/>FamilyName: '.Get_user_info::$resp_family_name;
+echo '<br/>Preferred Username: '.Get_user_info::$resp_preferred_username;
+echo '<br/>Email: '.Get_user_info::$resp_email;
+echo '<br/>Picture: ';Get_user_info::$resp_picture;
 
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
-
-echo '<br/>'.$client->getResponseSub();
-echo '<br/>'.$client->getResponseName();
-echo '<br/>'.$client->getResponseGivenName();
-echo '<br/>'.$client->getResponseFamilyName();
-echo '<br/>'.$client->getResponsePreferredUsername();
-echo '<br/>'.$client->getResponseEmail();
-echo '<br/>'.$client->getResponsePicture();
-
-$client->disconnect();
+$get_user_info->disconnect();

@@ -1,23 +1,16 @@
 <?php
 
-include '../Access_token_status.php';
+require_once '../Access_token_status.php';
+require_once '../Authorization_code_flow.php';
 
-$client = new Access_token_status();
-$client->setRequestDiscoveryUrl('https://ce.gluu.info/.well-known/openid-configuration');
-$client->setRequestIdToken('NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1Lm9yZy9veGF1dGgvc2VhbS9yZXNvdXJjZS9yZ');
-$client->setRequestAccessToken('KV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1Lm9yZy9veGF1dGgvc2VhbS9yZXNvdXJjZS9yZXN0djEvb3hhd');
-$client->request();
+$access_token_status = new Access_token_status();
+$access_token_status->setReqDiscoveryUrl(Oxd_config::$discoveryUrl);
+$access_token_status->setReqIdToken(Authorization_code_flow::$resp_id_token);
+$access_token_status->setReqAccessToken(Authorization_code_flow::$resp_access_token);
+$access_token_status->request();
 
-echo '<br/>'.$client->getResponseStatus();
+echo '<br/>Active: '.Access_token_status::$resp_active;
+echo '<br/>ExpiresAt: '.Access_token_status::$resp_expires_at;
+echo '<br/>IssuedAt: '.Access_token_status::$resp_issued_at;
 
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
-
-echo '<br/>'.$client->getResponseActive();
-echo '<br/>'.$client->getResponseExpiresAt();
-echo '<br/>'.$client->getResponseIssuedAt();
-
-$client->disconnect();
+$access_token_status->disconnect();

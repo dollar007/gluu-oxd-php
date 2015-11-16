@@ -1,171 +1,137 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Vlad Karapetyan
+ */
 trait Obtain_trait
 {
     /**start parameter for request!**/
-    private $request_discovery_url = null;
-    private $request_uma_discovery_url = null;
-    private $request_redirect_url = null;
-    private $request_client_id = null;
-    private $request_client_secret = null;
-    private $request_user_id = null;
-    private $request_user_secret = null;
+        private $req_discovery_url = null;
+        private $req_uma_discovery_url = null;
+        private $req_redirect_url = null;
+        private $req_client_id = null;
+        private $req_client_secret = null;
+        private $req_user_id = null;
+        private $req_user_secret = null;
     /**end request parameter**/
-
-    /**start parameter for response!**/
-    private $response_expires_in_seconds;
-    private $response_authorization_code;
-    private $response_scope;
-
-    /**end response parameter**/
-
-    public function getRequestDiscoveryUrl()
+    public function getReqDiscoveryUrl()
     {
-        return $this->request_discovery_url;
+        return $this->req_discovery_url;
     }
 
     /**
-     * @param null $request_discovery_url
+     * @param null $req_discovery_url
      */
-    public function setRequestDiscoveryUrl($request_discovery_url)
+    public function setReqDiscoveryUrl($req_discovery_url)
     {
-        $this->request_discovery_url = $request_discovery_url;
+        $this->req_discovery_url = $req_discovery_url;
     }
 
     /**
      * @return null
      */
-    public function getRequestUmaDiscoveryUrl()
+    public function getReqUmaDiscoveryUrl()
     {
-        return $this->request_uma_discovery_url;
+        return $this->req_uma_discovery_url;
     }
 
     /**
-     * @param null $request_uma_discovery_url
+     * @param null $req_uma_discovery_url
      */
-    public function setRequestUmaDiscoveryUrl($request_uma_discovery_url)
+    public function setReqUmaDiscoveryUrl($req_uma_discovery_url)
     {
-        $this->request_uma_discovery_url = $request_uma_discovery_url;
-    }
-
-    /**
-     * @return null
-     */
-    public function getRequestRedirectUrl()
-    {
-        return $this->request_redirect_url;
-    }
-
-    /**
-     * @param null $request_redirect_url
-     */
-    public function setRequestRedirectUrl($request_redirect_url)
-    {
-        $this->request_redirect_url = $request_redirect_url;
+        $this->req_uma_discovery_url = $req_uma_discovery_url;
     }
 
     /**
      * @return null
      */
-    public function getRequestClientId()
+    public function getReqRedirectUrl()
     {
-        return $this->request_client_id;
+        return $this->req_redirect_url;
     }
 
     /**
-     * @param null $request_client_id
+     * @param null $req_redirect_url
      */
-    public function setRequestClientId($request_client_id)
+    public function setReqRedirectUrl($req_redirect_url)
     {
-        $this->request_client_id = $request_client_id;
-    }
-
-    /**
-     * @return null
-     */
-    public function getRequestClientSecret()
-    {
-        return $this->request_client_secret;
-    }
-
-    /**
-     * @param null $request_client_secret
-     */
-    public function setRequestClientSecret($request_client_secret)
-    {
-        $this->request_client_secret = $request_client_secret;
+        $this->req_redirect_url = $req_redirect_url;
     }
 
     /**
      * @return null
      */
-    public function getRequestUserId()
+    public function getReqClientId()
     {
-        return $this->request_user_id;
+        return $this->req_client_id;
     }
 
     /**
-     * @param null $request_user_id
+     * @param null $req_client_id
      */
-    public function setRequestUserId($request_user_id)
+    public function setReqClientId($req_client_id)
     {
-        $this->request_user_id = $request_user_id;
+        $this->req_client_id = $req_client_id;
     }
 
     /**
      * @return null
      */
-    public function getRequestUserSecret()
+    public function getReqClientSecret()
     {
-        return $this->request_user_secret;
+        return $this->req_client_secret;
     }
 
     /**
-     * @param null $request_user_secret
+     * @param null $req_client_secret
      */
-    public function setRequestUserSecret($request_user_secret)
+    public function setReqClientSecret($req_client_secret)
     {
-        $this->request_user_secret = $request_user_secret;
+        $this->req_client_secret = $req_client_secret;
     }
 
     /**
-     * @return mixed
+     * @return null
      */
-    public function getResponseExpiresInSeconds()
+    public function getReqUserId()
     {
-        $this->response_expires_in_seconds = $this->getResponseData()->expires_in_seconds;
-        return $this->response_expires_in_seconds;
+        return $this->req_user_id;
     }
 
     /**
-     * @return mixed
+     * @param null $req_user_id
      */
-    public function getResponseAuthorizationCode()
+    public function setReqUserId($req_user_id)
     {
-        $this->response_authorization_code = $this->getResponseData()->authorization_code;
-        return $this->response_authorization_code;
+        $this->req_user_id = $req_user_id;
     }
 
     /**
-     * @return mixed
+     * @return null
      */
-    public function getResponseScope()
+    public function getReqUserSecret()
     {
-        $this->response_scope = $this->getResponseData()->scope;
-
-        return $this->response_scope;
+        return $this->req_user_secret;
     }
 
+    /**
+     * @param null $req_user_secret
+     */
+    public function setReqUserSecret($req_user_secret)
+    {
+        $this->req_user_secret = $req_user_secret;
+    }
     public function setParams()
     {
         $this->params = array(
-            "discovery_url" => $this->getRequestDiscoveryUrl(),
-            "uma_discovery_url" => $this->getRequestUmaDiscoveryUrl(),
-            "redirect_url" => $this->getRequestRedirectUrl(),
-            "client_id" => $this->getRequestClientId(),
-            "client_secret" => $this->getRequestClientSecret(),
-            "user_id" => $this->getRequestUserId(),
-            "user_secret" => $this->getRequestUserSecret()
+            "discovery_url" => $this->getReqDiscoveryUrl(),
+            "uma_discovery_url" => $this->getReqUmaDiscoveryUrl(),
+            "redirect_url" => $this->getReqRedirectUrl(),
+            "client_id" => $this->getReqClientId(),
+            "client_secret" => $this->getReqClientSecret(),
+            "user_id" => $this->getReqUserId(),
+            "user_secret" => $this->getReqUserSecret()
         );
     }
 }

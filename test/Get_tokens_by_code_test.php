@@ -1,26 +1,20 @@
 <?php
 
-include '../Get_tokens_by_code.php';
+require_once '../Get_tokens_by_code.php';
+require_once '../Get_authorization_code.php';
 
-$client = new Get_tokens_by_code();
+$get_tokens_by_code = new Get_tokens_by_code();
 
-$client->setRequestOxdId("6F9619FF-8B86-D011-B42D-00CF4FC964FF");
-$client->setRequestCode("I6IjIifX0");
-$client->setRequestState("af0ifjsldkj");
+$get_tokens_by_code->setReqOxdId(Oxd_config::$oxd_id);
+$get_tokens_by_code->setReqCode("I6IjIifX0");
+$get_tokens_by_code->setReqState(Get_authorization_url::$resp_state);
 
-$client->request();
+$get_tokens_by_code->request();
 
-echo '<br/>'.$client->getResponseStatus();
+echo '<br/>AccessToken: '.Get_tokens_by_code::$resp_access_token;
+echo '<br/>ExpiresIn: '.Get_tokens_by_code::$resp_expires_in;
+echo '<br/>IdToken: '.Get_tokens_by_code::$resp_id_token;
+echo '<br/>IdTokenClaims: ';
+var_dump(Get_tokens_by_code::$resp_id_token_claims);
 
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
-
-echo '<br/>'.$client->getResponseAccessToken();
-echo '<br/>'.$client->getResponseExpiresIn();
-echo '<br/>'.$client->getResponseIdToken();
-echo '<br/>'.$client->getResponseIdTokenClaims();
-
-$client->disconnect();
+$get_tokens_by_code->disconnect();

@@ -1,28 +1,24 @@
 <?php
 
-include '../Obtain_pat.php';
+require_once '../Obtain_pat.php';
 
-$client = new Obtain_pat();
+$otain_pat = new Obtain_pat();
 
-$client->setRequestDiscoveryUrl("https://ce.gluu.info/.well-known/openid-configuration");
-$client->setRequestUmaDiscoveryUrl("http://ce.gluu.info/.well-known/uma-configuration");
-$client->setRequestRedirectUrl("https://rs.gluu.info/resources");
-$client->setRequestClientId("@!1111!0008!0068.3E20");
-$client->setRequestClientSecret("32c2fb17-409d-48a2-b793-a639c8ac6cb2");
-$client->setRequestUserId("yuriy");
-$client->setRequestUserSecret("secret");
+$otain_pat->setReqDiscoveryUrl(Oxd_config::$discoveryUrl);
+$otain_pat->setReqUmaDiscoveryUrl(Oxd_config::$umaDiscoveryUrl);
+$otain_pat->setReqRedirectUrl(Oxd_config::$clientRedirectURL);
+$otain_pat->setReqClientId(Oxd_config::$clientId);
+$otain_pat->setReqClientSecret(Oxd_config::$clientSecret);
+$otain_pat->setReqUserId(Oxd_config::$userId);
+$otain_pat->setReqUserSecret(Oxd_config::$userSecret);
 
-$client->request();
+$otain_pat->request();
 
-echo '<br/>'.$client->getResponseStatus();
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
+echo '<br/>PatToken: '.Obtain_pat::$resp_pat_token;
+echo '<br/>ExpiresInSeconds: '.Obtain_pat::$resp_expires_in_seconds;
+echo '<br/>PatRefreshToken: '.Obtain_pat::$resp_pat_refresh_token;
+echo '<br/>AuthorizationCode: '.Obtain_pat::$resp_authorization_code;
+echo '<br/>Scope: '.Obtain_pat::$resp_scope;
 
-echo '<br/>'.$client->getResponsePatToken();
-echo '<br/>'.$client->getResponseExpiresInSeconds();
-echo '<br/>'.$client->getResponsePatRefreshToken();
-echo '<br/>'.$client->getResponseAuthorizationCode();
-echo '<br/>'.$client->getResponseScope();
+
+$otain_pat->disconnect();

@@ -1,29 +1,18 @@
 <?php
 
-include '../Register_resource.php';
+require_once '../Register_resource.php';
+require_once '../Obtain_pat.php';
+require_once '../Rpt_status.php';
+$register_resource = new Register_resource();
 
-$client = new Register_resource();
+$register_resource->setReqUmaDiscoveryUrl(Oxd_config::$umaDiscoveryUrl);
+$register_resource->setReqPat(Obtain_pat::$resp_pat_token);
+$register_resource->setReqName("Your name");
+$register_resource->setReqScopes(Rpt_status::$resp_permissions_scopes);
 
-$client->setRequestUmaDiscoveryUrl("https://ce.gluu.info/.well-known/uma-configuration");
-$client->setRequestPat("eyJ0eXAiOiJKV1MiLCJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vc2VlZC5nbHV1L");
-$client->setRequestName("My Resource");
-$client->setRequestScopes([
-    "http://photoz.example.com/dev/scopes/view",
-    "http://photoz.example.com/dev/scopes/all"
-]);
+$register_resource->request();
 
-$client->request();
-
-echo '<br/>'.$client->getResponseStatus();
-
-print_r($client->getResponseData());
-echo '<br/>';
-print_r($client->getResponseObject());
-echo '<br/>';
-print_r($client->getResponseJSON());
-
-echo '<br/>'.$client->getResponseResourceStatus();
-echo '<br/>'.$client->getResponseId();
-echo '<br/>'.$client->getResponseRev();
-
-$client->disconnect();
+echo '<br/>Id:'.Register_resource::$resp_id;
+echo '<br/>Rev: '.Register_resource::$resp_rev;
+echo '<br/>Status: '.Register_resource::$resp_resource_status;
+$register_resource->disconnect();

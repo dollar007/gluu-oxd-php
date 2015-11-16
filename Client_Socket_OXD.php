@@ -2,13 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: Vlad Karapetyan
- * Date: 11/9/2015
- * Time: 4:15 PM
  */
 
 require_once 'Oxd_config.php';
 
 class Client_Socket_OXD{
+
     protected static $socket = null;
 
     /**
@@ -26,7 +25,7 @@ class Client_Socket_OXD{
             }
         }
         $configOBJECT = json_decode($configJSON);
-        $this->define_variables($configOBJECT);
+        $this->static_variables($configOBJECT);
         if (filter_var(Oxd_config::$localhostIp, FILTER_VALIDATE_IP) === false) {
             $this->error_message(Oxd_config::$localhostIp." is not a valid IP address");
         }
@@ -39,10 +38,9 @@ class Client_Socket_OXD{
         $this->oxd_socket_connection();
     }
     /**
-     * request to oxd socket
-     * @return object
+     * setting static params
      **/
-    public function define_variables($configOBJECT){
+    public function static_variables($configOBJECT){
         Oxd_config::$localhostIp = $configOBJECT->ip;
         Oxd_config::$localhostPort = $configOBJECT->port;
         Oxd_config::$gluuServerUrl = $configOBJECT->gluuServerUrl;
@@ -53,7 +51,11 @@ class Client_Socket_OXD{
         Oxd_config::$clientSecret = $configOBJECT->clientSecret;
         Oxd_config::$clientRedirectURL = $configOBJECT->clientRedirectURL;
         Oxd_config::$logoutRedirectUrl = $configOBJECT->logoutRedirectUrl;
+        Oxd_config::$authorizationRedirectUri = $configOBJECT->authorizationRedirectUri;
         Oxd_config::$appType = $configOBJECT->appType;
+        Oxd_config::$grantTypes = $configOBJECT->grantTypes;
+        Oxd_config::$responseTypes = $configOBJECT->responseTypes;
+        Oxd_config::$httpMethod = $configOBJECT->httpMethod;
         Oxd_config::$discoveryUrl = $configOBJECT->gluuServerUrl."/.well-known/openid-configuration";
         Oxd_config::$umaDiscoveryUrl = $configOBJECT->gluuServerUrl."/.well-known/uma-configuration";
     }
@@ -61,7 +63,7 @@ class Client_Socket_OXD{
      * request to oxd socket
      **/
     public function oxd_socket_request($data){
-        $this->log("Client: oxd_socket_request", fwrite(self::$socket, $data));
+        $this->log("Client: oxd_socket_request", $data);
         fwrite(self::$socket, $data);
     }
     /**
@@ -86,7 +88,7 @@ class Client_Socket_OXD{
             $this->log("Client: socket::socket_connect is not connected, error: ",$errstr);
             die($errno);
         }else{
-            $this->log("Client: socket::socket_connect", "socket connected");
+            $this->log("Client: socket::socket_connect: ", "socket connected");
         }
     }
 
@@ -96,7 +98,7 @@ class Client_Socket_OXD{
     public function disconnect()
     {
         if(fclose(self::$socket)){
-            $this->log("Client: oxd_socket_connection", "disconnected.");
+            $this->log("Client: oxd_socket_connection: ", "disconnected.");
         }
     }
 
