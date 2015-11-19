@@ -70,7 +70,6 @@ abstract class Client_oxd extends Client_Socket_OXD{
         }else{
             $lenght = $lenght <= 999 ? "0" . $lenght : $lenght;
         }
-        echo utf8_encode($lenght . $jsondata);exit;
         $this->oxd_socket_request(utf8_encode($lenght . $jsondata));
         $this->response_json = $this->oxd_socket_response();
 
