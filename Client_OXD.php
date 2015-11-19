@@ -1,28 +1,26 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Vlad Karapetyan
- * Date: 11/9/2015
- * Time: 4:15 PM
+ * Created Vlad Karapetyan
  */
+
 require_once 'Client_Socket_OXD.php';
 require_once 'Oxd_config.php';
 
 abstract class Client_oxd extends Client_Socket_OXD{
 
     private $command_types = array( 'register_client', 'client_read', 'obtain_pat', 'obtain_aat',
-                                    'obtain_rpt', 'authorize_rpt', 'register_resource', 'rpt_status',
-                                    'id_token_status', 'access_token_status', 'register_ticket', 'discovery',
-                                    'authorization_code_flow', 'get_authorization_url', 'get_tokens_by_code',
-                                    'get_user_info', 'register_site',
+        'obtain_rpt', 'authorize_rpt', 'register_resource', 'rpt_status',
+        'id_token_status', 'access_token_status', 'register_ticket', 'discovery',
+        'authorization_code_flow', 'get_authorization_url', 'get_tokens_by_code',
+        'get_user_info', 'register_site',
     );
     protected $data = array();
     protected $command;
     protected $params = array();
-    protected $resp_json;
-    protected $resp_object;
-    protected $resp_status;
-    protected $resp_data = array();
+    protected $response_json;
+    protected $response_object;
+    protected $response_status;
+    protected $response_data = array();
 
 
     /**
@@ -45,10 +43,13 @@ abstract class Client_oxd extends Client_Socket_OXD{
             $this->log('Command: ' . $this->getCommand() . ' is not exist!','Exiting process.');
             $this->error_message('Command: ' . $this->getCommand() . ' is not exist!');
         }
+
+
     }
 
     /**
      * send function sends the command to the oxD server.
+     *
      * Args:
      * command (dict) - Dict representation of the JSON command string
      **/
@@ -57,6 +58,7 @@ abstract class Client_oxd extends Client_Socket_OXD{
         $this->setParams();
 
         $jsondata = json_encode($this->getData(), JSON_UNESCAPED_SLASHES);
+
         if(!$this->is_JSON($jsondata)){
             $this->log("Sending parameters must be JSON.",'Exiting process.');
             $this->error_message('Sending parameters must be JSON.');
@@ -68,18 +70,21 @@ abstract class Client_oxd extends Client_Socket_OXD{
         }else{
             $lenght = $lenght <= 999 ? "0" . $lenght : $lenght;
         }
+        echo utf8_encode($lenght . $jsondata);exit;
         $this->oxd_socket_request(utf8_encode($lenght . $jsondata));
-        $this->resp_json = $this->oxd_socket_response();
+        $this->response_json = $this->oxd_socket_response();
 
-        $this->resp_json = str_replace(substr($this->resp_json, 0, 4), "", $this->resp_json);
+        $this->response_json = str_replace(substr($this->response_json, 0, 4), "", $this->response_json);
 
-        if ($this->resp_json) {
-            $object = json_decode($this->resp_json);
+        /*if(!$this->is_JSON($this->response_json)){
+            $this->error_message('Reading parameter is not JSON.');
+        }*/
+        if ($this->response_json) {
+            $object = json_decode($this->response_json);
             if ($object->status == 'error') {
                 $this->error_message($object->data->error . ' : ' . $object->data->error_description);
             } elseif ($object->status == 'ok') {
-                $this->resp_object = json_decode($this->resp_json);
-                $this->setRespParam();
+                $this->response_object = json_decode($this->response_json);
             }
         } else {
             $this->log("Response is empty...",'Exiting process.');
@@ -90,31 +95,31 @@ abstract class Client_oxd extends Client_Socket_OXD{
     /**
      * @return mixed
      */
-    public function getRespStatus()
+    public function getResponseStatus()
     {
-        return $this->resp_status;
+        return $this->response_status;
     }
 
     /**
-     * @param mixed $resp_status
+     * @param mixed $response_status
      */
-    public function setRespStatus()
+    public function setResponseStatus()
     {
-        $this->resp_status = $this->getRespObject()->status;
+        $this->response_status = $this->getResponseObject()->status;
     }
 
     /**
      * @return mixed
      */
-    public function getRespData()
+    public function getResponseData()
     {
-        if (!$this->getRespObject()) {
-            $this->resp_data = 'Data is empty';
-            $this->error_message($this->resp_data);
+        if (!$this->getResponseObject()) {
+            $this->response_data = 'Data is empty';
+            $this->error_message($this->response_data);
         } else {
-            $this->resp_data = $this->getRespObject()->data;
+            $this->response_data = $this->getResponseObject()->data;
         }
-        return $this->resp_data;
+        return $this->response_data;
     }
 
     /**
@@ -141,30 +146,27 @@ abstract class Client_oxd extends Client_Socket_OXD{
 
     /**
      * getResult function geting result from oxD server.
-     * Return: resp_object - The JSON response parsing to object
+     * Return: response_object - The JSON response parsing to object
      **/
-    public function getRespObject()
+    public function getResponseObject()
     {
-        return $this->resp_object;
+        return $this->response_object;
     }
 
     /**
      * function getting result from oxD server.
-     * return: resp_json - The JSON response from the oxD Server
+     * return: response_json - The JSON response from the oxD Server
      **/
-    public function getRespJSON()
+    public function getResponseJSON()
     {
-        return $this->resp_json;
+        return $this->response_json;
     }
 
     /**
      * @param array $params
      */
     abstract function setParams();
-    /**
-     * @param array $params
-     */
-    abstract function setRespParam();
+
     /**
      * @return array
      */

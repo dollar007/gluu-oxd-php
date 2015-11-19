@@ -1,32 +1,31 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * User: Vlad Karapetyan
+ * Created Vlad Karapetyan
  */
+
 require_once 'Client_OXD.php';
 
 class Register_client extends Client_oxd
 {
     /**start parameter for request!**/
-        private $req_discoveryUrl = null;
-        private $req_redirectUrl = null;
-        private $req_logout_redirect_url = null;
-        private $req_client_name = null;
-        private $req_resp_types = null;
-        private $req_app_type = null;
-        private $req_grant_types = null;
-        private $req_contacts = null;
-        private $req_jwks_uri = null;
+        private $request_discoveryUrl = null;
+        private $request_redirectUrl = null;
+        private $request_logout_redirect_url = null;
+        private $request_client_name = null;
+        private $request_response_types = null;
+        private $request_app_type = null;
+        private $request_grant_types = null;
+        private $request_contacts = null;
+        private $request_jwks_uri = null;
     /**end request parameter**/
 
     /**start parameter for response!**/
-        public static $resp_client_id;
-        public static $resp_client_secret;
-        public static $resp_registration_access_token;
-        public static $resp_client_secret_expires_at;
-        public static $resp_registration_client_uri;
-        public static $resp_client_id_issued_at;
+        private $response_client_id;
+        private $response_client_secret;
+        private $response_registration_access_token;
+        private $response_client_secret_expires_at;
+        private $response_registration_client_uri;
+        private $response_client_id_issued_at;
     /**end response parameter**/
 
     public function __construct()
@@ -40,156 +39,199 @@ class Register_client extends Client_oxd
     /**
      * @return null
      */
-    public function getReqLogoutRedirectUrl()
+    public function getRequestLogoutRedirectUrl()
     {
-        return $this->req_logout_redirect_url;
+        return $this->request_logout_redirect_url;
     }
 
     /**
-     * @param null $req_logout_redirect_url
+     * @param null $request_logout_redirect_url
      */
-    public function setReqLogoutRedirectUrl($req_logout_redirect_url)
+    public function setRequestLogoutRedirectUrl($request_logout_redirect_url)
     {
-        $this->req_logout_redirect_url = $req_logout_redirect_url;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReqDiscoveryUrl()
-    {
-        return $this->req_discoveryUrl;
-    }
-
-    /**
-     * @param mixed $req_discoveryUrl
-     */
-    public function setReqDiscoveryUrl($req_discoveryUrl)
-    {
-        $this->req_discoveryUrl = $req_discoveryUrl;
+        $this->request_logout_redirect_url = $request_logout_redirect_url;
     }
 
     /**
      * @return mixed
      */
-    public function getReqRedirectUrl()
+    public function getRequestDiscoveryUrl()
     {
-        return $this->req_redirectUrl;
+        return $this->request_discoveryUrl;
     }
 
     /**
-     * @param mixed $req_redirectUrl
+     * @param mixed $request_discoveryUrl
      */
-    public function setReqRedirectUrl($req_redirectUrl)
+    public function setRequestDiscoveryUrl($request_discoveryUrl)
     {
-        $this->req_redirectUrl = $req_redirectUrl;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReqClientName()
-    {
-        return $this->req_client_name;
-    }
-
-    /**
-     * @param mixed $req_client_name
-     */
-    public function setReqClientName($req_client_name)
-    {
-        $this->req_client_name = $req_client_name;
+        $this->request_discoveryUrl = $request_discoveryUrl;
     }
 
     /**
      * @return mixed
      */
-    public function getReqAppType()
+    public function getRequestRedirectUrl()
     {
-        return $this->req_app_type;
+        return $this->request_redirectUrl;
     }
 
     /**
-     * @param mixed $req_app_type
+     * @param mixed $request_redirectUrl
      */
-    public function setReqAppType($req_app_type)
+    public function setRequestRedirectUrl($request_redirectUrl)
     {
-        $this->req_app_type = $req_app_type;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReqResponseTypes()
-    {
-        return $this->req_resp_types;
-    }
-
-    /**
-     * @param mixed $req_resp_types
-     */
-    public function setReqResponseTypes($req_resp_types)
-    {
-        $this->req_resp_types = $req_resp_types;
+        $this->request_redirectUrl = $request_redirectUrl;
     }
 
     /**
      * @return mixed
      */
-    public function getReqGrantTypes()
+    public function getRequestClientName()
     {
-        return $this->req_grant_types;
+        return $this->request_client_name;
     }
 
     /**
-     * @param mixed $req_grant_types
+     * @param mixed $request_client_name
      */
-    public function setReqGrantTypes($req_grant_types)
+    public function setRequestClientName($request_client_name)
     {
-        $this->req_grant_types = $req_grant_types;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReqContacts()
-    {
-        return $this->req_contacts;
-    }
-
-    /**
-     * @param mixed $req_contacts
-     */
-    public function setReqContacts($req_contacts)
-    {
-        $this->req_contacts = $req_contacts;
+        $this->request_client_name = $request_client_name;
     }
 
     /**
      * @return mixed
      */
-    public function getReqJwksUri()
+    public function getRequestAppType()
     {
-        return $this->req_jwks_uri;
+        return $this->request_app_type;
     }
 
     /**
-     * @param mixed $req_jwks_uri
+     * @param mixed $request_app_type
      */
-    public function setReqJwksUri($req_jwks_uri)
+    public function setRequestAppType($request_app_type)
     {
-        $this->req_jwks_uri = $req_jwks_uri;
+        $this->request_app_type = $request_app_type;
     }
-    /*
-     * @param static
-    */
-    public function setRespParam(){
-        self::$resp_client_id = $this->getRespData()->client_id;
-        self::$resp_client_secret = $this->getRespData()->client_secret;
-        self::$resp_registration_access_token = $this->getRespData()->registration_access_token;
-        self::$resp_client_secret_expires_at = $this->getRespData()->client_secret_expires_at;
-        self::$resp_registration_client_uri = $this->getRespData()->registration_client_uri;
-        self::$resp_client_id_issued_at = $this->getRespData()->client_id_issued_at;
+
+    /**
+     * @return mixed
+     */
+    public function getRequestResponseTypes()
+    {
+        return $this->request_response_types;
+    }
+
+    /**
+     * @param mixed $request_response_types
+     */
+    public function setRequestResponseTypes($request_response_types)
+    {
+        $this->request_response_types = $request_response_types;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequestGrantTypes()
+    {
+        return $this->request_grant_types;
+    }
+
+    /**
+     * @param mixed $request_grant_types
+     */
+    public function setRequestGrantTypes($request_grant_types)
+    {
+        $this->request_grant_types = $request_grant_types;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequestContacts()
+    {
+        return $this->request_contacts;
+    }
+
+    /**
+     * @param mixed $request_contacts
+     */
+    public function setRequestContacts($request_contacts)
+    {
+        $this->request_contacts = $request_contacts;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequestJwksUri()
+    {
+        return $this->request_jwks_uri;
+    }
+
+    /**
+     * @param mixed $request_jwks_uri
+     */
+    public function setRequestJwksUri($request_jwks_uri)
+    {
+        $this->request_jwks_uri = $request_jwks_uri;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseClientId()
+    {
+        $this->response_client_id = $this->getResponseData()->client_id;
+        return $this->response_client_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseClientSecret()
+    {
+        $this->response_client_secret = $this->getResponseData()->client_secret;
+        return $this->response_client_secret;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseRegistrationAccessToken()
+    {
+        $this->response_registration_access_token = $this->getResponseData()->registration_access_token;
+        return $this->response_registration_access_token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseClientSecretExpiresAt()
+    {
+        $this->response_client_secret_expires_at = $this->getResponseData()->client_secret_expires_at;
+        return $this->response_client_secret_expires_at;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseRegistrationClientUri()
+    {
+        $this->response_registration_client_uri = $this->getResponseData()->registration_client_uri;
+        return $this->response_registration_client_uri;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseClientIdIssuedAt()
+    {
+        $this->response_client_id_issued_at = $this->getResponseData()->client_id_issued_at;
+        return $this->response_client_id_issued_at;
     }
 
     public function setCommand()
@@ -200,15 +242,15 @@ class Register_client extends Client_oxd
     public function setParams()
     {
         $this->params = array(
-            "discovery_url" => $this->getReqDiscoveryUrl(),
-            "redirect_url" => $this->getReqRedirectUrl(),
-            "logout_redirect_url" => $this->getReqLogoutRedirectUrl(),
-            "client_name" => $this->getReqClientName(),
-            "resp_types" => $this->getReqResponseTypes(),
-            "app_type" => $this->getReqAppType(),
-            "grant_types" => $this->getReqGrantTypes(),
-            "contacts" => $this->getReqContacts(),
-            "jwks_uri" => $this->getReqJwksUri()
+            "discovery_url" => $this->getRequestDiscoveryUrl(),
+            "redirect_url" => $this->getRequestRedirectUrl(),
+            "logout_redirect_url" => $this->getRequestLogoutRedirectUrl(),
+            "client_name" => $this->getRequestClientName(),
+            "response_types" => $this->getRequestResponseTypes(),
+            "app_type" => $this->getRequestAppType(),
+            "grant_types" => $this->getRequestGrantTypes(),
+            "contacts" => $this->getRequestContacts(),
+            "jwks_uri" => $this->getRequestJwksUri()
         );
     }
 

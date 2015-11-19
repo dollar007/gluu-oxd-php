@@ -1,19 +1,19 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Vlad Karapetyan
+ * Created Vlad Karapetyan
  */
+
 require_once 'Client_OXD.php';
 
 class Obtain_rpt extends Client_oxd
 {
     /**start parameter for request!**/
-        private $req_aat_token = null;
-        private $req_am_host = null;
+        private $request_aat_token = null;
+        private $request_am_host = null;
     /**end request parameter**/
 
     /**start parameter for response!**/
-        public static $resp_rpt_token;
+        private $response_rpt_token;
     /**end response parameter**/
 
     public function __construct()
@@ -28,40 +28,42 @@ class Obtain_rpt extends Client_oxd
     /**
      * @return null
      */
-    public function getReqAatToken()
+    public function getRequestAatToken()
     {
-        return $this->req_aat_token;
-    }
-    /*
-     * @param static
-    */
-    public function setRespParam()
-    {
-        self::$resp_rpt_token = $this->getRespData()->rpt_token;
+        return $this->request_aat_token;
     }
 
     /**
-     * @param null $req_aat_token
+     * @return mixed
      */
-    public function setReqAatToken($req_aat_token)
+    public function getResponseRptToken()
     {
-        $this->req_aat_token = $req_aat_token;
+        $this->response_rpt_token = $this->getResponseData()->rpt_token;
+        return $this->response_rpt_token;
+    }
+
+    /**
+     * @param null $request_aat_token
+     */
+    public function setRequestAatToken($request_aat_token)
+    {
+        $this->request_aat_token = $request_aat_token;
     }
 
     /**
      * @return null
      */
-    public function getReqAmHost()
+    public function getRequestAmHost()
     {
-        return $this->req_am_host;
+        return $this->request_am_host;
     }
 
     /**
-     * @param null $req_am_host
+     * @param null $request_am_host
      */
-    public function setReqAmHost($req_am_host)
+    public function setRequestAmHost($request_am_host)
     {
-        $this->req_am_host = $req_am_host;
+        $this->request_am_host = $request_am_host;
     }
 
     public function setCommand()
@@ -72,8 +74,8 @@ class Obtain_rpt extends Client_oxd
     public function setParams()
     {
         $this->params = array(
-            "aat_token" => $this->getReqAatToken(),
-            "am_host" => $this->getReqAmHost()
+            "aat_token" => $this->getRequestAatToken(),
+            "am_host" => $this->getRequestAmHost()
         );
     }
 }

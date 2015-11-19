@@ -1,18 +1,18 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Vlad Karapetyan
+ * Created Vlad Karapetyan
  */
+
 require_once 'Client_OXD.php';
 
 class Authorize_rpt extends Client_oxd
 {
     /**start parameter for request!**/
-        private $req_aat_token = null;
-        private $req_am_host = null;
-        private $req_rpt_token = null;
-        private $req_ticket = null;
-        private $req_claims = null;
+        private $request_aat_token = null;
+        private $request_am_host = null;
+        private $request_rpt_token = null;
+        private $request_ticket = null;
+        private $request_claims = null;
     /**end request parameter**/
 
     public function __construct()
@@ -26,86 +26,81 @@ class Authorize_rpt extends Client_oxd
     /**
      * @return null
      */
-    public function getReqAatToken()
+    public function getRequestAatToken()
     {
-        return $this->req_aat_token;
+        return $this->request_aat_token;
     }
 
     /**
-     * @param null $req_aat_token
+     * @param null $request_aat_token
      */
-    public function setReqAatToken($req_aat_token)
+    public function setRequestAatToken($request_aat_token)
     {
-        $this->req_aat_token = $req_aat_token;
-    }
-    /*
-     * @param static
-    */
-    public function setRespParam(){
-
-    }
-    /**
-     * @return null
-     */
-    public function getReqAmHost()
-    {
-        return $this->req_am_host;
-    }
-
-    /**
-     * @param null $req_am_host
-     */
-    public function setReqAmHost($req_am_host)
-    {
-        $this->req_am_host = $req_am_host;
+        $this->request_aat_token = $request_aat_token;
     }
 
     /**
      * @return null
      */
-    public function getReqRptToken()
+    public function getRequestAmHost()
     {
-        return $this->req_rpt_token;
+        return $this->request_am_host;
     }
 
     /**
-     * @param null $req_rpt_token
+     * @param null $request_am_host
      */
-    public function setReqRptToken($req_rpt_token)
+    public function setRequestAmHost($request_am_host)
     {
-        $this->req_rpt_token = $req_rpt_token;
-    }
-
-    /**
-     * @return null
-     */
-    public function getReqTicket()
-    {
-        return $this->req_ticket;
-    }
-
-    /**
-     * @param null $req_ticket
-     */
-    public function setReqTicket($req_ticket)
-    {
-        $this->req_ticket = $req_ticket;
+        $this->request_am_host = $request_am_host;
     }
 
     /**
      * @return null
      */
-    public function getReqClaims()
+    public function getRequestRptToken()
     {
-        return $this->req_claims;
+        return $this->request_rpt_token;
     }
 
     /**
-     * @param null $req_claims
+     * @param null $request_rpt_token
      */
-    public function setReqClaims($req_claims)
+    public function setRequestRptToken($request_rpt_token)
     {
-        $this->req_claims = $req_claims;
+        $this->request_rpt_token = $request_rpt_token;
+    }
+
+    /**
+     * @return null
+     */
+    public function getRequestTicket()
+    {
+        return $this->request_ticket;
+    }
+
+    /**
+     * @param null $request_ticket
+     */
+    public function setRequestTicket($request_ticket)
+    {
+        $this->request_ticket = $request_ticket;
+    }
+
+    /**
+     * @return null
+     */
+    public function getRequestClaims()
+    {
+        return $this->request_claims;
+    }
+
+    /**
+     * @param null $request_claims
+     */
+    public function setRequestClaims($request_claims)
+    {
+        $this->request_claims = $request_claims;
     }
 
     public function setCommand()
@@ -116,11 +111,11 @@ class Authorize_rpt extends Client_oxd
     public function setParams()
     {
         $this->params = array(
-            "aat_token" => $this->getReqAatToken(),
-            "rpt_token" => $this->getReqRptToken(),
-            "am_host" => $this->getReqAmHost(),
-            "ticket" => $this->getReqTicket(),
-            "claims" => $this->getReqClaims()
+            "aat_token" => $this->getRequestAatToken(),
+            "rpt_token" => $this->getRequestRptToken(),
+            "am_host" => $this->getRequestAmHost(),
+            "ticket" => $this->getRequestTicket(),
+            "claims" => $this->getRequestClaims()
         );
     }
 

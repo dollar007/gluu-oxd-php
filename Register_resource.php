@@ -1,23 +1,23 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Vlad Karapetyan
+ * Created Vlad Karapetyan
  */
+
 require_once 'Client_OXD.php';
 
 class Register_resource extends Client_oxd
 {
     /**start parameter for request!**/
-        private $req_uma_discovery_url = null;
-        private $req_pat = null;
-        private $req_name = null;
-        private $req_scopes = array();
+        private $request_uma_discovery_url = null;
+        private $request_pat = null;
+        private $request_name = null;
+        private $request_scopes = array();
     /**end request parameter**/
 
     /**start parameter for response!**/
-        public static $resp_resource_status;
-        public static $resp_id;
-        public static $resp_rev;
+        private $response_resource_status;
+        private $response_id;
+        private $response_rev;
     /**end response parameter**/
 
 
@@ -30,76 +30,104 @@ class Register_resource extends Client_oxd
     }
 
     /**
-     * @return null
+     * @return mixed
      */
-    public function getReqUmaDiscoveryUrl()
+    public function getResponseResourceStatus()
     {
-        return $this->req_uma_discovery_url;
+        $this->response_rev = $this->getResponseData()->status;
+        return $this->response_resource_status;
     }
 
     /**
-     * @param null $req_uma_discovery_url
+     * @param mixed $response_resource_status
      */
-    public function setReqUmaDiscoveryUrl($req_uma_discovery_url)
+    public function setResponseResourceStatus($response_resource_status)
     {
-        $this->req_uma_discovery_url = $req_uma_discovery_url;
-    }
-
-    /**
-     * @return null
-     */
-    public function getReqPat()
-    {
-        return $this->req_pat;
-    }
-
-    /**
-     * @param null $req_pat
-     */
-    public function setReqPat($req_pat)
-    {
-        $this->req_pat = $req_pat;
+        $this->response_resource_status = $response_resource_status;
     }
 
     /**
      * @return null
      */
-    public function getReqName()
+    public function getRequestUmaDiscoveryUrl()
     {
-        return $this->req_name;
+        return $this->request_uma_discovery_url;
+    }
+
+    /**
+     * @param null $request_uma_discovery_url
+     */
+    public function setRequestUmaDiscoveryUrl($request_uma_discovery_url)
+    {
+        $this->request_uma_discovery_url = $request_uma_discovery_url;
+    }
+
+    /**
+     * @return null
+     */
+    public function getRequestPat()
+    {
+        return $this->request_pat;
+    }
+
+    /**
+     * @param null $request_pat
+     */
+    public function setRequestPat($request_pat)
+    {
+        $this->request_pat = $request_pat;
+    }
+
+    /**
+     * @return null
+     */
+    public function getRequestName()
+    {
+        return $this->request_name;
     }
 
     /**
      * @param null $name
      */
-    public function setReqName($req_name)
+    public function setRequestName($request_name)
     {
-        $this->req_name = $req_name;
+        $this->request_name = $request_name;
     }
 
     /**
      * @return array
      */
-    public function getReqScopes()
+    public function getRequestScopes()
     {
-        return $this->req_scopes;
+        return $this->request_scopes;
     }
 
     /**
-     * @param array $req_scopes
+     * @param array $request_scopes
      */
-    public function setReqScopes($req_scopes)
+    public function setRequestScopes($request_scopes)
     {
-        $this->req_scopes = $req_scopes;
+        $this->request_scopes = $request_scopes;
     }
-    /*
-     * @param static
-    */
-    public function setRespParam(){
-        self::$resp_id = $this->getRespData()->_id;
-        self::$resp_rev = $this->getRespData()->_rev;
-        self::$resp_resource_status = $this->getRespData()->status;
+
+    /**
+     * @return mixed
+     */
+    public function getResponseRev()
+    {
+        $this->response_rev = $this->getResponseData()->_rev;
+        return $this->response_rev;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseId()
+    {
+        $this->response_id = $this->getResponseData()->_id;
+        return $this->response_id;
+    }
+
 
     public function setCommand()
     {
@@ -109,10 +137,10 @@ class Register_resource extends Client_oxd
     public function setParams()
     {
         $this->params = array(
-            "uma_discovery_url" => $this->getReqUmaDiscoveryUrl(),
-            "pat" => $this->getReqPat(),
-            "name" => $this->getReqName(),
-            "scopes" => $this->getReqScopes()
+            "uma_discovery_url" => $this->getRequestUmaDiscoveryUrl(),
+            "pat" => $this->getRequestPat(),
+            "name" => $this->getRequestName(),
+            "scopes" => $this->getRequestScopes()
         );
     }
 
