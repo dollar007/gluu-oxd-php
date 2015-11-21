@@ -11,8 +11,7 @@ abstract class Client_oxd extends Client_Socket_OXD{
     private $command_types = array( 'register_client', 'client_read', 'obtain_pat', 'obtain_aat',
         'obtain_rpt', 'authorize_rpt', 'register_resource', 'rpt_status',
         'id_token_status', 'access_token_status', 'register_ticket', 'discovery',
-        'authorization_code_flow', 'get_authorization_url', 'get_tokens_by_code',
-        'get_user_info', 'register_site',
+        'authorization_code_flow'
     );
     protected $data = array();
     protected $command;
@@ -75,9 +74,6 @@ abstract class Client_oxd extends Client_Socket_OXD{
 
         $this->response_json = str_replace(substr($this->response_json, 0, 4), "", $this->response_json);
 
-        /*if(!$this->is_JSON($this->response_json)){
-            $this->error_message('Reading parameter is not JSON.');
-        }*/
         if ($this->response_json) {
             $object = json_decode($this->response_json);
             if ($object->status == 'error') {
