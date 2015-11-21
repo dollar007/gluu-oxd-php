@@ -1,0 +1,12 @@
+{
+  "oxd_host_ip": "127.0.0.1",
+  "oxd_host_port":8099,
+  "authorization_redirect_uri" : "https://client.example.com/callback",
+  "logout_redirect_uri" : "https://client.example.com/callback",
+  "scope" : [ "openid", "profile" ],
+  "application_type" : "web",
+  "redirect_uris" : [ "https://client.example.com/callback" ],
+  "response_types" : ["code"],
+  "grant_types":"authorization_code",
+  "acr_values" : [ "" ]
+}
