@@ -12,7 +12,7 @@
             <div class="pad group">
                 <div class="page group">
                    <h1>Php library for oxd, which organizes authentication and registration users.</h1>
-                    <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#readme">Oxd-rp library</a>
+                    <h2><a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#readme">Oxd-rp library</a></h2>
                     <h3>Oxd-rp-protocols</h3>
                      <ul>
                         <li class="level1"><div class="li"> <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#Register_site" title="oxd:communication_protocol ?" class="wikilink1">Register_site.php</a></div>
@@ -24,8 +24,8 @@
                         <li class="level1"><div class="li"> <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#Get_user_info" title="oxd:communication_protocol ?" class="wikilink1">Get_user_info.php</a></div>
                         </li>
                     </ul>
-                    <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp/client.example.com#readme">Demo site example</a>
-                    <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-communicate-protocols#readme">Oxd-communicate-protocols library</a>
+                    <h2><a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp/client.example.com#readme">Demo site example</a></h2>
+                    <h2><a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-communicate-protocols#readme">Oxd-communicate-protocols library</a></h2>
                      <h3>Oxd-communicate-protocols</h3>
                      <ul>
                          <li class="level1"><div class="li"> <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-communicate-protocols#register_client" title="oxd:communication_protocol ?" class="wikilink1">Register_client.php</a></div>
