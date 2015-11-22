@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link href="style.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
 </head>
 <body>
 <div id="dokuwiki__site">
@@ -14,13 +14,13 @@
                     <!-- wikipage start -->
 
                     <h1>
-                        <a id="user-content-oxd-php" class="anchor" href="#oxd-php" aria-hidden="true"><span class="octicon octicon-link"></span></a>oxd-php
+                        <a id="user-content-oxd-rp-php" class="anchor" href="#oxd-rp-php" aria-hidden="true"><span class="octicon octicon-link"></span></a>oxd-rp-php
                     </h1>
                     <p>Need to download and install gluu server in Your web server. For more information <a target="_blank" href="http://www.gluu.org/docs/">click me</a>.</p>
                     <p>Need to download and install OXD server in Your web server. For more information <a target="_blank" href="http://ox.gluu.org/doku.php?id=oxd:rp">click me</a>.</p>
                     <p>For OXD server configuration <a target="_blank" href="http://ox.gluu.org/doku.php?id=oxd:home&s[]=mvn">click me</a>. </p>
                     <p>PHP Client Library for the <a target="_blank" href="https://github.com/GluuFederation/oxd-php/oxd-rp">Gluu OXD-RP Server</a>.</p>
-                    <h2 class="sectionedit5" id="oxd_server_configuration">oxd-php configuration</h2>
+                    <h2 class="sectionedit5" id="oxd_server_configuration">oxd-rp-php configuration</h2>
                     <div class="level2">
                         <p>
                             Configuration file is located in 'oxd-rp/oxd-rp-settings.json' file in distribution package.
@@ -102,7 +102,7 @@
                     <div class="level2">
 
                         <p>
-                            PHP classes for comunicating with oxd.
+                            PHP classes for communicating with oxd.
                         </p>
                         <p>
                             Connecting to oxd server is doing via class Client_Socket_OXD_RP <a href="#Client_Socket_OXD_RP" title="oxd:communication_protocol ?" class="wikilink1">Client_Socket_OXD_RP.php</a>

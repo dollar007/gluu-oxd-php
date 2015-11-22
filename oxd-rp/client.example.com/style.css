@@ -1,325 +1,4 @@
-a.interwiki {
-    background: transparent url(/lib/images/interwiki.png) 0px 1px no-repeat;
-    padding: 1px 0px 1px 16px;
-}
 
-a.iw_wp {
-    background-image: url(/lib/images/interwiki/wp.gif)
-}
-
-a.iw_wpfr {
-    background-image: url(/lib/images/interwiki/wpfr.gif)
-}
-
-a.iw_wpde {
-    background-image: url(/lib/images/interwiki/wpde.gif)
-}
-
-a.iw_wpes {
-    background-image: url(/lib/images/interwiki/wpes.gif)
-}
-
-a.iw_wppl {
-    background-image: url(/lib/images/interwiki/wppl.gif)
-}
-
-a.iw_wpjp {
-    background-image: url(/lib/images/interwiki/wpjp.gif)
-}
-
-a.iw_wpmeta {
-    background-image: url(/lib/images/interwiki/wpmeta.gif)
-}
-
-a.iw_doku {
-    background-image: url(/lib/images/interwiki/doku.gif)
-}
-
-a.iw_dokubug {
-    background-image: url(/lib/images/interwiki/dokubug.gif)
-}
-
-a.iw_amazon {
-    background-image: url(/lib/images/interwiki/amazon.gif)
-}
-
-a.iw_amazon_de {
-    background-image: url(/lib/images/interwiki/amazon.de.gif)
-}
-
-a.iw_amazon_uk {
-    background-image: url(/lib/images/interwiki/amazon.uk.gif)
-}
-
-a.iw_paypal {
-    background-image: url(/lib/images/interwiki/paypal.gif)
-}
-
-a.iw_phpfn {
-    background-image: url(/lib/images/interwiki/phpfn.gif)
-}
-
-a.iw_coral {
-    background-image: url(/lib/images/interwiki/coral.gif)
-}
-
-a.iw_sb {
-    background-image: url(/lib/images/interwiki/sb.gif)
-}
-
-a.iw_skype {
-    background-image: url(/lib/images/interwiki/skype.png)
-}
-
-a.iw_callto {
-    background-image: url(/lib/images/interwiki/callto.gif)
-}
-
-a.iw_google {
-    background-image: url(/lib/images/interwiki/google.gif)
-}
-
-a.iw_meatball {
-    background-image: url(/lib/images/interwiki/meatball.gif)
-}
-
-a.iw_wiki {
-    background-image: url(/lib/images/interwiki/wiki.gif)
-}
-
-.mediafile {
-    background: transparent url(/lib/images/fileicons/file.png) 0px 1px no-repeat;
-    padding-left: 18px;
-    padding-bottom: 1px;
-}
-
-.mf_doc {
-    background-image: url(/lib/images/fileicons/doc.png)
-}
-
-.mf_js {
-    background-image: url(/lib/images/fileicons/js.png)
-}
-
-.mf_rb {
-    background-image: url(/lib/images/fileicons/rb.png)
-}
-
-.mf_pptx {
-    background-image: url(/lib/images/fileicons/pptx.png)
-}
-
-.mf_php {
-    background-image: url(/lib/images/fileicons/php.png)
-}
-
-.mf_sql {
-    background-image: url(/lib/images/fileicons/sql.png)
-}
-
-.mf_html {
-    background-image: url(/lib/images/fileicons/html.png)
-}
-
-.mf_htm {
-    background-image: url(/lib/images/fileicons/htm.png)
-}
-
-.mf_rtf {
-    background-image: url(/lib/images/fileicons/rtf.png)
-}
-
-.mf_csv {
-    background-image: url(/lib/images/fileicons/csv.png)
-}
-
-.mf_tgz {
-    background-image: url(/lib/images/fileicons/tgz.png)
-}
-
-.mf_docx {
-    background-image: url(/lib/images/fileicons/docx.png)
-}
-
-.mf_lua {
-    background-image: url(/lib/images/fileicons/lua.png)
-}
-
-.mf_deb {
-    background-image: url(/lib/images/fileicons/deb.png)
-}
-
-.mf_odf {
-    background-image: url(/lib/images/fileicons/odf.png)
-}
-
-.mf_jpeg {
-    background-image: url(/lib/images/fileicons/jpeg.png)
-}
-
-.mf_pdf {
-    background-image: url(/lib/images/fileicons/pdf.png)
-}
-
-.mf_xls {
-    background-image: url(/lib/images/fileicons/xls.png)
-}
-
-.mf_ods {
-    background-image: url(/lib/images/fileicons/ods.png)
-}
-
-.mf_mp3 {
-    background-image: url(/lib/images/fileicons/mp3.png)
-}
-
-.mf_7z {
-    background-image: url(/lib/images/fileicons/7z.png)
-}
-
-.mf_cs {
-    background-image: url(/lib/images/fileicons/cs.png)
-}
-
-.mf_css {
-    background-image: url(/lib/images/fileicons/css.png)
-}
-
-.mf_sxd {
-    background-image: url(/lib/images/fileicons/sxd.png)
-}
-
-.mf_audio {
-    background-image: url(/lib/images/fileicons/audio.png)
-}
-
-.mf_png {
-    background-image: url(/lib/images/fileicons/png.png)
-}
-
-.mf_rar {
-    background-image: url(/lib/images/fileicons/rar.png)
-}
-
-.mf_bz2 {
-    background-image: url(/lib/images/fileicons/bz2.png)
-}
-
-.mf_odc {
-    background-image: url(/lib/images/fileicons/odc.png)
-}
-
-.mf_java {
-    background-image: url(/lib/images/fileicons/java.png)
-}
-
-.mf_py {
-    background-image: url(/lib/images/fileicons/py.png)
-}
-
-.mf_gz {
-    background-image: url(/lib/images/fileicons/gz.png)
-}
-
-.mf_wav {
-    background-image: url(/lib/images/fileicons/wav.png)
-}
-
-.mf_jpg {
-    background-image: url(/lib/images/fileicons/jpg.png)
-}
-
-.mf_xml {
-    background-image: url(/lib/images/fileicons/xml.png)
-}
-
-.mf_sxc {
-    background-image: url(/lib/images/fileicons/sxc.png)
-}
-
-.mf_zip {
-    background-image: url(/lib/images/fileicons/zip.png)
-}
-
-.mf_ps {
-    background-image: url(/lib/images/fileicons/ps.png)
-}
-
-.mf_rpm {
-    background-image: url(/lib/images/fileicons/rpm.png)
-}
-
-.mf_conf {
-    background-image: url(/lib/images/fileicons/conf.png)
-}
-
-.mf_swf {
-    background-image: url(/lib/images/fileicons/swf.png)
-}
-
-.mf_xlsx {
-    background-image: url(/lib/images/fileicons/xlsx.png)
-}
-
-.mf_sxi {
-    background-image: url(/lib/images/fileicons/sxi.png)
-}
-
-.mf_tar {
-    background-image: url(/lib/images/fileicons/tar.png)
-}
-
-.mf_ppt {
-    background-image: url(/lib/images/fileicons/ppt.png)
-}
-
-.mf_txt {
-    background-image: url(/lib/images/fileicons/txt.png)
-}
-
-.mf_odg {
-    background-image: url(/lib/images/fileicons/odg.png)
-}
-
-.mf_ico {
-    background-image: url(/lib/images/fileicons/ico.png)
-}
-
-.mf_gif {
-    background-image: url(/lib/images/fileicons/gif.png)
-}
-
-.mf_odp {
-    background-image: url(/lib/images/fileicons/odp.png)
-}
-
-.mf_odi {
-    background-image: url(/lib/images/fileicons/odi.png)
-}
-
-.mf_c {
-    background-image: url(/lib/images/fileicons/c.png)
-}
-
-.mf_sxw {
-    background-image: url(/lib/images/fileicons/sxw.png)
-}
-
-.mf_ogg {
-    background-image: url(/lib/images/fileicons/ogg.png)
-}
-
-.mf_odt {
-    background-image: url(/lib/images/fileicons/odt.png)
-}
-
-.mf_cpp {
-    background-image: url(/lib/images/fileicons/cpp.png)
-}
-
-.mf_pl {
-    background-image: url(/lib/images/fileicons/pl.png)
-}
 
 @media screen {
     div.error, div.info, div.success, div.notify {
@@ -335,29 +14,7 @@ a.iw_wiki {
         border-radius: 5px;
     }
 
-    div.error {
-        background-color: #fcc;
-        background-image: url(/lib/styles/../images/error.png);
-        border-color: #ebb;
-    }
 
-    div.info {
-        background-color: #ccf;
-        background-image: url(/lib/styles/../images/info.png);
-        border-color: #bbe;
-    }
-
-    div.success {
-        background-color: #cfc;
-        background-image: url(/lib/styles/../images/success.png);
-        border-color: #beb;
-    }
-
-    div.notify {
-        background-color: #ffc;
-        background-image: url(/lib/styles/../images/notify.png);
-        border-color: #eeb;
-    }
 
     .JSpopup, #link__wiz {
         position: absolute;
@@ -566,44 +223,10 @@ a.iw_wiki {
         font-size: 1em;
     }
 
-    .ui-widget-content {
-        border: 1px solid #aaa;
-        background: #fff url(/lib/scripts/jquery/jquery-ui-theme/images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
-        color: #222;
-    }
-
-    .ui-widget-content a {
-        color: #222;
-    }
-
-    .ui-widget-header {
-        border: 1px solid #aaa;
-        background: #ccc url(/lib/scripts/jquery/jquery-ui-theme/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
-        color: #222;
-        font-weight: bold;
-    }
-
-    .ui-widget-header a {
-        color: #222;
-    }
-
-    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-        border: 1px solid #d3d3d3;
-        background: #e6e6e6 url(/lib/scripts/jquery/jquery-ui-theme/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
-        font-weight: normal;
-        color: #555;
-    }
 
     .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
         color: #555;
         text-decoration: none;
-    }
-
-    .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
-        border: 1px solid #999;
-        background: #dadada url(/lib/scripts/jquery/jquery-ui-theme/images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x;
-        font-weight: normal;
-        color: #212121;
     }
 
     .ui-state-hover a, .ui-state-hover a:hover {
@@ -611,95 +234,6 @@ a.iw_wiki {
         text-decoration: none;
     }
 
-    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
-        border: 1px solid #aaa;
-        background: #fff url(/lib/scripts/jquery/jquery-ui-theme/images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
-        font-weight: normal;
-        color: #212121;
-    }
-
-    .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
-        color: #212121;
-        text-decoration: none;
-    }
-
-    .ui-widget :active {
-        outline: none;
-    }
-
-    .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-        border: 1px solid #fcefa1;
-        background: #fbf9ee url(/lib/scripts/jquery/jquery-ui-theme/images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;
-        color: #363636;
-    }
-
-    .ui-state-highlight a, .ui-widget-content .ui-state-highlight a, .ui-widget-header .ui-state-highlight a {
-        color: #363636;
-    }
-
-    .ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {
-        border: 1px solid #cd0a0a;
-        background: #fef1ec url(/lib/scripts/jquery/jquery-ui-theme/images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x;
-        color: #cd0a0a;
-    }
-
-    .ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a {
-        color: #cd0a0a;
-    }
-
-    .ui-state-error-text, .ui-widget-content .ui-state-error-text, .ui-widget-header .ui-state-error-text {
-        color: #cd0a0a;
-    }
-
-    .ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary {
-        font-weight: bold;
-    }
-
-    .ui-priority-secondary, .ui-widget-content .ui-priority-secondary, .ui-widget-header .ui-priority-secondary {
-        opacity: .7;
-        filter: Alpha(Opacity=70);
-        font-weight: normal;
-    }
-
-    .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
-        opacity: .35;
-        filter: Alpha(Opacity=35);
-        background-image: none;
-    }
-
-    .ui-icon {
-        width: 16px;
-        height: 16px;
-        background-image: url(/lib/scripts/jquery/jquery-ui-theme/images/ui-icons_222222_256x240.png);
-    }
-
-    .ui-widget-content .ui-icon {
-        background-image: url(/lib/scripts/jquery/jquery-ui-theme/images/ui-icons_222222_256x240.png);
-    }
-
-    .ui-widget-header .ui-icon {
-        background-image: url(/lib/scripts/jquery/jquery-ui-theme/images/ui-icons_222222_256x240.png);
-    }
-
-    .ui-state-default .ui-icon {
-        background-image: url(/lib/scripts/jquery/jquery-ui-theme/images/ui-icons_888888_256x240.png);
-    }
-
-    .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
-        background-image: url(/lib/scripts/jquery/jquery-ui-theme/images/ui-icons_454545_256x240.png);
-    }
-
-    .ui-state-active .ui-icon {
-        background-image: url(/lib/scripts/jquery/jquery-ui-theme/images/ui-icons_454545_256x240.png);
-    }
-
-    .ui-state-highlight .ui-icon {
-        background-image: url(/lib/scripts/jquery/jquery-ui-theme/images/ui-icons_2e83ff_256x240.png);
-    }
-
-    .ui-state-error .ui-icon, .ui-state-error-text .ui-icon {
-        background-image: url(/lib/scripts/jquery/jquery-ui-theme/images/ui-icons_cd0a0a_256x240.png);
-    }
 
     .ui-icon-carat-1-n {
         background-position: 0 0;
@@ -1425,34 +959,10 @@ a.iw_wiki {
         border-bottom-right-radius: 4px;
     }
 
-    .ui-widget-overlay {
-        background: #aaa url(/lib/scripts/jquery/jquery-ui-theme/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
-        opacity: .30;
-        filter: Alpha(Opacity=30);
-    }
-
-    .ui-widget-shadow {
-        margin: -8px 0 0 -8px;
-        padding: 8px;
-        background: #aaa url(/lib/scripts/jquery/jquery-ui-theme/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
-        opacity: .30;
-        filter: Alpha(Opacity=30);
-        -moz-border-radius: 8px;
-        -khtml-border-radius: 8px;
-        -webkit-border-radius: 8px;
-        border-radius: 8px;
-    }
-
     .ui-resizable {
         position: relative;
     }
 
-    .ui-resizable-handle {
-        position: absolute;
-        font-size: 0.1px;
-        z-index: 99999;
-        display: block;
-    }
 
     .ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle {
         display: none;
@@ -2221,49 +1731,6 @@ a.iw_wiki {
         text-align: right;
     }
 
-    div#acl_manager .aclgroup {
-        background: transparent url(/lib/plugins/acl/pix/group.png) 0px 1px no-repeat;
-        padding: 1px 0px 1px 18px;
-    }
-
-    [dir=rtl] div#acl_manager .aclgroup {
-        background: transparent url(/lib/plugins/acl/pix/group.png) right 1px no-repeat;
-        padding: 1px 18px 1px 0px;
-        display: inline-block;
-    }
-
-    div#acl_manager .acluser {
-        background: transparent url(/lib/plugins/acl/pix/user.png) 0px 1px no-repeat;
-        padding: 1px 0px 1px 18px;
-    }
-
-    [dir=rtl] div#acl_manager .acluser {
-        background: transparent url(/lib/plugins/acl/pix/user.png) right 1px no-repeat;
-        padding: 1px 18px 1px 0px;
-        display: inline-block;
-    }
-
-    div#acl_manager .aclpage {
-        background: transparent url(/lib/plugins/acl/pix/page.png) 0px 1px no-repeat;
-        padding: 1px 0px 1px 18px;
-    }
-
-    [dir=rtl] div#acl_manager .aclpage {
-        background: transparent url(/lib/plugins/acl/pix/page.png) right 1px no-repeat;
-        padding: 1px 18px 1px 0px;
-        display: inline-block;
-    }
-
-    div#acl_manager .aclns {
-        background: transparent url(/lib/plugins/acl/pix/ns.png) 0px 1px no-repeat;
-        padding: 1px 0px 1px 18px;
-    }
-
-    [dir=rtl] div#acl_manager .aclns {
-        background: transparent url(/lib/plugins/acl/pix/ns.png) right 1px no-repeat;
-        padding: 1px 18px 1px 0px;
-        display: inline-block;
-    }
 
     div#acl_manager label.disabled {
         color: #666 !important;
@@ -2737,23 +2204,7 @@ a.iw_wiki {
         text-decoration: none;
     }
 
-    .dtree .indexmenu_tocbullet {
-        position: absolute;
-        background: transparent url(/lib/plugins/indexmenu/images/toc_bullet.gif) no-repeat scroll;
-        vertical-align: middle;
-        width: 11px;
-        height: 11px;
-    }
 
-    .dtree .indexmenu_larrow {
-        position: absolute;
-        filter: alpha(opacity=60);
-        -moz-opacity: .60;
-        opacity: .60;
-        background: transparent url(/lib/plugins/indexmenu/images/larrow.gif) repeat-y scroll;
-        padding-left: 22px;
-        z-index: 100;
-    }
 
     .indexmenu_toc {
         font-size: 80%;
@@ -2763,33 +2214,6 @@ a.iw_wiki {
         width: 200px !important;
         z-index: 100 !important;
         word-wrap: break-word;
-    }
-
-    .indexmenu_toc .indexmenu_toc_inside {
-        border: 1px solid #ccc;
-        background-color: #fff;
-        text-align: left;
-        padding: 0.5em 0 0.7em 0;
-        max-height: 300px;
-        height: expression( this.scrollHeight > 300 ? "300px":"auto" );
-        overflow: auto;
-    }
-
-    .dtree .indexmenu_rarrow {
-        position: absolute;
-        background: white url(/lib/plugins/indexmenu/images/rarrow.gif) no-repeat scroll;
-        width: 11px;
-        height: 15px;
-    }
-
-    .indexmenu_rmenu {
-        position: absolute;
-        z-index: 100;
-        background-color: #fff;
-        border: 1px solid black;
-        font-size: 80%;
-        line-height: 100%;
-        padding-bottom: 5px;
     }
 
     .indexmenu_rmenuhead {
@@ -2822,26 +2246,11 @@ a.iw_wiki {
         font-size: 80%;
     }
 
-    .dtree .emptynode {
-        background: transparent url(/lib/plugins/indexmenu/images/empty.gif) no-repeat scroll;
-        display: inline;
-        padding: 1px 8px;
-        width: 16px;
-        height: 16px;
-        vertical-align: top;
-        zoom: 1;
-    }
+
 
     html {
         overflow-x: auto;
         overflow-y: scroll;
-    }
-
-    html, body {
-        color: #333;
-        background: #fbfaf9 url(/lib/tpl/dokuwiki/images/page-gradient.png) top left repeat-x;
-        margin: 0;
-        padding: 0;
     }
 
     body {
@@ -3526,11 +2935,7 @@ a.iw_wiki {
         margin-right: 0;
     }
 
-    #mediamanager__page .ui-resizable-e {
-        width: 6px;
-        right: 2px;
-        background: transparent url(/lib/tpl/dokuwiki/images/resizecol.png) center center no-repeat;
-    }
+
 
     #mediamanager__page .ui-resizable-e:hover {
         background-color: #eee;
@@ -3624,16 +3029,6 @@ a.iw_wiki {
     [dir=rtl] #mediamanager__page .panelHeader ul li {
         margin-right: 0;
         margin-left: .5em;
-    }
-
-    #mediamanager__page .panelHeader ul li.listType {
-        padding-left: 30px;
-        background: url('/lib/tpl/dokuwiki/../../images/icon-list.png') 3px 1px no-repeat;
-    }
-
-    #mediamanager__page .panelHeader ul li.sortBy {
-        padding-left: 30px;
-        background: url('/lib/tpl/dokuwiki/../../images/icon-sort.png') 3px 1px no-repeat;
     }
 
     #mediamanager__page .panelHeader form.options .ui-buttonset label {
@@ -4010,13 +3405,7 @@ a.iw_wiki {
         font-weight: bold;
     }
 
-    .qq-upload-spinner {
-        display: inline-block;
-        background: url("/lib/tpl/dokuwiki/../../images/throbber.gif");
-        width: 15px;
-        height: 15px;
-        vertical-align: text-bottom;
-    }
+
 
     .qq-upload-size, .qq-upload-cancel {
         font-size: 85%;
@@ -4116,18 +3505,6 @@ a.iw_wiki {
         padding: 0 0 0 18px;
     }
 
-    .dokuwiki a.urlextern {
-        background-image: url(/lib/tpl/dokuwiki/images/external-link.png);
-    }
-
-    .dokuwiki a.windows {
-        background-image: url(/lib/tpl/dokuwiki/images/unc.png);
-    }
-
-    .dokuwiki a.mail {
-        background-image: url(/lib/tpl/dokuwiki/images/email.png);
-    }
-
     .dokuwiki a.mediafile {
     }
 
@@ -4211,22 +3588,6 @@ a.iw_wiki {
 
     [dir=rtl] .dokuwiki ul.idx {
         padding-right: 0;
-    }
-
-    .dokuwiki ul.idx li {
-        list-style-image: url(/lib/tpl/dokuwiki/images/bullet.png);
-    }
-
-    .dokuwiki ul.idx li.open {
-        list-style-image: url(/lib/tpl/dokuwiki/images/open.png);
-    }
-
-    .dokuwiki ul.idx li.closed {
-        list-style-image: url(/lib/tpl/dokuwiki/images/closed.png);
-    }
-
-    [dir=rtl] .dokuwiki ul.idx li.closed {
-        list-style-image: url(/lib/tpl/dokuwiki/images/closed-rtl.png);
     }
 
     .dokuwiki sup a.fn_top {
@@ -4645,17 +4006,6 @@ a.iw_wiki {
         background-position: 257px 3px;
     }
 
-    #link__wiz_result div.type_u a {
-        background-image: url(/lib/tpl/dokuwiki/../../images/up.png);
-    }
-
-    #link__wiz_result div.type_f a {
-        background-image: url(/lib/tpl/dokuwiki/../../images/page.png);
-    }
-
-    #link__wiz_result div.type_d a {
-        background-image: url(/lib/tpl/dokuwiki/../../images/ns.png);
-    }
 
     #link__wiz_result div.even {
         background-color: #ddd;
@@ -4788,29 +4138,6 @@ a.iw_wiki {
         background-position: right 0;
     }
 
-    .dokuwiki ul.admin_tasks li.admin_acl {
-        background-image: url(/lib/tpl/dokuwiki/../../images/admin/acl.png);
-    }
-
-    .dokuwiki ul.admin_tasks li.admin_usermanager {
-        background-image: url(/lib/tpl/dokuwiki/../../images/admin/usermanager.png);
-    }
-
-    .dokuwiki ul.admin_tasks li.admin_plugin {
-        background-image: url(/lib/tpl/dokuwiki/../../images/admin/plugin.png);
-    }
-
-    .dokuwiki ul.admin_tasks li.admin_config {
-        background-image: url(/lib/tpl/dokuwiki/../../images/admin/config.png);
-    }
-
-    .dokuwiki ul.admin_tasks li.admin_revert {
-        background-image: url(/lib/tpl/dokuwiki/../../images/admin/revert.png);
-    }
-
-    .dokuwiki ul.admin_tasks li.admin_popularity {
-        background-image: url(/lib/tpl/dokuwiki/../../images/admin/popularity.png);
-    }
 
     .dokuwiki #admin__version {
         clear: left;
@@ -4992,11 +4319,6 @@ a.iw_wiki {
         text-overflow: ellipsis;
     }
 
-    #dokuwiki__usertools a.action {
-        padding-left: 20px;
-        background: transparent url(/lib/tpl/dokuwiki/images/usertools.png) no-repeat 0 0;
-    }
-
     [dir=rtl] #dokuwiki__usertools a.action {
         padding-left: 0;
         padding-right: 20px;
@@ -5101,16 +4423,6 @@ a.iw_wiki {
         padding: .35em .1em .35em 22px;
     }
 
-    #dokuwiki__sitetools form.search input.button {
-        background: transparent url(/lib/tpl/dokuwiki/images/search.png) no-repeat 0 0;
-        border-width: 0;
-        width: 19px;
-        height: 14px;
-        text-indent: -99999px;
-        margin-left: -20px;
-        box-shadow: none;
-        padding: 0;
-    }
 
     [dir=rtl] #dokuwiki__sitetools form.search input.button {
         background-position: 5px 0;
@@ -5375,13 +4687,6 @@ a.iw_wiki {
         display: none;
     }
 
-    .dokuwiki .toggle strong {
-        background: transparent url(/lib/tpl/dokuwiki/images/toc-arrows.png) 0 0;
-        width: 8px;
-        height: 5px;
-        margin: .4em 0 0;
-    }
-
     .dokuwiki .toggle.closed strong {
         background-position: 0 -5px;
     }
@@ -5401,10 +4706,6 @@ a.iw_wiki {
 
     [dir=rtl] #dw__toc ul {
         padding: 0 1.5em 0 0;
-    }
-
-    #dw__toc ul li {
-        list-style-image: url(/lib/tpl/dokuwiki/images/toc-bullet.png);
     }
 
     #dw__toc ul li.clear {
@@ -5567,17 +4868,6 @@ a.iw_wiki {
         font-size: 0.875em;
     }
 
-    #dokuwiki__pagetools ul li a {
-        display: block;
-        min-height: 20px;
-        line-height: 20px;
-        padding: 5px 40px 5px 5px;
-        background-image: url(/lib/tpl/dokuwiki/images/pagetools-sprite.png);
-        background-position: right 0;
-        background-repeat: no-repeat;
-        border: 1px solid transparent;
-        white-space: nowrap;
-    }
 
     [dir=rtl] #dokuwiki__pagetools ul li a {
         padding: 5px 5px 5px 40px;
@@ -5922,76 +5212,6 @@ a.iw_wiki {
         margin: 0;
         clear: left;
     }
-}
-
-div.clearer {
-    clear: both;
-    font-size: 0;
-    line-height: 0;
-    height: 0;
-    overflow: hidden;
-}
-
-.group {
-    display: inline-block;
-}
-
-.group {
-    display: block;
-}
-
-.group:before, .group:after {
-    content: "";
-    display: table;
-}
-
-.group:after {
-    clear: both;
-}
-
-div.no {
-    display: inline;
-    margin: 0;
-    padding: 0;
-}
-
-.hidden {
-    display: none;
-}
-
-.medialeft {
-    float: left;
-}
-
-.mediaright {
-    float: right;
-}
-
-.mediacenter {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.leftalign {
-    text-align: left;
-}
-
-.centeralign {
-    text-align: center;
-}
-
-.rightalign {
-    text-align: right;
-}
-
-em.u {
-    font-style: normal;
-    text-decoration: underline;
-}
-
-em em.u {
-    font-style: italic;
 }
 
 @media only screen and (max-width: 979px) {
