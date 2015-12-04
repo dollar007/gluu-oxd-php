@@ -23,6 +23,8 @@
                         </li>
                         <li class="level1"><div class="li"> <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#Get_user_info" title="oxd:communication_protocol ?" class="wikilink1">Get_user_info.php</a></div>
                         </li>
+                        <li class="level1"><div class="li"> <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#Logout" title="oxd:communication_protocol ?" class="wikilink1">Logout.php</a></div>
+                        </li>
                     </ul>
                     <h2><a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp/client.example.com#readme">Demo site example</a></h2>
                     <h2><a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-communicate-protocols#readme">Oxd-communicate-protocols library</a></h2>
