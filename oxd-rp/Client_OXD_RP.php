@@ -8,7 +8,7 @@ require_once 'Oxd_RP_config.php';
 
 abstract class Client_OXD_RP extends Client_Socket_OXD_RP{
 
-    private $command_types = array( 'get_authorization_url', 'get_tokens_by_code','get_user_info', 'register_site' );
+    private $command_types = array( 'get_authorization_url', 'get_tokens_by_code','get_user_info', 'register_site', 'logout' );
     protected $data = array();
     protected $command;
     protected $params = array();

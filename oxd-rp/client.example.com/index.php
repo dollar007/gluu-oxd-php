@@ -12,7 +12,7 @@ if(isset($_POST['submit']) && isset($_POST['your_mail']) && !empty($_POST['your_
     echo '<br/>Register_site <br/>';
     $register_site = new Register_site('./');
 
-    $register_site->setRequestAcrValues([""]);
+    $register_site->setRequestAcrValues(["basic","duo"]);
     $register_site->setRequestAuthorizationRedirectUri(Oxd_RP_config::$authorization_redirect_uri);
     $register_site->setRequestRedirectUris(Oxd_RP_config::$redirect_uris);
     $register_site->setRequestLogoutRedirectUri(Oxd_RP_config::$logout_redirect_uri);
@@ -30,7 +30,7 @@ if(isset($_POST['submit']) && isset($_POST['your_mail']) && !empty($_POST['your_
     echo '<br/>Get_authorization_url <br/>';
     $get_authorization_url = new Get_authorization_url('./');
     $get_authorization_url->setRequestOxdId($register_site->getResponseOxdId());
-
+    $get_authorization_url->setRequestAcrValues(['basic', 'duo','u2f']);
     $get_authorization_url->request();
     $get_authorization_url->disconnect();
     header("Location: ".$get_authorization_url->getResponseAuthorizationUrl());

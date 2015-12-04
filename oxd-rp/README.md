@@ -184,14 +184,16 @@ class Oxd_RP_config
                             Base class for protocols is abstract Client_OXD_RP.php, for which extends all protocols classes. <a href="#Client_OXD_RP" title="oxd:communication_protocol ?" class="wikilink1">Client_OXD_RP</a>
                         </p>
                         <ul>
-                            <li class="level1"><div class="li"> <a href="#Register_site" title="oxd:communication_protocol ?" class="wikilink1">Register_site.php</a></div>
+                            <li class="level1"><div class="li"> <a href="#Register_site"  class="wikilink1">Register_site.php</a></div>
                             </li>
-                            <li class="level1"><div class="li"> <a href="#Get_authorization_url" title="oxd:communication_protocol ?" class="wikilink1">Get_authorization_url.php</a></div>
+                            <li class="level1"><div class="li"> <a href="#Get_authorization_url" class="wikilink1">Get_authorization_url.php</a></div>
                             </li>
-                            <li class="level1"><div class="li"> <a href="#Get_tokens_by_code" title="oxd:communication_protocol ?" class="wikilink1">Get_tokens_by_code.php</a></div>
+                            <li class="level1"><div class="li"> <a href="#Get_tokens_by_code" class="wikilink1">Get_tokens_by_code.php</a></div>
                             </li>
-                            <li class="level1"><div class="li"> <a href="#Get_user_info" title="oxd:communication_protocol ?" class="wikilink1">Get_user_info.php</a></div>
+                            <li class="level1"><div class="li"> <a href="#Get_user_info" class="wikilink1">Get_user_info.php</a></div>
                             </li>
+                            <li class="level1"><div class="li"> <a href="#Logout" class="wikilink1">Logout.php</a></div>
+                                                        </li>
                         </ul>
 
                     <h3 class="sectionedit100" id="Client_OXD_RP">Clinet_OXD_RP.php</h3>
@@ -472,7 +474,7 @@ $get_tokens_by_code->setRequestState($_GET['state']);
 $get_tokens_by_code->setRequestScopes($_GET['scope']);
 
 $get_tokens_by_code->request();
-
+$_SESSION['id_token'] = $get_tokens_by_code->getResponseIdToken();
 print_r($get_tokens_by_code->getResponseObject());
 
 $get_tokens_by_code->disconnect();                        
@@ -560,9 +562,71 @@ echo '<span>Updated At: </span>'.$get_user_info->getResponseUpdatedAt();
 $get_user_info->disconnect();
                         </pre>
                     </div>
+                    <h3 class="sectionedit100" id="Logout">Logout.php</h3>
+                                    
+                                                        <div class="level100">
+                                    
+                                                            <p>
+                                                                Logout class extends from Clinet_OXD_RP class.
+                                                            </p>
+                                                            <p>Constructor accept parent constructor parameter ($base_url = string)</p>
+                                                            <ul>
+                                                                <li class="level1">
+                                                                    <div class="li"> <h4>Parameters:</h4></div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <h4>Description: Parameters necessary for to request Logout protocol;</h4>
+                                                                            <p>Type:string: $request_oxd_id, $request_id_token, $request_post_logout_redirect_uri</p>
+                                                                        </li>
+                                                                        <li>
+                                                                            <h4>Description: Parameters necessary for to request Logout protocol;</h4>
+                                                                            <p>Type:boolean: $request_http_based_logout</p>
+                                                                        </li>
+                                                                        <li>
+                                                                            <h4>Description: Response parameters from oxd;</h4>
+                                                                            <p>$response_html</p>
+                                                                            <p>Type:string;</p>
+                                    
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li class="level1">
+                                                                    <div class="li"><h4> Functions:</h4></div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <h4>Extended functions from parent class,response parameter getters and request parameters setters and getters;</h4>
+                                                                        </li>
+                                    
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                    
+                                                            <p>
+                                                                <strong>Example</strong>
+                                                            </p>
+                                                            <pre class="code">
+Logout_test:
+session_start();
+require_once '../Logout.php';
+
+$logout = new Logout('../');
+$logout->setRequestOxdId($_SESSION['oxd_id']);
+$logout->setRequestPostLogoutRedirectUri(Oxd_RP_config::$logout_redirect_uri);
+$logout->setRequestIdToken($_SESSION['id_token']);
+$logout->request();
+
+echo $logout->getResponseHtml();
+
+$logout->disconnect();
+
+                        </pre>
+                    </div>
+                </div>
+                 
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 </body>

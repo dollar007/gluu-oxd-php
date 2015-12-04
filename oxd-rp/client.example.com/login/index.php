@@ -12,6 +12,7 @@ if (isset($_SESSION['oxd_id'])) {
         echo '<p>User login process via OpenID.</p>';
         require_once '../Get_tokens_by_code.php';
         require_once '../Get_user_info.php';
+        echo '<a href="https://client.example.com/logout">Logout</a>';
         echo '<p>Giving user information.</p>';
 
         echo '<br/>Get_tokens_by_code <br/>';
@@ -20,10 +21,10 @@ if (isset($_SESSION['oxd_id'])) {
         $get_tokens_by_code->setRequestOxdId($_SESSION['oxd_id']);
         $get_tokens_by_code->setRequestCode($_GET['code']);
         $get_tokens_by_code->setRequestState($_GET['state']);
-        $get_tokens_by_code->setRequestScopes($_GET['scope']);
+        $get_tokens_by_code->setRequestScopes(["openid", "profile", "email", "clientinfo","address"]);
 
         $get_tokens_by_code->request();
-
+        $_SESSION['id_token'] = $get_tokens_by_code->getResponseIdToken();
         echo '<br/>Access Token: '.$get_tokens_by_code->getResponseAccessToken();
         echo '<br/>Expires In: '.$get_tokens_by_code->getResponseExpiresIn();
         echo '<br/>Id Token: '.$get_tokens_by_code->getResponseIdToken();
