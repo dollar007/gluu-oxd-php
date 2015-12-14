@@ -135,20 +135,8 @@
                                             <p>Description: Setting configurations static parameters;</p>
                                         </li>
                                         <li>
-                                            <h4>Name: oxd_socket_connection;</h4>
-                                            <p>Description: Setting configurations to oxd socket;</p>
-                                        </li>
-                                        <li>
                                             <h4>Name: oxd_socket_request;</h4>
                                             <p>Description: Sending request to oxd server;</p>
-                                        </li>
-                                        <li>
-                                            <h4>Name: oxd_socket_request;</h4>
-                                            <p>Description: Getting response from oxd server;</p>
-                                        </li>
-                                        <li>
-                                            <h4>Name: disconnect;</h4>
-                                            <p>Description: Disconnecting open socket;</p>
                                         </li>
                                         <li>
                                             <h4>Name: error_message;</h4>
@@ -362,7 +350,6 @@ $_SESSION['oxd_id'] = $register_site->getResponseOxdId();
 
 print_r($register_site->getResponseObject());
 
-$register_site->disconnect();
                         </pre>
                     </div>
 
@@ -418,7 +405,6 @@ $get_authorization_url->request();
 
 echo $get_authorization_url->getResponseAuthorizationUrl();
 
-$get_authorization_url->disconnect();
                         </pre>
                     </div>
 
@@ -477,7 +463,6 @@ $get_tokens_by_code->request();
 $_SESSION['id_token'] = $get_tokens_by_code->getResponseIdToken();
 print_r($get_tokens_by_code->getResponseObject());
 
-$get_tokens_by_code->disconnect();                        
 </pre>
                     </div>
 
@@ -540,7 +525,6 @@ $get_tokens_by_code->request();
 echo Access Token: '.$get_tokens_by_code->getResponseAccessToken();
 echo Expires In: '.$get_tokens_by_code->getResponseExpiresIn();
 echo Id Token: '.$get_tokens_by_code->getResponseIdToken();
-$get_tokens_by_code->disconnect();
 echo Get_user_info <br/>';
 $get_user_info = new Get_user_info('../');
 $get_user_info->setRequestOxdId($_SESSION['oxd_id']);
@@ -559,7 +543,6 @@ echo '<span>Gender: </span>'.$get_user_info->getResponseGender();
 echo '<span>Birthdate: </span>'.$get_user_info->getResponseBirthdate();
 echo '<span>Zoneinfo: </span>'.$get_user_info->getResponseZoneinfo();
 echo '<span>Updated At: </span>'.$get_user_info->getResponseUpdatedAt();
-$get_user_info->disconnect();
                         </pre>
                     </div>
                     <h3 class="sectionedit100" id="Logout">Logout.php</h3>
@@ -617,7 +600,6 @@ $logout->request();
 
 echo $logout->getResponseHtml();
 
-$logout->disconnect();
 
                         </pre>
                     </div>
