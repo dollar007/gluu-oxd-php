@@ -34,7 +34,6 @@ class Client_Socket_OXD_RP{
         }else{
             $this->error_message(Oxd_RP_config::$oxd_host_port."is not a valid port for socket. Port must be integer and between from 0 to 65535.");
         }
-        $this->oxd_socket_connection();
     }
     /**
      * request to oxd socket
@@ -56,47 +55,26 @@ class Client_Socket_OXD_RP{
     /**
      * request to oxd socket
      **/
-    public function oxd_socket_request($data){
-        $this->log("Client: oxd_socket_request", fwrite(self::$socket, $data));
-        fwrite(self::$socket, $data);
-    }
-    /**
-     * response from oxd socket
-     * @return string
-     **/
-    public function oxd_socket_response($char_count = 8192){
-        $result = fread(self::$socket, $char_count);
-        if($result){
-            $this->log("Client: oxd_socket_response", $result);
-        }else{
-            $this->log("Client: oxd_socket_response", 'Error socket reading process.');
-        }
-        return $result;
-    }
-
-    /*
-     * connection
-     * */
-    public function oxd_socket_connection(){
+    public function oxd_socket_request($data,$char_count = 8192){
         if (!self::$socket = stream_socket_client( Oxd_RP_config::$oxd_host_ip . ':' . Oxd_RP_config::$oxd_host_port, $errno, $errstr, STREAM_CLIENT_PERSISTENT)) {
             $this->log("Client: socket::socket_connect is not connected, error: ",$errstr);
             die($errno);
         }else{
             $this->log("Client: socket::socket_connect", "socket connected");
         }
-    }
-
-    /**
-     * function closing socket connection.
-     **/
-    public function disconnect()
-    {
-        if(fclose(self::$socket)){
-            $this->log("Client: oxd_socket : ", "disconnected.");
+        $this->log("Client: oxd_socket_request", fwrite(self::$socket, $data));
+        fwrite(self::$socket, $data);
+        $result = fread(self::$socket, $char_count);
+        if($result){
+            $this->log("Client: oxd_socket_response", $result);
+        }else{
+            $this->log("Client: oxd_socket_response", 'Error socket reading process.');
         }
+        if(fclose(self::$socket)){
+            $this->log("Client: oxd_socket_connection", "disconnected.");
+        }
+        return $result;
     }
-
-
     /**
      * showing errors and exit.
      **/

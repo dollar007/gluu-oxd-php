@@ -8,7 +8,7 @@ require_once 'Oxd_RP_config.php';
 
 abstract class Client_OXD_RP extends Client_Socket_OXD_RP{
 
-    private $command_types = array( 'get_authorization_url', 'get_tokens_by_code','get_user_info', 'register_site','logout' );
+    private $command_types = array( 'get_authorization_url', 'get_tokens_by_code','get_user_info', 'register_site','logout','get_authorization_code' );
     protected $data = array();
     protected $command;
     protected $params = array();
@@ -62,8 +62,8 @@ abstract class Client_OXD_RP extends Client_Socket_OXD_RP{
         }else{
             $lenght = $lenght <= 999 ? "0" . $lenght : $lenght;
         }
-        $this->oxd_socket_request(utf8_encode($lenght . $jsondata));
-        $this->response_json = $this->oxd_socket_response();
+
+        $this->response_json = $this->oxd_socket_request(utf8_encode($lenght . $jsondata));
 
         $this->response_json = str_replace(substr($this->response_json, 0, 4), "", $this->response_json);
         if ($this->response_json) {

@@ -18,6 +18,7 @@ class Get_tokens_by_code extends Client_OXD_RP
         private $response_access_token;
         private $response_expires_in;
         private $response_id_token;
+        private $response_refresh_token;
         private $response_id_token_claims;
     /**end response parameter**/
 
@@ -147,6 +148,15 @@ class Get_tokens_by_code extends Client_OXD_RP
     public function setRequestCode($request_code)
     {
         $this->request_code = $request_code;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseRefreshToken()
+    {
+        $this->response_refresh_token = $this->getResponseData()->refresh_token;
+        return $this->response_refresh_token;
     }
 
     /**

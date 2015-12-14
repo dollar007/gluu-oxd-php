@@ -8,5 +8,5 @@
   "redirect_uris" : [ "https://client.example.com/login" ],
   "response_types" : ["code"],
   "grant_types":"authorization_code",
-  "acr_values" : [ "" ]
+  "acr_values" : [ "basic" ]
 }

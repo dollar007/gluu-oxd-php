@@ -21,20 +21,26 @@ if (isset($_SESSION['oxd_id'])) {
         $get_tokens_by_code->setRequestOxdId($_SESSION['oxd_id']);
         $get_tokens_by_code->setRequestCode($_GET['code']);
         $get_tokens_by_code->setRequestState($_GET['state']);
-        $get_tokens_by_code->setRequestScopes(["openid", "profile", "email", "clientinfo","address"]);
+        $get_tokens_by_code->setRequestScopes(["openid", "profile"]);
 
         $get_tokens_by_code->request();
+
         $_SESSION['id_token'] = $get_tokens_by_code->getResponseIdToken();
         echo '<br/>Access Token: '.$get_tokens_by_code->getResponseAccessToken();
         echo '<br/>Expires In: '.$get_tokens_by_code->getResponseExpiresIn();
         echo '<br/>Id Token: '.$get_tokens_by_code->getResponseIdToken();
-        $get_tokens_by_code->disconnect();
+        echo '<pre>';
+        var_dump($get_tokens_by_code->getResponseObject());
+        echo '</pre>';
         echo '<br/>Get_user_info <br/>';
         $get_user_info = new Get_user_info('../');
         $get_user_info->setRequestOxdId($_SESSION['oxd_id']);
-        $get_user_info->setRequestAccessToken($get_tokens_by_code->getResponseAccessToken());
+        $get_user_info->setRequestAccessToken($get_tokens_by_code->getResponseRefreshToken());
         $get_user_info->request();
-
+        echo '<pre>';
+        var_dump($get_user_info->getResponseObject());
+        echo '</pre>';
+/*
         echo '<p><span>Name: </span>'.$get_user_info->getResponseName().'</p>';
         echo '<p><span>Given Name: </span>'.$get_user_info->getResponseGivenName().'</p>';
         echo '<p><span>Family Name: </span>'.$get_user_info->getResponseFamilyName().'</p>';
@@ -48,6 +54,7 @@ if (isset($_SESSION['oxd_id'])) {
         echo '<p><span>Birthdate: </span>'.$get_user_info->getResponseBirthdate().'</p>';
         echo '<p><span>Zoneinfo: </span>'.$get_user_info->getResponseZoneinfo().'</p>';
         echo '<p><span>Updated At: </span>'.$get_user_info->getResponseUpdatedAt().'</p>';
+*/
     }
     else {
         echo 'Email is not a valid 1.';
