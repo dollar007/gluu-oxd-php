@@ -15,4 +15,3 @@ $get_tokens_by_code->request();
 $_SESSION['id_token'] = $get_tokens_by_code->getResponseIdToken();
 print_r($get_tokens_by_code->getResponseObject());
 
-$get_tokens_by_code->disconnect();

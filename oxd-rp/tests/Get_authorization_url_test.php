@@ -9,4 +9,3 @@ $get_authorization_url->request();
 
 echo $get_authorization_url->getResponseAuthorizationUrl();
 
-$get_authorization_url->disconnect();

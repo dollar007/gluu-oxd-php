@@ -10,4 +10,3 @@ $logout->request();
 
 echo $logout->getResponseHtml();
 
-$logout->disconnect();

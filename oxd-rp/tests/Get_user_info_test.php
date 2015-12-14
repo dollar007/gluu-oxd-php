@@ -33,4 +33,3 @@ echo '<p><span>Birthdate: </span>'.$get_user_info->getResponseBirthdate().'</p>'
 echo '<p><span>Zoneinfo: </span>'.$get_user_info->getResponseZoneinfo().'</p>';
 echo '<p><span>Updated At: </span>'.$get_user_info->getResponseUpdatedAt().'</p>';
 
-$get_user_info->disconnect();
