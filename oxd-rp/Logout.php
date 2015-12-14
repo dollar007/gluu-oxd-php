@@ -28,6 +28,22 @@ class Logout extends Client_OXD_RP
     }
 
     /**
+     * @param boolean $request_http_based_logout
+     */
+    public function setRequestHttpBasedLogout($request_http_based_logout=FALSE)
+    {
+        $this->request_http_based_logout = $request_http_based_logout;
+    }
+
+    /**
+     * @param null $request_post_logout_redirect_uri
+     */
+    public function setRequestPostLogoutRedirectUri($request_post_logout_redirect_uri)
+    {
+        $this->request_post_logout_redirect_uri = $request_post_logout_redirect_uri;
+    }
+
+    /**
      * @return mixed
      */
     public function getResponseHtml()
@@ -67,21 +83,6 @@ class Logout extends Client_OXD_RP
         $this->request_id_token = $request_id_token;
     }
 
-    /**
-     * @param null $request_post_logout_redirect_uri
-     */
-    public function setRequestPostLogoutRedirectUri($request_post_logout_redirect_uri)
-    {
-        $this->request_post_logout_redirect_uri = $request_post_logout_redirect_uri;
-    }
-
-    /**
-     * @param null $http_based_logout
-     */
-    public function setRequestHttpBasedLogout($request_http_based_logout =FALSE)
-    {
-        $this->request_http_based_logout = $request_http_based_logout;
-    }
     /**
      * @return mixed
      */
