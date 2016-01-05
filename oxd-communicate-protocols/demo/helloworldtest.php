@@ -51,7 +51,7 @@ $authorization_code_flow->setRequestClientSecret($client_read->getResponseClient
 $authorization_code_flow->setRequestUserId(Oxd_config::$userId);
 $authorization_code_flow->setRequestUserSecret(Oxd_config::$userSecret);
 $authorization_code_flow->setRequestScope("openid email");
-$authorization_code_flow->setRequestNonce("409d-48a2-b793");
+$authorization_code_flow->setRequestNonce("7d97de04-2624-471c-94b4-dabf1134980e");
 
 
 $authorization_code_flow->request();

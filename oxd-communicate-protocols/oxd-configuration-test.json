@@ -1,10 +1,10 @@
 {
   "ip": "127.0.0.1",
   "port":8099,
-  "gluuServerUrl":"https://ce-dev.gluu.info",
+  "gluuServerUrl":"https://ce-dev.gluu.org",
   "amHost":"ce-dev.gluu.dev",
-  "userId":"admin",
-  "userSecret":"ubuntu",
+  "userId":"test_user",
+  "userSecret":"test_user_password",
   "clientId":"@!D827.9D42.A516.DF5F!0001!66A2.1B5A!0000!A8F2.DE1E.D7FB",
   "clientSecret":"oxauth_client_test_password",
   "clientRedirectURL":"https://client.example.com/login",
