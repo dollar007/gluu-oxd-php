@@ -5,7 +5,7 @@
 
 abstract class Client_OXD_RP{
 
-    private $command_types = array( 'get_authorization_url', 'get_tokens_by_code','get_user_info', 'register_site','logout' );
+    private $command_types = array( 'get_authorization_url', 'get_tokens_by_code','get_user_info', 'register_site','get_logout_uri' );
     protected $data = array();
     protected $command;
     protected $params = array();

@@ -70,6 +70,7 @@ class Logout extends Client_OXD_RP
      */
     public function getResponseHtml()
     {
+        $this->response_html = $this->getResponseData()->url;
         return $this->response_html;
     }
 

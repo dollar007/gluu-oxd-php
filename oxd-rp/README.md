@@ -198,7 +198,7 @@ class Oxd_RP_config
                                     <li>
                                         <h4>Name: $command_types;</h4>
                                         <p>Type:array;</p>
-                                        <p>Default value = array('register_site', 'get_authorization_url', 'get_tokens_by_code','get_user_info';</p>
+                                        <p>Default value = array('register_site','get_logout_uri' 'get_authorization_url', 'get_tokens_by_code','get_user_info');</p>
                                         <p>Description: all protocol names. need for checking protocol type;</p>
                                     </li>
                                     <li>
@@ -301,7 +301,7 @@ class Oxd_RP_config
                                 <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request Register_site protocol;</h4>
-                                        <p>$request_authorization_redirect_uri, $request_logout_redirect_uri, $request_application_type, $request_redirect_uris, $request_acr_values, $request_client_jwks_uri, $request_client_token_endpoint_auth_method, $request_client_request_uris, $request_contacts;</p>
+                                        <p>$request_authorization_redirect_uri,$request_response_types,$request_client_logout_uri,$request_grant_types,$request_scope, $request_logout_redirect_uri, $request_application_type, $request_redirect_uris, $request_acr_values, $request_client_jwks_uri, $request_client_token_endpoint_auth_method, $request_client_request_uris, $request_contacts;</p>
                                         <p>Type:string;</p>
                                         <p>Default value = null;</p>
 
@@ -344,6 +344,10 @@ $register_site->setRequestContacts(["vlad@gluu.org"]);
 $register_site->setRequestClientJwksUri("");
 $register_site->setRequestClientRequestUris([]);
 $register_site->setRequestClientTokenEndpointAuthMethod("");
+$register_site->setRequestGrantTypes(Oxd_RP_config::$grant_types);
+$register_site->setRequestResponseTypes(Oxd_RP_config::$response_types);
+$register_site->setRequestClientLogoutUri(Oxd_RP_config::$logout_redirect_uri);
+$register_site->setRequestScope(Oxd_RP_config::$scope);
 
 $register_site->request();
 $_SESSION['oxd_id'] = $register_site->getResponseOxdId();
@@ -460,7 +464,10 @@ $get_tokens_by_code->setRequestState($_GET['state']);
 $get_tokens_by_code->setRequestScopes($_GET['scope']);
 
 $get_tokens_by_code->request();
-$_SESSION['id_token'] = $get_tokens_by_code->getResponseIdToken();
+$_SESSION['user_oxd_id_token'] = $get_tokens_by_code->getResponseIdToken();
+$_SESSION['user_oxd_access_token'] = $get_tokens_by_code->getResponseAccessToken();
+$_SESSION['state'] = $_REQUEST['state'];
+$_SESSION['session_state'] = $_REQUEST['session_state'];
 print_r($get_tokens_by_code->getResponseObject());
 
 </pre>
@@ -521,7 +528,10 @@ $get_tokens_by_code->setRequestState($_GET['state']);
 $get_tokens_by_code->setRequestScopes($_GET['scope']);
 
 $get_tokens_by_code->request();
-
+$_SESSION['user_oxd_id_token'] = $get_tokens_by_code->getResponseIdToken();
+$_SESSION['user_oxd_access_token'] = $get_tokens_by_code->getResponseAccessToken();
+$_SESSION['state'] = $_REQUEST['state'];
+$_SESSION['session_state'] = $_REQUEST['session_state'];
 echo Access Token: '.$get_tokens_by_code->getResponseAccessToken();
 echo Expires In: '.$get_tokens_by_code->getResponseExpiresIn();
 echo Id Token: '.$get_tokens_by_code->getResponseIdToken();
@@ -559,7 +569,7 @@ echo '<span>Updated At: </span>'.$get_user_info->getResponseUpdatedAt();
                                                                     <ul>
                                                                         <li>
                                                                             <h4>Description: Parameters necessary for to request Logout protocol;</h4>
-                                                                            <p>Type:string: $request_oxd_id, $request_id_token, $request_post_logout_redirect_uri</p>
+                                                                            <p>Type:string: $request_oxd_id, $request_id_token, $request_post_logout_redirect_uri, $request_session_state, $request_state</p>
                                                                         </li>
                                                                         <li>
                                                                             <h4>Description: Parameters necessary for to request Logout protocol;</h4>
@@ -595,7 +605,9 @@ require_once '../Logout.php';
 $logout = new Logout('../');
 $logout->setRequestOxdId($_SESSION['oxd_id']);
 $logout->setRequestPostLogoutRedirectUri(Oxd_RP_config::$logout_redirect_uri);
-$logout->setRequestIdToken($_SESSION['id_token']);
+$logout->setRequestIdToken($_SESSION['user_oxd_access_token']);
+$logout->setRequestSessionState($_SESSION['session_states']);
+$logout->setRequestState($_SESSION['states']);
 $logout->request();
 
 echo $logout->getResponseHtml();
