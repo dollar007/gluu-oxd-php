@@ -17,6 +17,8 @@
                      <ul>
                         <li class="level1"><div class="li"> <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#Register_site" title="oxd:communication_protocol ?" class="wikilink1">Register_site.php</a></div>
                         </li>
+                        <li class="level1"><div class="li"> <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#Update_site_registration" title="oxd:communication_protocol ?" class="wikilink1">Update_site_registration.php</a></div>
+                        </li>
                         <li class="level1"><div class="li"> <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#Get_authorization_url" title="oxd:communication_protocol ?" class="wikilink1">Get_authorization_url.php</a></div>
                         </li>
                         <li class="level1"><div class="li"> <a target="_blank" href="https://github.com/GluuFederation/oxd-php/tree/master/oxd-rp#Get_tokens_by_code" title="oxd:communication_protocol ?" class="wikilink1">Get_tokens_by_code.php</a></div>

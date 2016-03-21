@@ -174,6 +174,8 @@ class Oxd_RP_config
                         <ul>
                             <li class="level1"><div class="li"> <a href="#Register_site"  class="wikilink1">Register_site.php</a></div>
                             </li>
+                            <li class="level1"><div class="li"> <a href="#Update_site_registration"  class="wikilink1">Update_site_registration.php</a></div>
+                            </li>
                             <li class="level1"><div class="li"> <a href="#Get_authorization_url" class="wikilink1">Get_authorization_url.php</a></div>
                             </li>
                             <li class="level1"><div class="li"> <a href="#Get_tokens_by_code" class="wikilink1">Get_tokens_by_code.php</a></div>
@@ -198,7 +200,7 @@ class Oxd_RP_config
                                     <li>
                                         <h4>Name: $command_types;</h4>
                                         <p>Type:array;</p>
-                                        <p>Default value = array('register_site','get_logout_uri' 'get_authorization_url', 'get_tokens_by_code','get_user_info');</p>
+                                        <p>Default value = array('register_site', 'update_site_registration', 'get_logout_uri' 'get_authorization_url',  'get_tokens_by_code','get_user_info');</p>
                                         <p>Description: all protocol names. need for checking protocol type;</p>
                                     </li>
                                     <li>
@@ -357,6 +359,76 @@ print_r($register_site->getResponseObject());
                         </pre>
                     </div>
 
+                    <h3 class="sectionedit100" id="Update_site_registration">Update_site_registration.php</h3>
+
+                    <div class="level100">
+
+                        <p>
+                            Update_site_registration class extends from Clinet_OXD_RP class.
+                        </p>
+                        <p>Constructor accept parent constructor parameter ($base_url = string)</p>
+                        <ul>
+                            <li class="level1">
+                                <div class="li"> <h4>Parameters:</h4></div>
+                                <ul>
+                                    <li>
+                                        <h4>Description: Parameters necessary for to request Update_site_registration protocol;</h4>
+                                        <p>$request_authorization_redirect_uri,$request_response_types,$request_client_logout_uri,$request_grant_types,$request_scope, $request_logout_redirect_uri, $request_application_type, $request_redirect_uris, $request_acr_values, $request_client_jwks_uri, $request_client_token_endpoint_auth_method, $request_client_request_uris, $request_contacts;</p>
+                                        <p>Type:string;</p>
+                                        <p>Default value = null;</p>
+
+                                    </li>
+                                    <li>
+                                        <h4>Description: Response parameters from oxd;</h4>
+                                        <p>$response_oxd_id</p>
+                                        <p>Type:string;</p>
+
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="level1">
+                                <div class="li"><h4> Functions:</h4></div>
+                                <ul>
+                                    <li>
+                                        <h4>Extended functions from parent class,response parameter getters and request parameters setters and getters;</h4>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p>
+                            <strong>Example</strong>
+                        </p>
+                        <pre class="code">
+Update_site_registration_test:
+
+session_start();
+include_once '../Update_site_registration.php';
+
+$update_site_registration = new Update_site_registration('../');
+
+$update_site_registration->setRequestAcrValues(Oxd_RP_config::$acr_values);
+$update_site_registration->setRequestAuthorizationRedirectUri(Oxd_RP_config::$authorization_redirect_uri);
+$update_site_registration->setRequestRedirectUris(Oxd_RP_config::$redirect_uris);
+$update_site_registration->setRequestLogoutRedirectUri(Oxd_RP_config::$logout_redirect_uri);
+$update_site_registration->setRequestContacts(["vlad@gluu.org"]);
+$update_site_registration->setRequestClientJwksUri("");
+$update_site_registration->setRequestClientRequestUris([]);
+$update_site_registration->setRequestClientTokenEndpointAuthMethod("");
+$update_site_registration->setRequestGrantTypes(Oxd_RP_config::$grant_types);
+$update_site_registration->setRequestResponseTypes(Oxd_RP_config::$response_types);
+$update_site_registration->setRequestClientLogoutUri(Oxd_RP_config::$logout_redirect_uri);
+$update_site_registration->setRequestScope(Oxd_RP_config::$scope);
+
+$update_site_registration->request();
+$_SESSION['oxd_id'] = $update_site_registration->getResponseOxdId();
+
+print_r($update_site_registration->getResponseObject());
+
+                        </pre>
+                    </div>
+                    
                     <h3 class="sectionedit100" id="Get_authorization_url">Get_authorization_url.php</h3>
 
                     <div class="level100">
