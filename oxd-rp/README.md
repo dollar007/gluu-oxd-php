@@ -373,7 +373,7 @@ print_r($register_site->getResponseObject());
                                 <ul>
                                     <li>
                                         <h4>Description: Parameters necessary for to request Update_site_registration protocol;</h4>
-                                        <p>$request_authorization_redirect_uri,$request_response_types,$request_client_logout_uri,$request_grant_types,$request_scope, $request_logout_redirect_uri, $request_application_type, $request_redirect_uris, $request_acr_values, $request_client_jwks_uri, $request_client_token_endpoint_auth_method, $request_client_request_uris, $request_contacts;</p>
+                                        <p>$request_oxd_id,$request_authorization_redirect_uri,$request_response_types,$request_client_logout_uri,$request_grant_types,$request_scope, $request_logout_redirect_uri, $request_application_type, $request_redirect_uris, $request_acr_values, $request_client_jwks_uri, $request_client_token_endpoint_auth_method, $request_client_request_uris, $request_contacts;</p>
                                         <p>Type:string;</p>
                                         <p>Default value = null;</p>
 
@@ -409,6 +409,7 @@ include_once '../Update_site_registration.php';
 $update_site_registration = new Update_site_registration('../');
 
 $update_site_registration->setRequestAcrValues(Oxd_RP_config::$acr_values);
+$update_site_registration->setRequestOxdId($_SESSION['oxd_id']);
 $update_site_registration->setRequestAuthorizationRedirectUri(Oxd_RP_config::$authorization_redirect_uri);
 $update_site_registration->setRequestRedirectUris(Oxd_RP_config::$redirect_uris);
 $update_site_registration->setRequestLogoutRedirectUri(Oxd_RP_config::$logout_redirect_uri);
