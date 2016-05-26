@@ -138,7 +138,6 @@ extends all protocols classes.
 [Client\_OXD\_RP]
 
 -   [Register\_site.php](#Register_site)
--   [Update\_site\_registration.php](#Update_site_registration)
 -   [Get\_authorization\_url.php](#Get_authorization_url)
 -   [Get\_tokens\_by\_code.php](#Get_tokens_by_code)
 -   [Get\_user\_info.php](#Get_user_info)
@@ -324,69 +323,6 @@ $register_site->request();
 $_SESSION['oxd_id'] = $register_site->getResponseOxdId();
 
 print_r($register_site->getResponseObject());
-
-                        
-```
-
-## Update\_site\_registration.php 
-
-Update\_site\_registration class extends from Clinet\_OXD\_RP class.
-
-Constructor accept parent constructor parameter ($base\_url = string)
-
--   #### Parameters:
-
-    -   #### Description: Parameters necessary for to request Update\_site\_registration protocol;
-
-        $request\_oxd\_id,$request\_authorization\_redirect\_uri,$request\_response\_types,$request\_client\_logout\_uri,$request\_grant\_types,$request\_scope,
-        $request\_logout\_redirect\_uri, $request\_application\_type,
-        $request\_redirect\_uris, $request\_acr\_values,
-        $request\_client\_jwks\_uri,
-        $request\_client\_token\_endpoint\_auth\_method,
-        $request\_client\_request\_uris, $request\_contacts;
-
-        Type:string;
-
-        Default value = null;
-
-    -   #### Description: Response parameters from oxd;
-
-        $response\_oxd\_id
-
-        Type:string;
-
--   #### Functions:
-
-    -   #### Extended functions from parent class,response parameter getters and request parameters setters and getters;
-
-**Example**
-
-``` {.code}
-Update_site_registration_test:
-
-session_start();
-include_once '../Update_site_registration.php';
-
-$update_site_registration = new Update_site_registration('../');
-
-$update_site_registration->setRequestAcrValues(Oxd_RP_config::$acr_values);
-$update_site_registration->setRequestOxdId($_SESSION['oxd_id']);
-$update_site_registration->setRequestAuthorizationRedirectUri(Oxd_RP_config::$authorization_redirect_uri);
-$update_site_registration->setRequestRedirectUris(Oxd_RP_config::$redirect_uris);
-$update_site_registration->setRequestLogoutRedirectUri(Oxd_RP_config::$logout_redirect_uri);
-$update_site_registration->setRequestContacts(["vlad@gluu.org"]);
-$update_site_registration->setRequestClientJwksUri("");
-$update_site_registration->setRequestClientRequestUris([]);
-$update_site_registration->setRequestClientTokenEndpointAuthMethod("");
-$update_site_registration->setRequestGrantTypes(Oxd_RP_config::$grant_types);
-$update_site_registration->setRequestResponseTypes(Oxd_RP_config::$response_types);
-$update_site_registration->setRequestClientLogoutUri(Oxd_RP_config::$logout_redirect_uri);
-$update_site_registration->setRequestScope(Oxd_RP_config::$scope);
-
-$update_site_registration->request();
-$_SESSION['oxd_id'] = $update_site_registration->getResponseOxdId();
-
-print_r($update_site_registration->getResponseObject());
 
                         
 ```
