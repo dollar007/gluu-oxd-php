@@ -20,4 +20,4 @@
     unset($_SESSION['user_oxd_access_token']);
     unset($_SESSION['session_states']);
     unset($_SESSION['states']);
-    header("Location: "."https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+    header("Location: https://client.example.com");
