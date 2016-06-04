@@ -11,7 +11,19 @@ require_once 'Oxd_RP_config.php';
 
 abstract class Client_OXD_RP extends Client_Socket_OXD_RP{
 
-    private $command_types = array( 'get_authorization_url','update_site_registration', 'get_tokens_by_code','get_user_info', 'register_site', 'get_logout_uri','get_authorization_code' );
+    private $command_types = array( 'get_authorization_url',
+                                    'update_site_registration',
+                                    'get_tokens_by_code',
+                                    'get_user_info',
+                                    'register_site',
+                                    'get_logout_uri',
+                                    'get_authorization_code',
+                                    'uma_rp_get_gat',
+                                    'uma_rp_authorize_rpt',
+                                    'uma_rp_get_rpt',
+                                    'uma_rs_check_access',
+                                    'uma_rs_protect'
+    );
     protected $data = array();
     protected $command;
     protected $params = array();
