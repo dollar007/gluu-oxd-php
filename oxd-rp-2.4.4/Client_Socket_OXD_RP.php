@@ -47,6 +47,7 @@ class Client_Socket_OXD_RP{
      * @return object
      **/
     public function define_variables($configOBJECT){
+        Oxd_RP_config::$op_host = $configOBJECT->op_host;
         Oxd_RP_config::$oxd_host_ip = $configOBJECT->oxd_host_ip;
         Oxd_RP_config::$oxd_host_port = $configOBJECT->oxd_host_port;
         Oxd_RP_config::$authorization_redirect_uri = $configOBJECT->authorization_redirect_uri;
