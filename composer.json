@@ -1,5 +1,5 @@
 {
-  "name": "GluuFederation/oxd-php",
+  "name": "dollar007/gluu-oxd-php",
   "description": "Use OpenID Connect to login by leveraging the oxd client service demon.",
   "license": "proprietary",
   "authors": [
